@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_radio_temp"
+        android:shortcutId="radio"
+        android:shortcutLongLabel="@string/shortcut_long_label_radio"
+        android:shortcutShortLabel="@string/shortcut_short_label_radio">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.arulvakku.ui.activity.RadioActivity"
+            android:targetPackage="com.arulvakku" />
+
+    </shortcut>
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_bible_list"
+        android:shortcutId="bible"
+        android:shortcutLongLabel="@string/shortcut_long_label_bible"
+        android:shortcutShortLabel="@string/shortcut_short_label_bible">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.arulvakku.ui.activity.BooksActivity"
+            android:targetPackage="com.arulvakku" />
+
+    </shortcut>
+
+
+</shortcuts>

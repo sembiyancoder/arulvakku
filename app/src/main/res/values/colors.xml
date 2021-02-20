@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#263237</color>
+    <color name="colorPrimaryDark">#1e282d</color>
+    <color name="colorAccent">@android:color/holo_red_dark</color>
+
+
+    <color name="white">#ffffff</color>
+    <color name="line_divider">#1Aaaaaaa</color>
+
+    <color name="list_item_selected_state">#CFCFCF</color>
+    <color name="list_item_normal_state">#FFFFFF</color>
+
+    <color name="background_transparent">#E6263237</color>
+    <color name="selected_item">#FFFFFF</color>
+    <color name="background_app_color">#fafafa</color>
+    <color name="background_shimmer">#dddddd</color>
+
+</resources>

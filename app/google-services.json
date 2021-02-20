@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "824589279985",
+    "firebase_url": "https://arulvakku-f791b.firebaseio.com",
+    "project_id": "arulvakku-f791b",
+    "storage_bucket": "arulvakku-f791b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824589279985:android:5b5282ee6590ee33c57f50",
+        "android_client_info": {
+          "package_name": "com.arulvakku"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824589279985-32ns7k73enlca5f583mkqmivcml1q776.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_rsTaVn_MLKXkxzyGlEWf1s6ZqjVRf98"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "824589279985-32ns7k73enlca5f583mkqmivcml1q776.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

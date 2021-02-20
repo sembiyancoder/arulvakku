@@ -1,0 +1,1850 @@
+{
+  "Version": "1.0",
+  "LicensedBy": "Arulvakku Licence",
+  "StatusCode": 0,
+  "RequestUri": null,
+  "Method": null,
+  "IsTransactionDone": true,
+  "Result": [
+    {
+      "sVersesId": 1,
+      "sVersesDate": "29122020",
+      "sVerses": "52001010"
+    },
+    {
+      "sVersesId": 1,
+      "sVersesDate": "30122020",
+      "sVerses": "51002035"
+    },
+    {
+      "sVersesId": 1,
+      "sVersesDate": "31122020",
+      "sVerses": "52001010"
+    },
+    {
+      "sVersesId": 1,
+      "sVersesDate": "01012021",
+      "sVerses": "04006024"
+    },
+    {
+      "sVersesId": 2,
+      "sVersesDate": "02012021",
+      "sVerses": "71002028"
+    },
+    {
+      "sVersesId": 3,
+      "sVersesDate": "03012021",
+      "sVerses": "23060003"
+    },
+    {
+      "sVersesId": 4,
+      "sVersesDate": "04012021",
+      "sVerses": "71003023"
+    },
+    {
+      "sVersesId": 5,
+      "sVersesDate": "05012021",
+      "sVerses": "71004009"
+    },
+    {
+      "sVersesId": 6,
+      "sVersesDate": "06012021",
+      "sVerses": "71004015"
+    },
+    {
+      "sVersesId": 7,
+      "sVersesDate": "07012021",
+      "sVerses": "67001004"
+    },
+    {
+      "sVersesId": 8,
+      "sVersesDate": "08012021",
+      "sVerses": "71005009"
+    },
+    {
+      "sVersesId": 9,
+      "sVersesDate": "09012021",
+      "sVerses": "71005014"
+    },
+    {
+      "sVersesId": 10,
+      "sVersesDate": "10012021",
+      "sVerses": "23055006"
+    },
+    {
+      "sVersesId": 11,
+      "sVersesDate": "11012021",
+      "sVerses": "67001004"
+    },
+    {
+      "sVersesId": 12,
+      "sVersesDate": "12012021",
+      "sVerses": "67002011"
+    },
+    {
+      "sVersesId": 13,
+      "sVersesDate": "13012021",
+      "sVerses": "67002017"
+    },
+    {
+      "sVersesId": 14,
+      "sVersesDate": "14012021",
+      "sVerses": "67003013"
+    },
+    {
+      "sVersesId": 15,
+      "sVersesDate": "15012021",
+      "sVerses": "67004011"
+    },
+    {
+      "sVersesId": 16,
+      "sVersesDate": "16012021",
+      "sVerses": "67004016"
+    },
+    {
+      "sVersesId": 17,
+      "sVersesDate": "17012021",
+      "sVerses": "09003010"
+    },
+    {
+      "sVersesId": 18,
+      "sVersesDate": "18012021",
+      "sVerses": "67005009"
+    },
+    {
+      "sVersesId": 19,
+      "sVersesDate": "19012021",
+      "sVerses": "67006014"
+    },
+    {
+      "sVersesId": 20,
+      "sVersesDate": "20012021",
+      "sVerses": "67007017"
+    },
+    {
+      "sVersesId": 21,
+      "sVersesDate": "21012021",
+      "sVerses": "67008002"
+    },
+    {
+      "sVersesId": 22,
+      "sVersesDate": "22012021",
+      "sVerses": "67008013"
+    },
+    {
+      "sVersesId": 23,
+      "sVersesDate": "23012021",
+      "sVerses": "67009014"
+    },
+    {
+      "sVersesId": 24,
+      "sVersesDate": "24012021",
+      "sVerses": "32003010"
+    },
+    {
+      "sVersesId": 25,
+      "sVersesDate": "25012021",
+      "sVerses": "53022008"
+    },
+    {
+      "sVersesId": 26,
+      "sVersesDate": "26012021",
+      "sVerses": "64001007"
+    },
+    {
+      "sVersesId": 27,
+      "sVersesDate": "27012021",
+      "sVerses": "67010017"
+    },
+    {
+      "sVersesId": 28,
+      "sVersesDate": "28012021",
+      "sVerses": "67010023"
+    },
+    {
+      "sVersesId": 29,
+      "sVersesDate": "29012021",
+      "sVerses": "67010038"
+    },
+    {
+      "sVersesId": 30,
+      "sVersesDate": "30012021",
+      "sVerses": "67011001"
+    },
+    {
+      "sVersesId": 31,
+      "sVersesDate": "31012021",
+      "sVerses": "05018018"
+    },
+    {
+      "sVersesId": 32,
+      "sVersesDate": "01022021",
+      "sVerses": "67011040"
+    },
+    {
+      "sVersesId": 33,
+      "sVersesDate": "02022021",
+      "sVerses": "39003001"
+    },
+    {
+      "sVersesId": 34,
+      "sVersesDate": "03022021",
+      "sVerses": "67012013"
+    },
+    {
+      "sVersesId": 35,
+      "sVersesDate": "04022021",
+      "sVerses": "67012022"
+    },
+    {
+      "sVersesId": 36,
+      "sVersesDate": "05022021",
+      "sVerses": "67013007"
+    },
+    {
+      "sVersesId": 37,
+      "sVersesDate": "06022021",
+      "sVerses": "67013015"
+    },
+    {
+      "sVersesId": 38,
+      "sVersesDate": "07022021",
+      "sVerses": "18007006"
+    },
+    {
+      "sVersesId": 39,
+      "sVersesDate": "08022021",
+      "sVerses": "19104001"
+    },
+    {
+      "sVersesId": 40,
+      "sVersesDate": "09022021",
+      "sVerses": "01001027"
+    },
+    {
+      "sVersesId": 41,
+      "sVersesDate": "10022021",
+      "sVerses": "01002007"
+    },
+    {
+      "sVersesId": 42,
+      "sVersesDate": "11022021",
+      "sVerses": "01002023"
+    },
+    {
+      "sVersesId": 43,
+      "sVersesDate": "12022021",
+      "sVerses": "01003003"
+    },
+    {
+      "sVersesId": 44,
+      "sVersesDate": "13022021",
+      "sVerses": "01003015"
+    },
+    {
+      "sVersesId": 45,
+      "sVersesDate": "14022021",
+      "sVerses": "55010033"
+    },
+    {
+      "sVersesId": 46,
+      "sVersesDate": "15022021",
+      "sVerses": "19050001"
+    },
+    {
+      "sVersesId": 47,
+      "sVersesDate": "16022021",
+      "sVerses": "19029002"
+    },
+    {
+      "sVersesId": 48,
+      "sVersesDate": "17022021",
+      "sVerses": "29002012"
+    },
+    {
+      "sVersesId": 49,
+      "sVersesDate": "18022021",
+      "sVerses": "05030019"
+    },
+    {
+      "sVersesId": 50,
+      "sVersesDate": "19022021",
+      "sVerses": "23058006"
+    },
+    {
+      "sVersesId": 51,
+      "sVersesDate": "20022021",
+      "sVerses": "23058010"
+    },
+    {
+      "sVersesId": 52,
+      "sVersesDate": "21022021",
+      "sVerses": "01009015"
+    },
+    {
+      "sVersesId": 53,
+      "sVersesDate": "22022021",
+      "sVerses": "69005004"
+    },
+    {
+      "sVersesId": 54,
+      "sVersesDate": "23022021",
+      "sVerses": "23055011"
+    },
+    {
+      "sVersesId": 55,
+      "sVersesDate": "24022021",
+      "sVerses": "32003010"
+    },
+    {
+      "sVersesId": 56,
+      "sVersesDate": "25022021",
+      "sVerses": "19138003"
+    },
+    {
+      "sVersesId": 57,
+      "sVersesDate": "26022021",
+      "sVerses": "26018021"
+    },
+    {
+      "sVersesId": 58,
+      "sVersesDate": "27022021",
+      "sVerses": "05026016"
+    },
+    {
+      "sVersesId": 59,
+      "sVersesDate": "28022021",
+      "sVerses": "01022018"
+    },
+    {
+      "sVersesId": 60,
+      "sVersesDate": "01032021",
+      "sVerses": "27009004"
+    },
+    {
+      "sVersesId": 61,
+      "sVersesDate": "02032021",
+      "sVerses": "23001016"
+    },
+    {
+      "sVersesId": 62,
+      "sVersesDate": "03032021",
+      "sVerses": "24018019"
+    },
+    {
+      "sVersesId": 63,
+      "sVersesDate": "04032021",
+      "sVerses": "24017005"
+    },
+    {
+      "sVersesId": 64,
+      "sVersesDate": "05032021",
+      "sVerses": "19105021"
+    },
+    {
+      "sVersesId": 65,
+      "sVersesDate": "06032021",
+      "sVerses": "33007019"
+    },
+    {
+      "sVersesId": 66,
+      "sVersesDate": "07032021",
+      "sVerses": "02020006"
+    },
+    {
+      "sVersesId": 67,
+      "sVersesDate": "08032021",
+      "sVerses": "12005015"
+    },
+    {
+      "sVersesId": 68,
+      "sVersesDate": "09032021",
+      "sVerses": "46001018"
+    },
+    {
+      "sVersesId": 69,
+      "sVersesDate": "10032021",
+      "sVerses": "05004007"
+    },
+    {
+      "sVersesId": 70,
+      "sVersesDate": "11032021",
+      "sVerses": "24007023"
+    },
+    {
+      "sVersesId": 71,
+      "sVersesDate": "12032021",
+      "sVerses": "28014004"
+    },
+    {
+      "sVersesId": 72,
+      "sVersesDate": "13032021",
+      "sVerses": "28006006"
+    },
+    {
+      "sVersesId": 73,
+      "sVersesDate": "14032021",
+      "sVerses": "58002010"
+    },
+    {
+      "sVersesId": 74,
+      "sVersesDate": "15032021",
+      "sVerses": "23065018"
+    },
+    {
+      "sVersesId": 75,
+      "sVersesDate": "16032021",
+      "sVerses": "26047009"
+    },
+    {
+      "sVersesId": 76,
+      "sVersesDate": "17032021",
+      "sVerses": "23049015"
+    },
+    {
+      "sVersesId": 77,
+      "sVersesDate": "18032021",
+      "sVerses": "02032013"
+    },
+    {
+      "sVersesId": 78,
+      "sVersesDate": "19032021",
+      "sVerses": "10007016"
+    },
+    {
+      "sVersesId": 79,
+      "sVersesDate": "20032021",
+      "sVerses": "24011020"
+    },
+    {
+      "sVersesId": 80,
+      "sVersesDate": "21032021",
+      "sVerses": "24031033"
+    },
+    {
+      "sVersesId": 81,
+      "sVersesDate": "22032021",
+      "sVerses": "46002042"
+    },
+    {
+      "sVersesId": 82,
+      "sVersesDate": "23032021",
+      "sVerses": "04021007"
+    },
+    {
+      "sVersesId": 83,
+      "sVersesDate": "24032021",
+      "sVerses": "27003028"
+    },
+    {
+      "sVersesId": 84,
+      "sVersesDate": "25032021",
+      "sVerses": "23007014"
+    },
+    {
+      "sVersesId": 85,
+      "sVersesDate": "26032021",
+      "sVerses": "24020013"
+    },
+    {
+      "sVersesId": 86,
+      "sVersesDate": "27032021",
+      "sVerses": "26037028"
+    },
+    {
+      "sVersesId": 87,
+      "sVersesDate": "28032021",
+      "sVerses": "23050007"
+    },
+    {
+      "sVersesId": 88,
+      "sVersesDate": "29032021",
+      "sVerses": "23042004"
+    },
+    {
+      "sVersesId": 89,
+      "sVersesDate": "30032021",
+      "sVerses": "23049004"
+    },
+    {
+      "sVersesId": 90,
+      "sVersesDate": "31032021",
+      "sVerses": "23050009"
+    },
+    {
+      "sVersesId": 91,
+      "sVersesDate": "01042021",
+      "sVerses": "02012014"
+    },
+    {
+      "sVersesId": 92,
+      "sVersesDate": "02042021",
+      "sVerses": "23052013"
+    },
+    {
+      "sVersesId": 93,
+      "sVersesDate": "03042021",
+      "sVerses": "54006003"
+    },
+    {
+      "sVersesId": 94,
+      "sVersesDate": "04042021",
+      "sVerses": "53010043"
+    },
+    {
+      "sVersesId": 95,
+      "sVersesDate": "05042021",
+      "sVerses": "53002031"
+    },
+    {
+      "sVersesId": 96,
+      "sVersesDate": "06042021",
+      "sVerses": "53002038"
+    },
+    {
+      "sVersesId": 97,
+      "sVersesDate": "07042021",
+      "sVerses": "53003006"
+    },
+    {
+      "sVersesId": 98,
+      "sVersesDate": "08042021",
+      "sVerses": "53003016"
+    },
+    {
+      "sVersesId": 99,
+      "sVersesDate": "09042021",
+      "sVerses": "53004011"
+    },
+    {
+      "sVersesId": 100,
+      "sVersesDate": "10042021",
+      "sVerses": "53004013"
+    },
+    {
+      "sVersesId": 101,
+      "sVersesDate": "11042021",
+      "sVerses": "53004032"
+    },
+    {
+      "sVersesId": 102,
+      "sVersesDate": "12042021",
+      "sVerses": "53004030"
+    },
+    {
+      "sVersesId": 103,
+      "sVersesDate": "13042021",
+      "sVerses": "53004033"
+    },
+    {
+      "sVersesId": 104,
+      "sVersesDate": "14042021",
+      "sVerses": "53005020"
+    },
+    {
+      "sVersesId": 105,
+      "sVersesDate": "15042021",
+      "sVerses": "53005029"
+    },
+    {
+      "sVersesId": 106,
+      "sVersesDate": "16042021",
+      "sVerses": "53005041"
+    },
+    {
+      "sVersesId": 107,
+      "sVersesDate": "17042021",
+      "sVerses": "53006007"
+    },
+    {
+      "sVersesId": 108,
+      "sVersesDate": "18042021",
+      "sVerses": "53003019"
+    },
+    {
+      "sVersesId": 109,
+      "sVersesDate": "19042021",
+      "sVerses": "53006008"
+    },
+    {
+      "sVersesId": 110,
+      "sVersesDate": "20042021",
+      "sVerses": "53007060"
+    },
+    {
+      "sVersesId": 111,
+      "sVersesDate": "21042021",
+      "sVerses": "53008004"
+    },
+    {
+      "sVersesId": 112,
+      "sVersesDate": "22042021",
+      "sVerses": "53008037"
+    },
+    {
+      "sVersesId": 113,
+      "sVersesDate": "23042021",
+      "sVerses": "53009005"
+    },
+    {
+      "sVersesId": 114,
+      "sVersesDate": "24042021",
+      "sVerses": "53009040"
+    },
+    {
+      "sVersesId": 115,
+      "sVersesDate": "25042021",
+      "sVerses": "53004012"
+    },
+    {
+      "sVersesId": 116,
+      "sVersesDate": "26042021",
+      "sVerses": "53011016"
+    },
+    {
+      "sVersesId": 117,
+      "sVersesDate": "27042021",
+      "sVerses": "53011021"
+    },
+    {
+      "sVersesId": 118,
+      "sVersesDate": "28042021",
+      "sVerses": "53013003"
+    },
+    {
+      "sVersesId": 119,
+      "sVersesDate": "29042021",
+      "sVerses": "53013023"
+    },
+    {
+      "sVersesId": 120,
+      "sVersesDate": "30042021",
+      "sVerses": "53013032"
+    },
+    {
+      "sVersesId": 121,
+      "sVersesDate": "01052021",
+      "sVerses": "01002002"
+    },
+    {
+      "sVersesId": 122,
+      "sVersesDate": "02052021",
+      "sVerses": "71003018"
+    },
+    {
+      "sVersesId": 123,
+      "sVersesDate": "03052021",
+      "sVerses": "55015002"
+    },
+    {
+      "sVersesId": 124,
+      "sVersesDate": "04052021",
+      "sVerses": "53014022"
+    },
+    {
+      "sVersesId": 125,
+      "sVersesDate": "05052021",
+      "sVerses": "19122007"
+    },
+    {
+      "sVersesId": 126,
+      "sVersesDate": "06052021",
+      "sVerses": "53015017"
+    },
+    {
+      "sVersesId": 127,
+      "sVersesDate": "07052021",
+      "sVerses": "53015029"
+    },
+    {
+      "sVersesId": 128,
+      "sVersesDate": "08052021",
+      "sVerses": "19100003"
+    },
+    {
+      "sVersesId": 129,
+      "sVersesDate": "09052021",
+      "sVerses": "71004010"
+    },
+    {
+      "sVersesId": 130,
+      "sVersesDate": "10052021",
+      "sVerses": "53016014"
+    },
+    {
+      "sVersesId": 131,
+      "sVersesDate": "11052021",
+      "sVerses": "53016031"
+    },
+    {
+      "sVersesId": 132,
+      "sVersesDate": "12052021",
+      "sVerses": "53017031"
+    },
+    {
+      "sVersesId": 133,
+      "sVersesDate": "13052021",
+      "sVerses": "53018005"
+    },
+    {
+      "sVersesId": 134,
+      "sVersesDate": "14052021",
+      "sVerses": "53001026"
+    },
+    {
+      "sVersesId": 135,
+      "sVersesDate": "15052021",
+      "sVerses": "53018028"
+    },
+    {
+      "sVersesId": 136,
+      "sVersesDate": "16052021",
+      "sVerses": "53001011"
+    },
+    {
+      "sVersesId": 137,
+      "sVersesDate": "17052021",
+      "sVerses": "53019006"
+    },
+    {
+      "sVersesId": 138,
+      "sVersesDate": "18052021",
+      "sVerses": "53020024"
+    },
+    {
+      "sVersesId": 139,
+      "sVersesDate": "19052021",
+      "sVerses": "53020028"
+    },
+    {
+      "sVersesId": 140,
+      "sVersesDate": "20052021",
+      "sVerses": "53023011"
+    },
+    {
+      "sVersesId": 141,
+      "sVersesDate": "21052021",
+      "sVerses": "19103002"
+    },
+    {
+      "sVersesId": 142,
+      "sVersesDate": "22052021",
+      "sVerses": "19011004"
+    },
+    {
+      "sVersesId": 143,
+      "sVersesDate": "23052021",
+      "sVerses": "53002004"
+    },
+    {
+      "sVersesId": 144,
+      "sVersesDate": "24052021",
+      "sVerses": "44017026"
+    },
+    {
+      "sVersesId": 145,
+      "sVersesDate": "25052021",
+      "sVerses": "44035009"
+    },
+    {
+      "sVersesId": 146,
+      "sVersesDate": "26052021",
+      "sVerses": "44036004"
+    },
+    {
+      "sVersesId": 147,
+      "sVersesDate": "27052021",
+      "sVerses": "44042015"
+    },
+    {
+      "sVersesId": 148,
+      "sVersesDate": "28052021",
+      "sVerses": "19149002"
+    },
+    {
+      "sVersesId": 149,
+      "sVersesDate": "29052021",
+      "sVerses": "44051018"
+    },
+    {
+      "sVersesId": 150,
+      "sVersesDate": "30052021",
+      "sVerses": "05004039"
+    },
+    {
+      "sVersesId": 151,
+      "sVersesDate": "31052021",
+      "sVerses": "36003014"
+    },
+    {
+      "sVersesId": 152,
+      "sVersesDate": "01062021",
+      "sVerses": "19112007"
+    },
+    {
+      "sVersesId": 153,
+      "sVersesDate": "02062021",
+      "sVerses": "40003002"
+    },
+    {
+      "sVersesId": 154,
+      "sVersesDate": "03062021",
+      "sVerses": "19128005"
+    },
+    {
+      "sVersesId": 155,
+      "sVersesDate": "04062021",
+      "sVerses": "40011017"
+    },
+    {
+      "sVersesId": 156,
+      "sVersesDate": "05062021",
+      "sVerses": "40012007"
+    },
+    {
+      "sVersesId": 157,
+      "sVersesDate": "06062021",
+      "sVerses": "02024008"
+    },
+    {
+      "sVersesId": 158,
+      "sVersesDate": "07062021",
+      "sVerses": "56001003"
+    },
+    {
+      "sVersesId": 159,
+      "sVersesDate": "08062021",
+      "sVerses": "56001022"
+    },
+    {
+      "sVersesId": 160,
+      "sVersesDate": "09062021",
+      "sVerses": "56003009"
+    },
+    {
+      "sVersesId": 161,
+      "sVersesDate": "10062021",
+      "sVerses": "56003018"
+    },
+    {
+      "sVersesId": 162,
+      "sVersesDate": "11062021",
+      "sVerses": "28011004"
+    },
+    {
+      "sVersesId": 163,
+      "sVersesDate": "12062021",
+      "sVerses": "23061010"
+    },
+    {
+      "sVersesId": 164,
+      "sVersesDate": "13062021",
+      "sVerses": "26017024"
+    },
+    {
+      "sVersesId": 165,
+      "sVersesDate": "14062021",
+      "sVerses": "56006001"
+    },
+    {
+      "sVersesId": 166,
+      "sVersesDate": "15062021",
+      "sVerses": "56008009"
+    },
+    {
+      "sVersesId": 167,
+      "sVersesDate": "16062021",
+      "sVerses": "56009008"
+    },
+    {
+      "sVersesId": 168,
+      "sVersesDate": "17062021",
+      "sVerses": "56011002"
+    },
+    {
+      "sVersesId": 169,
+      "sVersesDate": "18062021",
+      "sVerses": "19034001"
+    },
+    {
+      "sVersesId": 170,
+      "sVersesDate": "19062021",
+      "sVerses": "56012009"
+    },
+    {
+      "sVersesId": 171,
+      "sVersesDate": "20062021",
+      "sVerses": "56005015"
+    },
+    {
+      "sVersesId": 172,
+      "sVersesDate": "21062021",
+      "sVerses": "01012003"
+    },
+    {
+      "sVersesId": 173,
+      "sVersesDate": "22062021",
+      "sVerses": "01013016"
+    },
+    {
+      "sVersesId": 174,
+      "sVersesDate": "23062021",
+      "sVerses": "01015005"
+    },
+    {
+      "sVersesId": 175,
+      "sVersesDate": "24062021",
+      "sVerses": "23049004"
+    },
+    {
+      "sVersesId": 176,
+      "sVersesDate": "25062021",
+      "sVerses": "01017016"
+    },
+    {
+      "sVersesId": 177,
+      "sVersesDate": "26062021",
+      "sVerses": "01018014"
+    },
+    {
+      "sVersesId": 178,
+      "sVersesDate": "27062021",
+      "sVerses": "43001013"
+    },
+    {
+      "sVersesId": 179,
+      "sVersesDate": "28062021",
+      "sVerses": "01018025"
+    },
+    {
+      "sVersesId": 180,
+      "sVersesDate": "29062021",
+      "sVerses": "53012011"
+    },
+    {
+      "sVersesId": 181,
+      "sVersesDate": "30062021",
+      "sVerses": "01021017"
+    },
+    {
+      "sVersesId": 182,
+      "sVersesDate": "01072021",
+      "sVerses": "01022017"
+    },
+    {
+      "sVersesId": 183,
+      "sVersesDate": "02072021",
+      "sVerses": "01024007"
+    },
+    {
+      "sVersesId": 184,
+      "sVersesDate": "03072021",
+      "sVerses": "23052010"
+    },
+    {
+      "sVersesId": 185,
+      "sVersesDate": "04072021",
+      "sVerses": "56012007"
+    },
+    {
+      "sVersesId": 186,
+      "sVersesDate": "05072021",
+      "sVerses": "01028015"
+    },
+    {
+      "sVersesId": 187,
+      "sVersesDate": "06072021",
+      "sVerses": "01032026"
+    },
+    {
+      "sVersesId": 188,
+      "sVersesDate": "07072021",
+      "sVerses": "01042021"
+    },
+    {
+      "sVersesId": 189,
+      "sVersesDate": "08072021",
+      "sVerses": "01045005"
+    },
+    {
+      "sVersesId": 190,
+      "sVersesDate": "09072021",
+      "sVerses": "01046003"
+    },
+    {
+      "sVersesId": 191,
+      "sVersesDate": "10072021",
+      "sVerses": "01050020"
+    },
+    {
+      "sVersesId": 192,
+      "sVersesDate": "11072021",
+      "sVerses": "30007015"
+    },
+    {
+      "sVersesId": 193,
+      "sVersesDate": "12072021",
+      "sVerses": "19124008"
+    },
+    {
+      "sVersesId": 194,
+      "sVersesDate": "13072021",
+      "sVerses": "02002010"
+    },
+    {
+      "sVersesId": 195,
+      "sVersesDate": "14072021",
+      "sVerses": "02003005"
+    },
+    {
+      "sVersesId": 196,
+      "sVersesDate": "15072021",
+      "sVerses": "02003014"
+    },
+    {
+      "sVersesId": 197,
+      "sVersesDate": "16072021",
+      "sVerses": "02012013"
+    },
+    {
+      "sVersesId": 198,
+      "sVersesDate": "17072021",
+      "sVerses": "02012042"
+    },
+    {
+      "sVersesId": 199,
+      "sVersesDate": "18072021",
+      "sVerses": "24023005"
+    },
+    {
+      "sVersesId": 200,
+      "sVersesDate": "19072021",
+      "sVerses": "02014013"
+    },
+    {
+      "sVersesId": 201,
+      "sVersesDate": "20072021",
+      "sVerses": "02014031"
+    },
+    {
+      "sVersesId": 202,
+      "sVersesDate": "21072021",
+      "sVerses": "02016004"
+    },
+    {
+      "sVersesId": 203,
+      "sVersesDate": "22072021",
+      "sVerses": "22003004"
+    },
+    {
+      "sVersesId": 204,
+      "sVersesDate": "23072021",
+      "sVerses": "02020007"
+    },
+    {
+      "sVersesId": 205,
+      "sVersesDate": "24072021",
+      "sVerses": "02024007"
+    },
+    {
+      "sVersesId": 206,
+      "sVersesDate": "25072021",
+      "sVerses": "12004043"
+    },
+    {
+      "sVersesId": 207,
+      "sVersesDate": "26072021",
+      "sVerses": "02032034"
+    },
+    {
+      "sVersesId": 208,
+      "sVersesDate": "27072021",
+      "sVerses": "02033011"
+    },
+    {
+      "sVersesId": 209,
+      "sVersesDate": "28072021",
+      "sVerses": "02034035"
+    },
+    {
+      "sVersesId": 210,
+      "sVersesDate": "29072021",
+      "sVerses": "02040038"
+    },
+    {
+      "sVersesId": 211,
+      "sVersesDate": "30072021",
+      "sVerses": "19081002"
+    },
+    {
+      "sVersesId": 212,
+      "sVersesDate": "31072021",
+      "sVerses": "03025017"
+    },
+    {
+      "sVersesId": 213,
+      "sVersesDate": "01082021",
+      "sVerses": "02016015"
+    },
+    {
+      "sVersesId": 214,
+      "sVersesDate": "02082021",
+      "sVerses": "19081013"
+    },
+    {
+      "sVersesId": 215,
+      "sVersesDate": "03082021",
+      "sVerses": "19051001"
+    },
+    {
+      "sVersesId": 216,
+      "sVersesDate": "04082021",
+      "sVerses": "19106013"
+    },
+    {
+      "sVersesId": 217,
+      "sVersesDate": "05082021",
+      "sVerses": "04020011"
+    },
+    {
+      "sVersesId": 218,
+      "sVersesDate": "06082021",
+      "sVerses": "27007013"
+    },
+    {
+      "sVersesId": 219,
+      "sVersesDate": "07082021",
+      "sVerses": "05006005"
+    },
+    {
+      "sVersesId": 220,
+      "sVersesDate": "08082021",
+      "sVerses": "11019008"
+    },
+    {
+      "sVersesId": 221,
+      "sVersesDate": "09082021",
+      "sVerses": "05010013"
+    },
+    {
+      "sVersesId": 222,
+      "sVersesDate": "10082021",
+      "sVerses": "56009007"
+    },
+    {
+      "sVersesId": 223,
+      "sVersesDate": "11082021",
+      "sVerses": "05034004"
+    },
+    {
+      "sVersesId": 224,
+      "sVersesDate": "12082021",
+      "sVerses": "06003017"
+    },
+    {
+      "sVersesId": 225,
+      "sVersesDate": "13082021",
+      "sVerses": "19136002"
+    },
+    {
+      "sVersesId": 226,
+      "sVersesDate": "14082021",
+      "sVerses": "06024016"
+    },
+    {
+      "sVersesId": 227,
+      "sVersesDate": "15082021",
+      "sVerses": "75012001"
+    },
+    {
+      "sVersesId": 228,
+      "sVersesDate": "16082021",
+      "sVerses": "07002018"
+    },
+    {
+      "sVersesId": 229,
+      "sVersesDate": "17082021",
+      "sVerses": "07006012"
+    },
+    {
+      "sVersesId": 230,
+      "sVersesDate": "18082021",
+      "sVerses": "19021001"
+    },
+    {
+      "sVersesId": 231,
+      "sVersesDate": "19082021",
+      "sVerses": "07011036"
+    },
+    {
+      "sVersesId": 232,
+      "sVersesDate": "20082021",
+      "sVerses": "08001016"
+    },
+    {
+      "sVersesId": 233,
+      "sVersesDate": "21082021",
+      "sVerses": "08004013"
+    },
+    {
+      "sVersesId": 234,
+      "sVersesDate": "22082021",
+      "sVerses": "06024016"
+    },
+    {
+      "sVersesId": 235,
+      "sVersesDate": "23082021",
+      "sVerses": "61001010"
+    },
+    {
+      "sVersesId": 236,
+      "sVersesDate": "24082021",
+      "sVerses": "75021014"
+    },
+    {
+      "sVersesId": 237,
+      "sVersesDate": "25082021",
+      "sVerses": "61002013"
+    },
+    {
+      "sVersesId": 238,
+      "sVersesDate": "26082021",
+      "sVerses": "61003008"
+    },
+    {
+      "sVersesId": 239,
+      "sVersesDate": "27082021",
+      "sVerses": "61004001"
+    },
+    {
+      "sVersesId": 240,
+      "sVersesDate": "28082021",
+      "sVerses": "61004011"
+    },
+    {
+      "sVersesId": 241,
+      "sVersesDate": "29082021",
+      "sVerses": "05004002"
+    },
+    {
+      "sVersesId": 242,
+      "sVersesDate": "30082021",
+      "sVerses": "61004014"
+    },
+    {
+      "sVersesId": 243,
+      "sVersesDate": "31082021",
+      "sVerses": "61005006"
+    },
+    {
+      "sVersesId": 244,
+      "sVersesDate": "01092021",
+      "sVerses": "60001002"
+    },
+    {
+      "sVersesId": 245,
+      "sVersesDate": "02092021",
+      "sVerses": "60001010"
+    },
+    {
+      "sVersesId": 246,
+      "sVersesDate": "03092021",
+      "sVerses": "60001018"
+    },
+    {
+      "sVersesId": 247,
+      "sVersesDate": "04092021",
+      "sVerses": "60001022"
+    },
+    {
+      "sVersesId": 248,
+      "sVersesDate": "05092021",
+      "sVerses": "23035004"
+    },
+    {
+      "sVersesId": 249,
+      "sVersesDate": "06092021",
+      "sVerses": "60002002"
+    },
+    {
+      "sVersesId": 250,
+      "sVersesDate": "07092021",
+      "sVerses": "60002012"
+    },
+    {
+      "sVersesId": 251,
+      "sVersesDate": "08092021",
+      "sVerses": "33005002"
+    },
+    {
+      "sVersesId": 252,
+      "sVersesDate": "09092021",
+      "sVerses": "60003012"
+    },
+    {
+      "sVersesId": 253,
+      "sVersesDate": "10092021",
+      "sVerses": "63001014"
+    },
+    {
+      "sVersesId": 254,
+      "sVersesDate": "11092021",
+      "sVerses": "60001017"
+    },
+    {
+      "sVersesId": 255,
+      "sVersesDate": "12092021",
+      "sVerses": "23050007"
+    },
+    {
+      "sVersesId": 256,
+      "sVersesDate": "13092021",
+      "sVerses": "63002002"
+    },
+    {
+      "sVersesId": 257,
+      "sVersesDate": "14092021",
+      "sVerses": "04021009"
+    },
+    {
+      "sVersesId": 258,
+      "sVersesDate": "15092021",
+      "sVerses": "67005007"
+    },
+    {
+      "sVersesId": 259,
+      "sVersesDate": "16092021",
+      "sVerses": "63004016"
+    },
+    {
+      "sVersesId": 260,
+      "sVersesDate": "17092021",
+      "sVerses": "63006006"
+    },
+    {
+      "sVersesId": 261,
+      "sVersesDate": "18092021",
+      "sVerses": "63006015"
+    },
+    {
+      "sVersesId": 262,
+      "sVersesDate": "19092021",
+      "sVerses": "43002018"
+    },
+    {
+      "sVersesId": 263,
+      "sVersesDate": "20092021",
+      "sVerses": "15001003"
+    },
+    {
+      "sVersesId": 264,
+      "sVersesDate": "21092021",
+      "sVerses": "58004006"
+    },
+    {
+      "sVersesId": 265,
+      "sVersesDate": "22092021",
+      "sVerses": "15009006"
+    },
+    {
+      "sVersesId": 266,
+      "sVersesDate": "23092021",
+      "sVerses": "19149002"
+    },
+    {
+      "sVersesId": 267,
+      "sVersesDate": "24092021",
+      "sVerses": "37002004"
+    },
+    {
+      "sVersesId": 268,
+      "sVersesDate": "25092021",
+      "sVerses": "38002010"
+    },
+    {
+      "sVersesId": 269,
+      "sVersesDate": "26092021",
+      "sVerses": "04011029"
+    },
+    {
+      "sVersesId": 270,
+      "sVersesDate": "27092021",
+      "sVerses": "38008003"
+    },
+    {
+      "sVersesId": 271,
+      "sVersesDate": "28092021",
+      "sVerses": "38008023"
+    },
+    {
+      "sVersesId": 272,
+      "sVersesDate": "29092021",
+      "sVerses": "75012007"
+    },
+    {
+      "sVersesId": 273,
+      "sVersesDate": "30092021",
+      "sVerses": "16008006"
+    },
+    {
+      "sVersesId": 274,
+      "sVersesDate": "01102021",
+      "sVerses": "45001022"
+    },
+    {
+      "sVersesId": 275,
+      "sVersesDate": "02102021",
+      "sVerses": "02023020"
+    },
+    {
+      "sVersesId": 276,
+      "sVersesDate": "03102021",
+      "sVerses": "01002023"
+    },
+    {
+      "sVersesId": 277,
+      "sVersesDate": "04102021",
+      "sVerses": "32001014"
+    },
+    {
+      "sVersesId": 278,
+      "sVersesDate": "05102021",
+      "sVerses": "32003010"
+    },
+    {
+      "sVersesId": 279,
+      "sVersesDate": "06102021",
+      "sVerses": "32004002"
+    },
+    {
+      "sVersesId": 280,
+      "sVersesDate": "07102021",
+      "sVerses": "39004002"
+    },
+    {
+      "sVersesId": 281,
+      "sVersesDate": "08102021",
+      "sVerses": "29002001"
+    },
+    {
+      "sVersesId": 282,
+      "sVersesDate": "09102021",
+      "sVerses": "29003016"
+    },
+    {
+      "sVersesId": 283,
+      "sVersesDate": "10102021",
+      "sVerses": "43007009"
+    },
+    {
+      "sVersesId": 284,
+      "sVersesDate": "11102021",
+      "sVerses": "54001004"
+    },
+    {
+      "sVersesId": 285,
+      "sVersesDate": "12102021",
+      "sVerses": "54001020"
+    },
+    {
+      "sVersesId": 286,
+      "sVersesDate": "13102021",
+      "sVerses": "54002007"
+    },
+    {
+      "sVersesId": 287,
+      "sVersesDate": "14102021",
+      "sVerses": "54003022"
+    },
+    {
+      "sVersesId": 288,
+      "sVersesDate": "15102021",
+      "sVerses": "54004005"
+    },
+    {
+      "sVersesId": 289,
+      "sVersesDate": "16102021",
+      "sVerses": "54004017"
+    },
+    {
+      "sVersesId": 290,
+      "sVersesDate": "17102021",
+      "sVerses": "23053011"
+    },
+    {
+      "sVersesId": 291,
+      "sVersesDate": "18102021",
+      "sVerses": "64004017"
+    },
+    {
+      "sVersesId": 292,
+      "sVersesDate": "19102021",
+      "sVerses": "54005017"
+    },
+    {
+      "sVersesId": 293,
+      "sVersesDate": "20102021",
+      "sVerses": "54006012"
+    },
+    {
+      "sVersesId": 294,
+      "sVersesDate": "21102021",
+      "sVerses": "54006023"
+    },
+    {
+      "sVersesId": 295,
+      "sVersesDate": "22102021",
+      "sVerses": "54007025"
+    },
+    {
+      "sVersesId": 296,
+      "sVersesDate": "23102021",
+      "sVerses": "54008006"
+    },
+    {
+      "sVersesId": 297,
+      "sVersesDate": "24102021",
+      "sVerses": "24031007"
+    },
+    {
+      "sVersesId": 298,
+      "sVersesDate": "25102021",
+      "sVerses": "54008015"
+    },
+    {
+      "sVersesId": 299,
+      "sVersesDate": "26102021",
+      "sVerses": "54008023"
+    },
+    {
+      "sVersesId": 300,
+      "sVersesDate": "27102021",
+      "sVerses": "54008027"
+    },
+    {
+      "sVersesId": 301,
+      "sVersesDate": "28102021",
+      "sVerses": "58002020"
+    },
+    {
+      "sVersesId": 302,
+      "sVersesDate": "29102021",
+      "sVerses": "54009003"
+    },
+    {
+      "sVersesId": 303,
+      "sVersesDate": "30102021",
+      "sVerses": "54011029"
+    },
+    {
+      "sVersesId": 304,
+      "sVersesDate": "31102021",
+      "sVerses": "05006002"
+    },
+    {
+      "sVersesId": 305,
+      "sVersesDate": "01112021",
+      "sVerses": "75007010"
+    },
+    {
+      "sVersesId": 306,
+      "sVersesDate": "02112021",
+      "sVerses": "23025007"
+    },
+    {
+      "sVersesId": 307,
+      "sVersesDate": "03112021",
+      "sVerses": "54013008"
+    },
+    {
+      "sVersesId": 308,
+      "sVersesDate": "04112021",
+      "sVerses": "54014008"
+    },
+    {
+      "sVersesId": 309,
+      "sVersesDate": "05112021",
+      "sVerses": "54015014"
+    },
+    {
+      "sVersesId": 310,
+      "sVersesDate": "06112021",
+      "sVerses": "54016027"
+    },
+    {
+      "sVersesId": 311,
+      "sVersesDate": "07112021",
+      "sVerses": "11017016"
+    },
+    {
+      "sVersesId": 312,
+      "sVersesDate": "08112021",
+      "sVerses": "43001006"
+    },
+    {
+      "sVersesId": 313,
+      "sVersesDate": "09112021",
+      "sVerses": "26047009"
+    },
+    {
+      "sVersesId": 314,
+      "sVersesDate": "10112021",
+      "sVerses": "43006010"
+    },
+    {
+      "sVersesId": 315,
+      "sVersesDate": "11112021",
+      "sVerses": "43007025"
+    },
+    {
+      "sVersesId": 316,
+      "sVersesDate": "12112021",
+      "sVerses": "43013009"
+    },
+    {
+      "sVersesId": 317,
+      "sVersesDate": "13112021",
+      "sVerses": "43019006"
+    },
+    {
+      "sVersesId": 318,
+      "sVersesDate": "14112021",
+      "sVerses": "27012002"
+    },
+    {
+      "sVersesId": 319,
+      "sVersesDate": "15112021",
+      "sVerses": "47001063"
+    },
+    {
+      "sVersesId": 320,
+      "sVersesDate": "16112021",
+      "sVerses": "48006025"
+    },
+    {
+      "sVersesId": 321,
+      "sVersesDate": "17112021",
+      "sVerses": "48007029"
+    },
+    {
+      "sVersesId": 322,
+      "sVersesDate": "18112021",
+      "sVerses": "53028031"
+    },
+    {
+      "sVersesId": 323,
+      "sVersesDate": "19112021",
+      "sVerses": "47004054"
+    },
+    {
+      "sVersesId": 324,
+      "sVersesDate": "20112021",
+      "sVerses": "19009001"
+    },
+    {
+      "sVersesId": 325,
+      "sVersesDate": "21112021",
+      "sVerses": "27007014"
+    },
+    {
+      "sVersesId": 326,
+      "sVersesDate": "22112021",
+      "sVerses": "27001017"
+    },
+    {
+      "sVersesId": 327,
+      "sVersesDate": "23112021",
+      "sVerses": "27002044"
+    },
+    {
+      "sVersesId": 328,
+      "sVersesDate": "24112021",
+      "sVerses": "46001034"
+    },
+    {
+      "sVersesId": 329,
+      "sVersesDate": "25112021",
+      "sVerses": "27006026"
+    },
+    {
+      "sVersesId": 330,
+      "sVersesDate": "26112021",
+      "sVerses": "27007013"
+    },
+    {
+      "sVersesId": 331,
+      "sVersesDate": "27112021",
+      "sVerses": "27007027"
+    },
+    {
+      "sVersesId": 332,
+      "sVersesDate": "28112021",
+      "sVerses": "24033014"
+    },
+    {
+      "sVersesId": 333,
+      "sVersesDate": "29112021",
+      "sVerses": "23002003"
+    },
+    {
+      "sVersesId": 334,
+      "sVersesDate": "30112021",
+      "sVerses": "54010009"
+    },
+    {
+      "sVersesId": 335,
+      "sVersesDate": "01122021",
+      "sVerses": "23025007"
+    },
+    {
+      "sVersesId": 336,
+      "sVersesDate": "02122021",
+      "sVerses": "23026004"
+    },
+    {
+      "sVersesId": 337,
+      "sVersesDate": "03122021",
+      "sVerses": "23061003"
+    },
+    {
+      "sVersesId": 338,
+      "sVersesDate": "04122021",
+      "sVerses": "23030026"
+    },
+    {
+      "sVersesId": 339,
+      "sVersesDate": "05122021",
+      "sVerses": "45005001"
+    },
+    {
+      "sVersesId": 340,
+      "sVersesDate": "06122021",
+      "sVerses": "23035004"
+    },
+    {
+      "sVersesId": 341,
+      "sVersesDate": "07122021",
+      "sVerses": "23040003"
+    },
+    {
+      "sVersesId": 342,
+      "sVersesDate": "08122021",
+      "sVerses": "01003015"
+    },
+    {
+      "sVersesId": 343,
+      "sVersesDate": "09122021",
+      "sVerses": "23041013"
+    },
+    {
+      "sVersesId": 344,
+      "sVersesDate": "10122021",
+      "sVerses": "23048017"
+    },
+    {
+      "sVersesId": 345,
+      "sVersesDate": "11122021",
+      "sVerses": "44048011"
+    },
+    {
+      "sVersesId": 346,
+      "sVersesDate": "12122021",
+      "sVerses": "36003015"
+    },
+    {
+      "sVersesId": 347,
+      "sVersesDate": "13122021",
+      "sVerses": "04024005"
+    },
+    {
+      "sVersesId": 348,
+      "sVersesDate": "14122021",
+      "sVerses": "36003009"
+    },
+    {
+      "sVersesId": 349,
+      "sVersesDate": "15122021",
+      "sVerses": "23045008"
+    },
+    {
+      "sVersesId": 350,
+      "sVersesDate": "16122021",
+      "sVerses": "23054005"
+    },
+    {
+      "sVersesId": 351,
+      "sVersesDate": "17122021",
+      "sVerses": "01049010"
+    },
+    {
+      "sVersesId": 352,
+      "sVersesDate": "18122021",
+      "sVerses": "24023005"
+    },
+    {
+      "sVersesId": 353,
+      "sVersesDate": "19122021",
+      "sVerses": "33005004"
+    },
+    {
+      "sVersesId": 354,
+      "sVersesDate": "20122021",
+      "sVerses": "23007014"
+    },
+    {
+      "sVersesId": 355,
+      "sVersesDate": "21122021",
+      "sVerses": "22002013"
+    },
+    {
+      "sVersesId": 356,
+      "sVersesDate": "22122021",
+      "sVerses": "09001028"
+    },
+    {
+      "sVersesId": 357,
+      "sVersesDate": "23122021",
+      "sVerses": "39003001"
+    },
+    {
+      "sVersesId": 358,
+      "sVersesDate": "24122021",
+      "sVerses": "10007016"
+    },
+    {
+      "sVersesId": 359,
+      "sVersesDate": "25122021",
+      "sVerses": "23052007"
+    },
+    {
+      "sVersesId": 360,
+      "sVersesDate": "26122021",
+      "sVerses": "09001020"
+    },
+    {
+      "sVersesId": 361,
+      "sVersesDate": "27122021",
+      "sVerses": "71001003"
+    },
+    {
+      "sVersesId": 362,
+      "sVersesDate": "28122021",
+      "sVerses": "71001007"
+    },
+    {
+      "sVersesId": 363,
+      "sVersesDate": "29122021",
+      "sVerses": "71002005"
+    },
+    {
+      "sVersesId": 364,
+      "sVersesDate": "30122021",
+      "sVerses": "71002014"
+    },
+    {
+      "sVersesId": 365,
+      "sVersesDate": "31122021",
+      "sVerses": "71002020"
+    }
+  ]
+}

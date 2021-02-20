@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parent_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/mtrl_card_spacing"
+    android:paddingRight="@dimen/mtrl_card_spacing"
+    android:paddingTop="@dimen/mtrl_card_spacing"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txt_chapter_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_margin="3dp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="இன்றைய வசனம் "
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:textColor="@android:color/holo_red_dark"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/first_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="3dp"
+            android:gravity="center"
+            android:text="இன்றைய வசனம் "
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/verse_list_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/verse_row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="3dp">
+
+            <TextView
+                android:id="@+id/verse_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="001"
+                android:gravity="center"
+                android:textAppearance="?attr/textAppearanceListItemSmall"
+                android:textColor="@android:color/black" />
+
+            <ImageView
+                android:id="@+id/image_bookmark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_bookmark_border_red_24dp"
+                android:visibility="visible"></ImageView>
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/verse_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/verse_row"
+            android:lineSpacingExtra="8dp"
+            android:padding="2dp"
+            android:text="மத்தேயு  5 : 41"
+            android:gravity="start"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textColor="@android:color/black"
+            android:visibility="visible" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

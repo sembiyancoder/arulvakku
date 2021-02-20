@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/context_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingBottom="100dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view_chapters"
+        style="@style/Widget.MaterialComponents.CardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_gravity="bottom|center"
+        android:clickable="true"
+        app:cardElevation="@dimen/dimen_10"
+        app:cardUseCompatPadding="true"
+        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardCornerRadius="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="அதிகாரங்கள்"
+            android:textColor="@color/white" />
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+</RelativeLayout>

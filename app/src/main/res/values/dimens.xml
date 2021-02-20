@@ -1,0 +1,30 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+    <!-- CUSTOM MATCH_PARENT - see https://developer.android.com/reference/android/view/ViewGroup.LayoutParams.html#MATCH_PARENT -->
+
+
+    <dimen name="dimen_10">10dp</dimen>
+
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+    <!-- Playback controls -->
+    <dimen name="playback_controls_icon_horizontal_margin">8dp</dimen>
+    <dimen name="playback_controls_padding">8dp</dimen>
+
+    <!-- Notification -->
+    <dimen name="notification_icon_size">38dp</dimen>
+    <dimen name="notification_icon_padding">8dp</dimen>
+
+    <!-- Station list -->
+    <dimen name="station_item_height">72dp</dimen>
+    <dimen name="station_item_icon_size">36dp</dimen>
+    <dimen name="station_item_icon_margin">16dp</dimen>
+
+
+    <dimen name="card_corner_radius">6dp</dimen>
+
+</resources>

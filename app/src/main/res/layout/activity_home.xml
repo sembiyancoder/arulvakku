@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_app_color">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_app_color"
+        android:descendantFocusability="blocksDescendants"
+        android:orientation="vertical">
+
+        <!--daily verse layout-->
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.MaterialComponents.CardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/mtrl_card_spacing"
+            android:layout_marginTop="@dimen/mtrl_card_spacing"
+            android:layout_marginRight="@dimen/mtrl_card_spacing"
+            android:checkable="true"
+            android:orientation="horizontal"
+            app:strokeColor="@color/colorPrimary">
+
+            <fragment
+                android:id="@+id/daily_verse_fragment"
+                class="com.arulvakku.ui.fragments.DailyVerseFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <!--rosary layout-->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_today_rosary"
+            style="@style/Widget.MaterialComponents.CardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/mtrl_card_spacing"
+            android:layout_marginTop="@dimen/mtrl_card_spacing"
+            android:layout_marginRight="@dimen/mtrl_card_spacing"
+            android:checkable="true"
+            android:orientation="horizontal"
+            app:strokeColor="@color/colorPrimary">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:text="இன்றைய செபமாலை"
+                    android:textAppearance="?textAppearanceListItem"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txt_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textAppearance="?textAppearanceListItem"
+                    android:textColor="@android:color/black" />
+
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|end"
+                android:src="@drawable/ic_keyboard_arrow_right_black_24dp"></ImageView>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!--menu layout-->
+        <fragment
+            android:id="@+id/home_menu_fragment"
+            class="com.arulvakku.ui.fragments.HomeMenuItemFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:text="@string/copy_right" />
+
+    </LinearLayout>
+
+
+</androidx.core.widget.NestedScrollView>
