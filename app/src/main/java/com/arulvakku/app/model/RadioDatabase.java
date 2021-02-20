@@ -6,10 +6,10 @@ import android.util.Log;
 import com.activeandroid.ActiveAndroid;
 import com.activeandroid.query.Select;
 import com.activeandroid.sqlbrite.BriteDatabase;
-import com.arulvakku.app.event.BufferEvent;
-import com.arulvakku.app.event.DatabaseEvent;
-import com.arulvakku.app.event.PlaybackEvent;
-import com.arulvakku.app.event.SelectStationEvent;
+import com.arulvakku.app.radio.BufferEvent;
+import com.arulvakku.app.radio.DatabaseEvent;
+import com.arulvakku.app.radio.PlaybackEvent;
+import com.arulvakku.app.radio.SelectStationEvent;
 import com.squareup.otto.Subscribe;
 
 import java.util.Collections;

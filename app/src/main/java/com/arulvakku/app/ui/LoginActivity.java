@@ -169,7 +169,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 Intent mainIntent = new Intent(this, HomeActivity.class);
                 startActivity(mainIntent);
-                overridePendingTransition(R.anim.enter, R.anim.exit);
                 finish();
                 break;
         }
@@ -247,7 +246,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                         Intent mainIntent = new Intent(LoginActivity.this, HomeActivity.class);
                         startActivity(mainIntent);
-                        overridePendingTransition(R.anim.enter, R.anim.exit);
                         finish();
                     }
                 } catch (JSONException e) {

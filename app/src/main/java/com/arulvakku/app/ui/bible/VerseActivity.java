@@ -18,8 +18,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.arulvakku.R;
-import com.arulvakku.app.adapter.ChapterAdapter;
-import com.arulvakku.app.adapter.VerseAdapter;
+import com.arulvakku.app.ui.bible.adapter.ChapterAdapter;
+import com.arulvakku.app.ui.bible.adapter.VerseAdapter;
 import com.arulvakku.app.MyApplication;
 import com.arulvakku.app.database.DBHelper;
 import com.arulvakku.app.database.PostsDatabaseHelper;
@@ -137,7 +137,6 @@ public class VerseActivity extends AppCompatActivity implements VerseAdapter.Ver
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
     }
 
     @Override

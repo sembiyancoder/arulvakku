@@ -10,10 +10,10 @@ import androidx.multidex.MultiDex;
 
 import com.activeandroid.ActiveAndroid;
 import com.arulvakku.BuildConfig;
-import com.arulvakku.app.event.EventLogger;
-import com.arulvakku.app.event.PlaybackEvent;
+import com.arulvakku.app.radio.EventLogger;
+import com.arulvakku.app.radio.PlaybackEvent;
 import com.arulvakku.app.model.RadioDatabase;
-import com.arulvakku.app.services.RadioPlayerService;
+import com.arulvakku.app.radio.services.RadioPlayerService;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 import com.squareup.otto.ThreadEnforcer;

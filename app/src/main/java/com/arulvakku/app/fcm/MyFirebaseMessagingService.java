@@ -1,15 +1,12 @@
 package com.arulvakku.app.fcm;
 
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.util.Log;
 
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
 import com.arulvakku.R;
-import com.arulvakku.app.database.DatabaseClient;
-import com.arulvakku.app.model.PushNotification;
 import com.arulvakku.app.utils.UtilSingleton;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -30,7 +27,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
             Log.e(TAG, "Notification Body: " + remoteMessage.getNotification().getBody());
-            handleDataMessage(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody(), "இன்றைய வசனம்","");
+            handleDataMessage(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody(), "இன்றைய வசனம்", "");
         }
 
         // Check if message contains a data payload.
@@ -43,45 +40,38 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 title = remoteMessage.getData().get("title").toString();
                 body = remoteMessage.getData().get("body").toString();
                 imageURL = remoteMessage.getData().get("imageURL").toString();
-                handleDataMessage(title, body, CommonNotificationHelper.NOTIFICATION_DAILY_SAINTS,imageURL);
+                handleDataMessage(title, body, CommonNotificationHelper.NOTIFICATION_DAILY_SAINTS, imageURL);
 
             } else if (type.equalsIgnoreCase(CommonNotificationHelper.NOTIFICATION_MASS_READING)) {
                 title = remoteMessage.getData().get("title").toString();
                 body = remoteMessage.getData().get("body").toString();
-                handleDataMessage(title, body, CommonNotificationHelper.NOTIFICATION_MASS_READING,"");
+                handleDataMessage(title, body, CommonNotificationHelper.NOTIFICATION_MASS_READING, "");
             } else if (type.equalsIgnoreCase(CommonNotificationHelper.NOTIFICATION_CHANNEL_PRAYER_REQUEST)) {
                 title = remoteMessage.getData().get("title").toString();
                 body = remoteMessage.getData().get("body").toString();
-                handleDataMessage(title, body, CommonNotificationHelper.NOTIFICATION_CHANNEL_PRAYER_REQUEST,"");
-            }else if (type.equalsIgnoreCase(CommonNotificationHelper.NOTIFICATION_CHANNEL_ANNOUNCEMENTS)) {
+                handleDataMessage(title, body, CommonNotificationHelper.NOTIFICATION_CHANNEL_PRAYER_REQUEST, "");
+            } else if (type.equalsIgnoreCase(CommonNotificationHelper.NOTIFICATION_CHANNEL_ANNOUNCEMENTS)) {
                 title = remoteMessage.getData().get("title").toString();
                 body = remoteMessage.getData().get("body").toString();
-                new SavePushNotification(title, body, type).execute();
-                handleDataMessage(title, body, CommonNotificationHelper.NOTIFICATION_CHANNEL_ANNOUNCEMENTS,"");
+                handleDataMessage(title, body, CommonNotificationHelper.NOTIFICATION_CHANNEL_ANNOUNCEMENTS, "");
             } else {
                 title = remoteMessage.getData().get("title").toString();
                 body = remoteMessage.getData().get("body").toString();
-                handleDataMessage(title, body, CommonNotificationHelper.NOTIFICATION_CHANNEL_ANNOUNCEMENTS,"");
+                handleDataMessage(title, body, CommonNotificationHelper.NOTIFICATION_CHANNEL_ANNOUNCEMENTS, "");
             }
         }
     }
 
 
-    private void handleDataMessage(String title, String message, String type,String imageURL) {
+    private void handleDataMessage(String title, String message, String type, String imageURL) {
         if (!NotificationUtils.isAppIsInBackground(getApplicationContext())) {
             // app is in foreground, broadcast the push message
-            /*CommonNotificationHelper commonNotificationHelper = new CommonNotificationHelper(this);
-            commonNotificationHelper.foreGroundNotification(title, message);
-            Intent pushNotification = new Intent(Config.PUSH_NOTIFICATION);
-            pushNotification.putExtra("body", message);
-            pushNotification.putExtra("title", title);
-            LocalBroadcastManager.getInstance(this).sendBroadcast(pushNotification);*/
             CommonNotificationHelper commonNotificationHelper = new CommonNotificationHelper(this);
-            commonNotificationHelper.createNotification(title, message, type,imageURL);
+            commonNotificationHelper.createNotification(title, message, type, imageURL);
         } else {
             // If the app is in background, firebase itself handles the notification
             CommonNotificationHelper commonNotificationHelper = new CommonNotificationHelper(this);
-            commonNotificationHelper.createNotification(title, message, type,imageURL);
+            commonNotificationHelper.createNotification(title, message, type, imageURL);
         }
     }
 
@@ -102,35 +92,4 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
 
 
-    class SavePushNotification extends AsyncTask<Void, Void, Void> {
-
-        private String title = "", message = "", timestamp = "";
-
-        public SavePushNotification(String title, String message, String timestamp) {
-            this.title = title;
-            this.timestamp = timestamp;
-            this.message = message;
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            //creating a task
-            PushNotification pushNotification = new PushNotification();
-            pushNotification.setMessage(message);
-            pushNotification.setTimestamp(timestamp);
-            pushNotification.setTitle(title);
-
-            //adding to database
-            DatabaseClient.getInstance(getApplicationContext()).getAppDatabase()
-                    .pushNotificationDao()
-                    .insert(pushNotification);
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            Log.d(MyFirebaseMessagingService.class.getSimpleName(), "Notification Updated");
-        }
-    }
 }

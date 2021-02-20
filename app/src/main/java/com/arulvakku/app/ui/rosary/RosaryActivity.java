@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.arulvakku.R;
-import com.arulvakku.app.adapter.RosaryAdapter;
-import com.arulvakku.app.adapter.RosaryTypeAdapter;
+import com.arulvakku.app.ui.rosary.adapter.RosaryAdapter;
+import com.arulvakku.app.ui.rosary.adapter.RosaryTypeAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -116,7 +116,6 @@ public class RosaryActivity extends AppCompatActivity implements AdapterView.OnI
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
     }
 
     @Override

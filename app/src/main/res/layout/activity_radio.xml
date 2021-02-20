@@ -26,7 +26,7 @@
     <!-- controls -->
     <fragment
         android:id="@+id/fragment_playback_controls"
-        android:name="com.arulvakku.app.fragments.PlayBackControlsFragment"
+        android:name="com.arulvakku.app.ui.radio.fragments.PlayBackControlsFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"

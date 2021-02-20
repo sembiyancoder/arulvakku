@@ -120,7 +120,6 @@ public class ViewAllDailyVerseActivity extends AppCompatActivity implements Dail
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
     }
 
     @Override

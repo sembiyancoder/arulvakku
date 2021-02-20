@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.arulvakku.R;
-import com.arulvakku.app.adapter.NotesListAdapter;
+import com.arulvakku.app.ui.bible.adapter.NotesListAdapter;
 import com.arulvakku.app.database.PostsDatabaseHelper;
 import com.arulvakku.app.model.BookModel;
 import com.arulvakku.app.model.Notes;
@@ -76,7 +76,6 @@ public class NotesListActivity extends AppCompatActivity implements NotesListAda
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
     }
 
     @Override

@@ -11,7 +11,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.arulvakku.R;
 import com.arulvakku.app.ui.bible.fragments.NewTestamentFragment;
 import com.arulvakku.app.ui.bible.fragments.OldTestamentFragment;
-import com.arulvakku.app.fragments.TabAdapter;
+import com.arulvakku.app.ui.bible.adapter.TabAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class BooksActivity extends AppCompatActivity {
@@ -58,18 +58,15 @@ public class BooksActivity extends AppCompatActivity {
                 intent = new Intent(this, BookmarkListActivity.class);
                 intent.putExtra("show_all", true);
                 startActivity(intent);
-                overridePendingTransition(R.anim.enter, R.anim.exit);
                 return true;
             case R.id.notes:
                 intent = new Intent(this, NotesListActivity.class);
                 intent.putExtra("show_all", true);
                 startActivity(intent);
-                overridePendingTransition(R.anim.enter, R.anim.exit);
                 return true;
             case R.id.search:
                 intent = new Intent(BooksActivity.this, SearchVerseActivity.class);
                 startActivity(intent);
-                overridePendingTransition(R.anim.enter, R.anim.exit);
 
             default:
                 return super.onOptionsItemSelected(item);
@@ -85,7 +82,6 @@ public class BooksActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
     }
 
 }

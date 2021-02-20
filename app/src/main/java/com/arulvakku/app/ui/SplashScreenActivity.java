@@ -113,7 +113,6 @@ public class SplashScreenActivity extends Activity {
                         startActivityIntent();
                     } else {
                         startActivity(intent);
-                        overridePendingTransition(R.anim.enter, R.anim.exit);
                         finish();
                     }
 
@@ -276,7 +275,6 @@ public class SplashScreenActivity extends Activity {
             mainIntent = new Intent(mContext, LoginActivity.class);
         }
         startActivity(mainIntent);
-        overridePendingTransition(R.anim.enter, R.anim.exit);
         finish();
     }
 

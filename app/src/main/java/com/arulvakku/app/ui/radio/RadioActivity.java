@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.arulvakku.R;
-import com.arulvakku.app.adapter.RadioTimeAdapter;
-import com.arulvakku.app.adapter.StationAdapter;
+import com.arulvakku.app.ui.radio.adapter.RadioTimeAdapter;
+import com.arulvakku.app.ui.radio.adapter.StationAdapter;
 import com.arulvakku.app.MyApplication;
-import com.arulvakku.app.event.BufferEvent;
-import com.arulvakku.app.event.DatabaseEvent;
-import com.arulvakku.app.event.PlaybackEvent;
-import com.arulvakku.app.event.SelectStationEvent;
+import com.arulvakku.app.radio.BufferEvent;
+import com.arulvakku.app.radio.DatabaseEvent;
+import com.arulvakku.app.radio.PlaybackEvent;
+import com.arulvakku.app.radio.SelectStationEvent;
 import com.arulvakku.app.model.RadioModel;
 import com.arulvakku.app.model.Station;
 import com.squareup.otto.Subscribe;
@@ -78,7 +78,6 @@ public class RadioActivity extends AppCompatActivity implements RadioTimeAdapter
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
     }
 
     @Override

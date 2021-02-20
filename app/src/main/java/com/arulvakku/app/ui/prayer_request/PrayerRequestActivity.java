@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.arulvakku.R;
-import com.arulvakku.app.adapter.PrayerRequestListAdapter;
+import com.arulvakku.app.ui.prayer_request.adapter.PrayerRequestListAdapter;
 import com.arulvakku.app.network.WebServiceHandler;
 import com.arulvakku.app.utils.Constants;
 import com.arulvakku.app.utils.CustomProgress;
@@ -117,7 +117,6 @@ public class PrayerRequestActivity extends AppCompatActivity implements PrayerRe
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
     }
 
 
@@ -148,7 +147,6 @@ public class PrayerRequestActivity extends AppCompatActivity implements PrayerRe
             case R.id.fab:
                 Intent mainIntent = new Intent(this, CreatePrayerRequestActivity.class);
                 startActivity(mainIntent);
-                overridePendingTransition(R.anim.enter, R.anim.exit);
                 break;
             default:
                 break;
@@ -171,7 +169,6 @@ public class PrayerRequestActivity extends AppCompatActivity implements PrayerRe
         Intent mainIntent = new Intent(this, CreatePrayerRequestActivity.class);
         mainIntent.putExtra("request", jsonObject.toString());
         startActivity(mainIntent);
-        overridePendingTransition(R.anim.enter, R.anim.exit);
     }
 
 

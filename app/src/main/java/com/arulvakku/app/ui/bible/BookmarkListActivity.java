@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.arulvakku.R;
-import com.arulvakku.app.adapter.BookmarkListAdapter;
+import com.arulvakku.app.ui.bible.adapter.BookmarkListAdapter;
 import com.arulvakku.app.database.DBHelper;
 import com.arulvakku.app.database.PostsDatabaseHelper;
 import com.arulvakku.app.model.BookModel;
@@ -83,7 +83,6 @@ public class BookmarkListActivity extends AppCompatActivity implements BookmarkL
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
     }
 
     @Override

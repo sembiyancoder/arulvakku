@@ -20,7 +20,7 @@ import com.arulvakku.R;
 import com.arulvakku.app.ui.bible.BookmarkListActivity;
 import com.arulvakku.app.ui.bible.NotesListActivity;
 import com.arulvakku.app.ui.bible.VerseActivity;
-import com.arulvakku.app.adapter.BooksListAdapter;
+import com.arulvakku.app.ui.bible.adapter.BooksListAdapter;
 import com.arulvakku.app.MyApplication;
 import com.arulvakku.app.database.DBHelper;
 import com.arulvakku.app.model.BookModel;
