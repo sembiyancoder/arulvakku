@@ -11,7 +11,7 @@
 
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetClass="com.arulvakku.ui.ui.radio.RadioActivity"
+            android:targetClass="com.arulvakku.app.ui.radio.RadioActivity"
             android:targetPackage="com.arulvakku" />
 
     </shortcut>
@@ -25,7 +25,7 @@
 
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetClass="com.arulvakku.ui.ui.bible.BooksActivity"
+            android:targetClass="com.arulvakku.app.ui.bible.BooksActivity"
             android:targetPackage="com.arulvakku" />
 
     </shortcut>

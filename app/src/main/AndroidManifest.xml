@@ -16,7 +16,7 @@
     <permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
 
     <application
-        android:name=".ui.app.MyApplication"
+        android:name=".app.MyApplication"
         android:allowBackup="false"
         android:configChanges="orientation|screenSize"
         android:exported="false"
@@ -28,31 +28,31 @@
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
         <activity
-            android:parentActivityName=".ui.ui.home.HomeActivity"
-            android:name=".ui.ui.DailyVerseEditActivity"></activity>
-        <activity android:name=".ui.ui.TodaysReadingActivity" />
-        <activity android:name=".ui.ui.DailySaintActivity" />
-        <activity android:name=".ui.ui.NotificationActivity" />
+            android:parentActivityName=".app.ui.home.HomeActivity"
+            android:name=".app.ui.DailyVerseEditActivity"></activity>
+        <activity android:name=".app.ui.TodaysReadingActivity" />
+        <activity android:name=".app.ui.DailySaintActivity" />
+        <activity android:name=".app.ui.NotificationActivity" />
         <activity
-            android:name=".ui.ui.LoginActivity"
+            android:name=".app.ui.LoginActivity"
             android:label="பயனர் பதிவு" />
-        <activity android:name=".ui.ui.prayer_request.CreatePrayerRequestActivity" />
-        <activity android:name=".ui.ui.prayer_request.PrayerRequestActivity" />
-        <activity android:name=".ui.ui.prayer_request.PrayersActivity" />
+        <activity android:name=".app.ui.prayer_request.CreatePrayerRequestActivity" />
+        <activity android:name=".app.ui.prayer_request.PrayerRequestActivity" />
+        <activity android:name=".app.ui.prayer_request.PrayersActivity" />
         <activity
-            android:name=".ui.ui.ViewAllDailyVerseActivity"
+            android:name=".app.ui.ViewAllDailyVerseActivity"
             android:label="தினம் ஒரு வசனம்" />
         <activity
-            android:name=".ui.ui.bible.SearchVerseActivity"
+            android:name=".app.ui.bible.SearchVerseActivity"
             android:label="@string/search" />
         <activity
-            android:name=".ui.ui.bible.BookmarkListActivity"
+            android:name=".app.ui.bible.BookmarkListActivity"
             android:label="Bookmarks" />
         <activity
-            android:name=".ui.ui.bible.NotesListActivity"
+            android:name=".app.ui.bible.NotesListActivity"
             android:label="Notes" />
         <activity
-            android:name=".ui.ui.bible.CreateNotesActivity"
+            android:name=".app.ui.bible.CreateNotesActivity"
             android:label="Create Notes" />
 
         <provider
@@ -69,7 +69,7 @@
             android:value="com.arulvakku.ui.model.Station" />
 
         <activity
-            android:name=".ui.ui.SplashScreenActivity"
+            android:name=".app.ui.SplashScreenActivity"
             android:launchMode="singleTop"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -84,9 +84,9 @@
                 android:resource="@xml/shortcuts" />
         </activity>
 
-        <service android:name=".ui.radio.player.services.RadioPlayerService" />
+        <service android:name=".app.services.RadioPlayerService" />
 
-        <receiver android:name=".ui.event.adapter.BroadcastToEventAdapter">
+        <receiver android:name=".app.event.adapter.BroadcastToEventAdapter">
             <intent-filter>
 
                 <!-- user accidentally disconnects headphones -->
@@ -95,20 +95,20 @@
         </receiver>
 
         <activity
-            android:name=".ui.ui.contact_us.ContactUsActivity"
+            android:name=".app.ui.contact_us.ContactUsActivity"
             android:label="தொடர்புக்கு" />
         <activity
-            android:name=".ui.ui.radio.RadioActivity"
+            android:name=".app.ui.radio.RadioActivity"
             android:label="வானொலி" />
         <activity
-            android:name=".ui.ui.bible.BooksActivity"
+            android:name=".app.ui.bible.BooksActivity"
             android:label="திருவிவிலியம்"
-            android:parentActivityName=".ui.ui.home.HomeActivity" />
+            android:parentActivityName=".app.ui.home.HomeActivity" />
         <activity
-            android:name=".ui.ui.bible.VerseActivity"
-            android:parentActivityName=".ui.ui.bible.BooksActivity" />
+            android:name=".app.ui.bible.VerseActivity"
+            android:parentActivityName=".app.ui.bible.BooksActivity" />
         <activity
-            android:name=".ui.ui.home.HomeActivity"
+            android:name=".app.ui.home.HomeActivity"
             android:label="அருள்வாக்கு" />
 
         <meta-data
@@ -116,9 +116,9 @@
             android:resource="@xml/searchable" />
 
         <activity
-            android:name=".ui.ui.rosary.RosaryActivity"
+            android:name=".app.ui.rosary.RosaryActivity"
             android:label="செபமாலை"
-            android:parentActivityName=".ui.ui.home.HomeActivity" />
+            android:parentActivityName=".app.ui.home.HomeActivity" />
 
         <meta-data
             android:name="firebase_performance_logcat_enabled"
@@ -133,15 +133,15 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".ui.receiver.DeviceBootReceiver"
+            android:name=".app.receiver.DeviceBootReceiver"
             android:enabled="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".ui.receiver.AlarmReceiver" />
+        <receiver android:name=".app.receiver.AlarmReceiver" />
 
-        <service android:name=".ui.fcm.MyFirebaseMessagingService">
+        <service android:name=".app.fcm.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/context_view"
-    tools:context=".ui.ui.bible.NotesListActivity">
+    tools:context=".app.ui.bible.NotesListActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
