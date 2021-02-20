@@ -27,7 +27,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-        <activity android:name=".app.MainActivity"></activity>
+        <activity
+            android:theme="@style/NoActionBar"
+            android:name=".app.ui.wayofcross.WayOfCrossActivity"></activity>
+        <activity android:name=".app.MainActivity" />
         <activity
             android:name=".app.ui.DailyVerseEditActivity"
             android:parentActivityName=".app.ui.home.HomeActivity" />

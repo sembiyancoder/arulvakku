@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="way_of_the_cross_images">
+        <item>@drawable/ic_station1</item>
+        <item>@drawable/ic_station2</item>
+        <item>@drawable/ic_station3</item>
+        <item>@drawable/ic_station4</item>
+        <item>@drawable/ic_station5</item>
+        <item>@drawable/ic_station6</item>
+        <item>@drawable/ic_station7</item>
+        <item>@drawable/ic_station8</item>
+        <item>@drawable/ic_station9</item>
+        <item>@drawable/ic_station10</item>
+        <item>@drawable/ic_station11</item>
+        <item>@drawable/ic_station12</item>
+        <item>@drawable/ic_station13</item>
+        <item>@drawable/ic_station14</item>
+    </integer-array>
+</resources>

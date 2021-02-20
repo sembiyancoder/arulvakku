@@ -13,12 +13,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.arulvakku.R;
+import com.arulvakku.app.adapter.HomeMenuAdapter;
 import com.arulvakku.app.ui.bible.BooksActivity;
 import com.arulvakku.app.ui.contact_us.ContactUsActivity;
 import com.arulvakku.app.ui.prayer_request.PrayerRequestActivity;
 import com.arulvakku.app.ui.radio.RadioActivity;
 import com.arulvakku.app.ui.rosary.RosaryActivity;
-import com.arulvakku.app.adapter.HomeMenuAdapter;
+import com.arulvakku.app.ui.wayofcross.WayOfCrossActivity;
 import com.arulvakku.app.utils.ChromeCustomTab;
 import com.arulvakku.app.utils.Constants;
 import com.arulvakku.app.utils.ExternalBrowser;
@@ -73,9 +74,9 @@ public class HomeMenuItemFragment extends Fragment implements HomeMenuAdapter.on
             intent = new Intent(getActivity(), RadioActivity.class);
         } else if (menuName.equalsIgnoreCase("செபமாலை")) {
             intent = new Intent(getActivity(), RosaryActivity.class);
-        } /*else if (menuName.equalsIgnoreCase("ஜெபங்கள்")) {
-            intent = new Intent(getActivity(), RosaryActivity.class);
-        } */else if (menuName.equalsIgnoreCase("உங்கள் கருத்து")) {
+        } else if (menuName.equalsIgnoreCase("திருச்சிலுவைப்பாதை")) {
+            intent = new Intent(getActivity(), WayOfCrossActivity.class);
+        } else if (menuName.equalsIgnoreCase("உங்கள் கருத்து")) {
             OpenGmailApp openGmailApp = new OpenGmailApp(getActivity(), "arulvakkudevelopment@gmail.com", "உங்கள் கருத்து");
             openGmailApp.openInGmail();
         } else if (menuName.equalsIgnoreCase("தொடர்புக்கு")) {
@@ -86,7 +87,7 @@ public class HomeMenuItemFragment extends Fragment implements HomeMenuAdapter.on
         } else if (menuName.equalsIgnoreCase("நன்கொடை")) {
             ExternalBrowser externalBrowser = new ExternalBrowser(getActivity(), Constants.DONATE_PAGE);
             externalBrowser.openExternalBrowser();
-        }  else if (menuName.equalsIgnoreCase("செப வேண்டுதல்")) {
+        } else if (menuName.equalsIgnoreCase("செப வேண்டுதல்")) {
             intent = new Intent(getActivity(), PrayerRequestActivity.class);
         }
 

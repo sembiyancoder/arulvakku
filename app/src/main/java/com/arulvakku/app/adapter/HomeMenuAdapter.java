@@ -24,6 +24,7 @@ public class HomeMenuAdapter extends RecyclerView.Adapter<HomeMenuAdapter.MyView
             R.drawable.ic_menu_bible,
             R.drawable.ic_menu_radio,
             R.drawable.ic_menu_rosary,
+            R.drawable.ic_menu_rosary,
             R.drawable.ic_menu_wayofcross,
             R.drawable.ic_menu_request,
             R.drawable.ic_menu_calendar,

@@ -551,7 +551,7 @@ public class UtilSingleton {
         menuListItem.add("திருவிவிலியம்");
         menuListItem.add("வானொலி");
         menuListItem.add("செபமாலை");
-        /*menuListItem.add("சிலுவைப் பாதை");*/
+        menuListItem.add("திருச்சிலுவைப்பாதை");
         menuListItem.add("செப வேண்டுதல்");
         menuListItem.add("திருவழிபாட்டு நாட்குறிப்பு");
         menuListItem.add("உங்கள் கருத்து");

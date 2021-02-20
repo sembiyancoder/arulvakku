@@ -42,5 +42,7 @@
     <string name="default_chapter">மத்தேயு </string>
     <string name="search">நூல்களுக்கிடையே தேடல்</string>
     <string name="prayer_request_label">நண்பர்களே, தங்களது செப வேண்டுதல்கள் தினமும் காலை திருப்பலியின் போதும், மாலை செபமாலையின் போதும் ஏறெடுக்கப் படுகிறது. நீங்களும் ஒருவர் மற்றவர்களின் கருத்துகளுக்காக செபிக்க அழைக்கப்படுகிறீர்கள். செபத்தால் இணைவோம். புத்துலகம் காண்போம். நன்றி.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

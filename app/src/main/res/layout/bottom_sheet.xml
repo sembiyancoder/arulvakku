@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    app:behavior_hideable="false"
+    app:behavior_peekHeight="56dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <TextView
+        android:id="@+id/txt_title"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/colorPrimary"
+        android:drawableTop="@drawable/ic_baseline_drag_handle_24"
+        android:gravity="center"
+        android:text="இறைவார்த்தை"
+        android:textAppearance="?textAppearanceListItemSmall"
+        android:textColor="@color/white"
+        android:textStyle="bold">
+
+    </TextView>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/txt_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="என்னைப் பின்பற்ற விரும்பும் எவரும் தன்னலம் துறந்து, தம் சிலுவையைத் தூக்கிக்கொண்டு என்னைப் பின்பற்றட்டும். மாற்கு 8:34
+நம் மீது கொண்ட அன்பின் காரணமாக, நம்முடைய பாவங்களுக்குக் கழுவாயாக இழிவின் சின்னமாகிய சிலுவையை ஏற்றுக் கொண்ட இயேசு நமக்கு முன்மாதிரியாகின்றார்.
+இன்று நமது குடும்பங்களில், பணி செய்யும் இடங்களில் பலவிதமான சுமைகள் இருக்கின்றன. இளைய சமுதாயம் குடும்பம் மற்றும் பணிபுரியும் இடத்தில் பணிப் பொறுப்புகளை சுமையாக கருதாமல் சுகமாக ஏற்றுக் கொள்வோம். நான் மட்டுமே செய்கிறேன் என்ற மனநிலைகளைத் தவிர்த்து, சுமைகளை இயேசுவைப் போல தாங்கிட, கற்றுக் கொள்வோம்."
+                android:lineSpacingExtra="5dp"
+                android:padding="8dp"
+                android:textAppearance="?android:textAppearanceListItem"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="ஜெபம்"
+                android:textAppearance="?textAppearanceListItemSmall"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt_prayer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="என்னைப் பின்பற்ற விரும்பும் எவரும் தன்னலம் துறந்து, தம் சிலுவையைத் தூக்கிக்கொண்டு என்னைப் பின்பற்றட்டும். மாற்கு 8:34
+நம் மீது கொண்ட அன்பின் காரணமாக, நம்முடைய பாவங்களுக்குக் கழுவாயாக இழிவின் சின்னமாகிய சிலுவையை ஏற்றுக் கொண்ட இயேசு நமக்கு முன்மாதிரியாகின்றார்.
+இன்று நமது குடும்பங்களில், பணி செய்யும் இடங்களில் பலவிதமான சுமைகள் இருக்கின்றன. இளைய சமுதாயம் குடும்பம் மற்றும் பணிபுரியும் இடத்தில் பணிப் பொறுப்புகளை சுமையாக கருதாமல் சுகமாக ஏற்றுக் கொள்வோம். நான் மட்டுமே செய்கிறேன் என்ற மனநிலைகளைத் தவிர்த்து, சுமைகளை இயேசுவைப் போல தாங்கிட, கற்றுக் கொள்வோம்."
+                android:lineSpacingExtra="5dp"
+                android:padding="8dp"
+                android:textAppearance="?textAppearanceListItem"
+                android:textColor="@color/black" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</LinearLayout>
