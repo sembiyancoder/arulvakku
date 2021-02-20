@@ -27,7 +27,6 @@ public class OpenGmailApp {
         intent.setType("text/html");
         intent.setPackage("com.google.android.gm");
         activity.startActivity(Intent.createChooser(intent, "Send mail"));
-        activity.overridePendingTransition(R.anim.enter, R.anim.exit);
     }
 
 }

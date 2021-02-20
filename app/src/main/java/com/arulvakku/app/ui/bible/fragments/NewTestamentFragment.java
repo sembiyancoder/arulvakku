@@ -110,7 +110,6 @@ public class NewTestamentFragment extends Fragment implements BooksListAdapter.o
         verseIntent.putExtra(Constants.BOOK_ID, bookModel.getChapter_id());
         verseIntent.putExtra(Constants.SHARE_ID, bookModel.getChapter_share_no());
         startActivity(verseIntent);
-        getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
     }
 
     @Override

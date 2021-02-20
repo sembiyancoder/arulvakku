@@ -92,7 +92,6 @@ public class HomeMenuItemFragment extends Fragment implements HomeMenuAdapter.on
 
         if (intent != null) {
             startActivity(intent);
-            getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
         }
     }
 

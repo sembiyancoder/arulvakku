@@ -69,7 +69,6 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
             public void onClick(View v) {
                 Intent mainIntent = new Intent(getActivity(), ViewAllDailyVerseActivity.class);
                 startActivity(mainIntent);
-                getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
             }
         });
         return rootView;
@@ -132,7 +131,6 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
                 Intent mainIntent = new Intent(getActivity(), DailyVerseEditActivity.class);
                 mainIntent.putExtra("daily_verse", txtVerse.getText().toString());
                 startActivity(mainIntent);
-                getActivity().overridePendingTransition(R.anim.enter, R.anim.exit);
                 break;
         }
     }
