@@ -1,4 +1,4 @@
-package com.arulvakku.ui.activity;
+package com.arulvakku.ui.ui;
 
 import android.os.AsyncTask;
 import android.os.Bundle;

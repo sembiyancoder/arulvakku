@@ -1,4 +1,4 @@
-package com.arulvakku.ui.activity;
+package com.arulvakku.ui.ui.prayer_request;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.arulvakku.R;
 
-public class DailySaintActivity extends AppCompatActivity {
+public class PrayersActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_daily_saint);
+        setContentView(R.layout.activity_prayers);
     }
 }

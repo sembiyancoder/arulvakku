@@ -1,4 +1,4 @@
-package com.arulvakku.ui.activity;
+package com.arulvakku.ui.ui.contact_us;
 
 import androidx.appcompat.app.AppCompatActivity;
 

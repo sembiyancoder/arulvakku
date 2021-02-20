@@ -1,4 +1,4 @@
-package com.arulvakku.ui.fragments;
+package com.arulvakku.ui.ui.home.frgament;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,11 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.arulvakku.R;
-import com.arulvakku.ui.activity.BooksActivity;
-import com.arulvakku.ui.activity.ContactUsActivity;
-import com.arulvakku.ui.activity.PrayerRequestActivity;
-import com.arulvakku.ui.activity.RadioActivity;
-import com.arulvakku.ui.activity.RosaryActivity;
+import com.arulvakku.ui.ui.bible.BooksActivity;
+import com.arulvakku.ui.ui.contact_us.ContactUsActivity;
+import com.arulvakku.ui.ui.prayer_request.PrayerRequestActivity;
+import com.arulvakku.ui.ui.radio.RadioActivity;
+import com.arulvakku.ui.ui.rosary.RosaryActivity;
 import com.arulvakku.ui.adapter.HomeMenuAdapter;
 import com.arulvakku.ui.utils.ChromeCustomTab;
 import com.arulvakku.ui.utils.Constants;

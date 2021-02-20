@@ -1,4 +1,4 @@
-package com.arulvakku.ui.activity;
+package com.arulvakku.ui.ui.home;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -20,6 +20,8 @@ import com.arulvakku.R;
 import com.arulvakku.ui.app.MyApplication;
 import com.arulvakku.ui.receiver.AlarmReceiver;
 import com.arulvakku.ui.receiver.DeviceBootReceiver;
+import com.arulvakku.ui.ui.NotificationActivity;
+import com.arulvakku.ui.ui.rosary.RosaryActivity;
 import com.arulvakku.ui.utils.ShareLink;
 import com.google.android.material.card.MaterialCardView;
 

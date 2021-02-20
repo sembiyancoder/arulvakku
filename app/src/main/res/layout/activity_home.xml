@@ -26,7 +26,7 @@
 
             <fragment
                 android:id="@+id/daily_verse_fragment"
-                class="com.arulvakku.ui.fragments.DailyVerseFragment"
+                class="com.arulvakku.ui.ui.home.frgament.DailyVerseFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -85,7 +85,7 @@
         <!--menu layout-->
         <fragment
             android:id="@+id/home_menu_fragment"
-            class="com.arulvakku.ui.fragments.HomeMenuItemFragment"
+            class="com.arulvakku.ui.ui.home.frgament.HomeMenuItemFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

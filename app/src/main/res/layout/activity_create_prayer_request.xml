@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_margin="8dp"
     android:orientation="vertical"
-    tools:context=".ui.activity.CreatePrayerRequestActivity">
+    tools:context=".ui.ui.prayer_request.CreatePrayerRequestActivity">
 
     <TextView
         android:layout_width="wrap_content"

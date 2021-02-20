@@ -13,7 +13,7 @@ import android.widget.RemoteViews;
 
 import com.arulvakku.BuildConfig;
 import com.arulvakku.R;
-import com.arulvakku.ui.activity.RadioActivity;
+import com.arulvakku.ui.ui.radio.RadioActivity;
 import com.arulvakku.ui.event.PlaybackEvent;
 import com.arulvakku.ui.event.adapter.BroadcastToEventAdapter;
 import com.arulvakku.ui.model.Station;

@@ -1,4 +1,4 @@
-package com.arulvakku.ui.activity;
+package com.arulvakku.ui.ui;
 
 import android.content.Intent;
 import android.os.Bundle;

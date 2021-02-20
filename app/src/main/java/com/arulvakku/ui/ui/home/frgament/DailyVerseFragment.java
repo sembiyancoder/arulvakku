@@ -1,4 +1,4 @@
-package com.arulvakku.ui.fragments;
+package com.arulvakku.ui.ui.home.frgament;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -17,8 +17,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.arulvakku.R;
-import com.arulvakku.ui.activity.DailyVerseEditActivity;
-import com.arulvakku.ui.activity.ViewAllDailyVerseActivity;
+import com.arulvakku.ui.ui.DailyVerseEditActivity;
+import com.arulvakku.ui.ui.ViewAllDailyVerseActivity;
 import com.arulvakku.ui.database.DBHelper;
 import com.arulvakku.ui.utils.UtilSingleton;
 

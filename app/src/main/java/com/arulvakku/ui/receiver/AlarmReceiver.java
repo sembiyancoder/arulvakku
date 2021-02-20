@@ -12,7 +12,7 @@ import android.preference.PreferenceManager;
 import androidx.core.app.NotificationCompat;
 
 import com.arulvakku.R;
-import com.arulvakku.ui.activity.HomeActivity;
+import com.arulvakku.ui.ui.home.HomeActivity;
 import com.arulvakku.ui.database.DBHelper;
 import com.arulvakku.ui.utils.UtilSingleton;
 

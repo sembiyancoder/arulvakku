@@ -1,4 +1,4 @@
-package com.arulvakku.ui.activity;
+package com.arulvakku.ui.ui.prayer_request;
 
 import android.content.Intent;
 import android.content.SharedPreferences;

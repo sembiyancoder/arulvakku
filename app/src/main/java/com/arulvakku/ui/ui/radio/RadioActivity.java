@@ -1,4 +1,4 @@
-package com.arulvakku.ui.activity;
+package com.arulvakku.ui.ui.radio;
 
 import android.os.Bundle;
 import android.view.MenuItem;

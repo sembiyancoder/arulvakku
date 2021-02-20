@@ -1,5 +1,8 @@
-package com.arulvakku.ui.fragments;
+package com.arulvakku.ui.ui.bible.fragments;
 
+
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,9 +20,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.arulvakku.R;
-import com.arulvakku.ui.activity.BookmarkListActivity;
-import com.arulvakku.ui.activity.NotesListActivity;
-import com.arulvakku.ui.activity.VerseActivity;
+import com.arulvakku.ui.ui.bible.BookmarkListActivity;
+import com.arulvakku.ui.ui.bible.NotesListActivity;
+import com.arulvakku.ui.ui.bible.VerseActivity;
 import com.arulvakku.ui.adapter.BooksListAdapter;
 import com.arulvakku.ui.app.MyApplication;
 import com.arulvakku.ui.database.DBHelper;
@@ -30,19 +33,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class NewTestamentFragment extends Fragment implements BooksListAdapter.onItemSelectedListener {
+public class OldTestamentFragment extends Fragment implements BooksListAdapter.onItemSelectedListener {
 
 
     private RecyclerView recyclerView;
-    private TextView txtNoBooksFound;
     private List<BookModel> bookModelList = new ArrayList<>();
     private BooksListAdapter adapter;
+    private TextView txtNoBooksFound;
     private DBHelper dbHelper;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setHasOptionsMenu(true);
     }
 
     @Override
@@ -50,13 +52,14 @@ public class NewTestamentFragment extends Fragment implements BooksListAdapter.o
         View view = inflater.inflate(R.layout.chapter_fragment, container, false);
         dbHelper = DBHelper.getInstance(getActivity());
 
-        bookModelList = dbHelper.getNewTestament();
+        bookModelList = dbHelper.getOldTestament();
 
         recyclerView = view.findViewById(R.id.chapter_list_view);
         txtNoBooksFound = view.findViewById(R.id.txt_no_books_found);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity().getBaseContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
+
         adapter = new BooksListAdapter(getContext(), bookModelList, this);
         recyclerView.setAdapter(adapter);
         return view;
@@ -67,8 +70,12 @@ public class NewTestamentFragment extends Fragment implements BooksListAdapter.o
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_book_search, menu);
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
         MenuItem item = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) item.getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override
@@ -80,14 +87,13 @@ public class NewTestamentFragment extends Fragment implements BooksListAdapter.o
             public boolean onQueryTextChange(String newText) {
                 if (adapter != null) {
                     adapter.getFilter().filter(newText);
-                } else {
-
                 }
-                return true;
+                return false;
             }
 
         });
     }
+
 
     @Override
     public void onNoResultFound(boolean notFound) {

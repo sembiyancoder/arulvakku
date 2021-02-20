@@ -1,9 +1,8 @@
-package com.arulvakku.ui.activity;
+package com.arulvakku.ui.ui;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;

@@ -1,4 +1,4 @@
-package com.arulvakku.ui.activity;
+package com.arulvakku.ui.ui;
 
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -31,6 +31,8 @@ import com.arulvakku.ui.database.DBHelper;
 import com.arulvakku.ui.fcm.CommonNotificationHelper;
 import com.arulvakku.ui.fcm.MyFirebaseWorker;
 import com.arulvakku.ui.receiver.AlarmReceiver;
+import com.arulvakku.ui.ui.home.HomeActivity;
+import com.arulvakku.ui.ui.prayer_request.PrayerRequestActivity;
 import com.arulvakku.ui.utils.UtilSingleton;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;

@@ -1,4 +1,4 @@
-package com.arulvakku.ui.activity;
+package com.arulvakku.ui.ui.bible;
 
 import android.app.SearchManager;
 import android.content.Context;

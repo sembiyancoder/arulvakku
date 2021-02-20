@@ -1,6 +1,5 @@
 package com.arulvakku.ui.fcm;
 
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -15,7 +14,7 @@ import android.net.Uri;
 import androidx.core.app.NotificationCompat;
 
 import com.arulvakku.R;
-import com.arulvakku.ui.activity.SplashScreenActivity;
+import com.arulvakku.ui.ui.SplashScreenActivity;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;

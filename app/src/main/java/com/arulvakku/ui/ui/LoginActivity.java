@@ -1,4 +1,4 @@
-package com.arulvakku.ui.activity;
+package com.arulvakku.ui.ui;
 
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.arulvakku.R;
 import com.arulvakku.ui.network.WebServiceHandler;
+import com.arulvakku.ui.ui.home.HomeActivity;
 import com.arulvakku.ui.utils.Constants;
 import com.arulvakku.ui.utils.UtilSingleton;
 import com.arulvakku.ui.utils.Utils;

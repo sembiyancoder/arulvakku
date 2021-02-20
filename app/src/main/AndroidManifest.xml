@@ -28,31 +28,31 @@
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
         <activity
-            android:parentActivityName=".ui.activity.HomeActivity"
-            android:name=".ui.activity.DailyVerseEditActivity"></activity>
-        <activity android:name=".ui.activity.TodaysReadingActivity" />
-        <activity android:name=".ui.activity.DailySaintActivity" />
-        <activity android:name=".ui.activity.NotificationActivity" />
+            android:parentActivityName=".ui.ui.home.HomeActivity"
+            android:name=".ui.ui.DailyVerseEditActivity"></activity>
+        <activity android:name=".ui.ui.TodaysReadingActivity" />
+        <activity android:name=".ui.ui.DailySaintActivity" />
+        <activity android:name=".ui.ui.NotificationActivity" />
         <activity
-            android:name=".ui.activity.LoginActivity"
+            android:name=".ui.ui.LoginActivity"
             android:label="பயனர் பதிவு" />
-        <activity android:name=".ui.activity.CreatePrayerRequestActivity" />
-        <activity android:name=".ui.activity.PrayerRequestActivity" />
-        <activity android:name=".ui.activity.PrayersActivity" />
+        <activity android:name=".ui.ui.prayer_request.CreatePrayerRequestActivity" />
+        <activity android:name=".ui.ui.prayer_request.PrayerRequestActivity" />
+        <activity android:name=".ui.ui.prayer_request.PrayersActivity" />
         <activity
-            android:name=".ui.activity.ViewAllDailyVerseActivity"
+            android:name=".ui.ui.ViewAllDailyVerseActivity"
             android:label="தினம் ஒரு வசனம்" />
         <activity
-            android:name=".ui.activity.SearchVerseActivity"
+            android:name=".ui.ui.bible.SearchVerseActivity"
             android:label="@string/search" />
         <activity
-            android:name=".ui.activity.BookmarkListActivity"
+            android:name=".ui.ui.bible.BookmarkListActivity"
             android:label="Bookmarks" />
         <activity
-            android:name=".ui.activity.NotesListActivity"
+            android:name=".ui.ui.bible.NotesListActivity"
             android:label="Notes" />
         <activity
-            android:name=".ui.activity.CreateNotesActivity"
+            android:name=".ui.ui.bible.CreateNotesActivity"
             android:label="Create Notes" />
 
         <provider
@@ -69,7 +69,7 @@
             android:value="com.arulvakku.ui.model.Station" />
 
         <activity
-            android:name=".ui.activity.SplashScreenActivity"
+            android:name=".ui.ui.SplashScreenActivity"
             android:launchMode="singleTop"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -95,20 +95,20 @@
         </receiver>
 
         <activity
-            android:name=".ui.activity.ContactUsActivity"
+            android:name=".ui.ui.contact_us.ContactUsActivity"
             android:label="தொடர்புக்கு" />
         <activity
-            android:name=".ui.activity.RadioActivity"
+            android:name=".ui.ui.radio.RadioActivity"
             android:label="வானொலி" />
         <activity
-            android:name=".ui.activity.BooksActivity"
+            android:name=".ui.ui.bible.BooksActivity"
             android:label="திருவிவிலியம்"
-            android:parentActivityName=".ui.activity.HomeActivity" />
+            android:parentActivityName=".ui.ui.home.HomeActivity" />
         <activity
-            android:name=".ui.activity.VerseActivity"
-            android:parentActivityName=".ui.activity.BooksActivity" />
+            android:name=".ui.ui.bible.VerseActivity"
+            android:parentActivityName=".ui.ui.bible.BooksActivity" />
         <activity
-            android:name=".ui.activity.HomeActivity"
+            android:name=".ui.ui.home.HomeActivity"
             android:label="அருள்வாக்கு" />
 
         <meta-data
@@ -116,9 +116,9 @@
             android:resource="@xml/searchable" />
 
         <activity
-            android:name=".ui.activity.RosaryActivity"
+            android:name=".ui.ui.rosary.RosaryActivity"
             android:label="செபமாலை"
-            android:parentActivityName=".ui.activity.HomeActivity" />
+            android:parentActivityName=".ui.ui.home.HomeActivity" />
 
         <meta-data
             android:name="firebase_performance_logcat_enabled"

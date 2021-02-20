@@ -1,19 +1,17 @@
-package com.arulvakku.ui.activity;
+package com.arulvakku.ui.ui.bible;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.arulvakku.R;
-import com.arulvakku.ui.fragments.NewTestamentFragment;
-import com.arulvakku.ui.fragments.OldTestamentFragment;
+import com.arulvakku.ui.ui.bible.fragments.NewTestamentFragment;
+import com.arulvakku.ui.ui.bible.fragments.OldTestamentFragment;
 import com.arulvakku.ui.fragments.TabAdapter;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 public class BooksActivity extends AppCompatActivity {
