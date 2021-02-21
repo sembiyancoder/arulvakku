@@ -19,20 +19,30 @@ import android.os.HandlerThread;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
+import androidx.work.Data;
+import androidx.work.ExistingWorkPolicy;
 import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkInfo;
 import androidx.work.WorkManager;
 
+import com.airbnb.lottie.L;
 import com.arulvakku.R;
 import com.arulvakku.app.database.DBHelper;
 import com.arulvakku.app.fcm.CommonNotificationHelper;
+import com.arulvakku.app.fcm.DailyNotificationWorker;
 import com.arulvakku.app.fcm.MyFirebaseWorker;
 import com.arulvakku.app.receiver.AlarmReceiver;
 import com.arulvakku.app.ui.home.HomeActivity;
 import com.arulvakku.app.ui.prayer_request.PrayerRequestActivity;
+import com.arulvakku.app.utils.Constants;
 import com.arulvakku.app.utils.UtilSingleton;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -46,15 +56,21 @@ import com.google.android.play.core.install.model.UpdateAvailability;
 import com.google.android.play.core.tasks.OnFailureListener;
 import com.google.android.play.core.tasks.OnSuccessListener;
 import com.google.android.play.core.tasks.Task;
+import com.google.common.util.concurrent.ListenableFuture;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
-public class SplashScreenActivity extends Activity {
+public class SplashScreenActivity extends AppCompatActivity {
 
+    public static final String TAG = SplashScreenActivity.class.getSimpleName();
 
     private static final int MY_REQUEST_CODE = 1001;
     private Handler mUiHandler = new Handler();
@@ -78,8 +94,12 @@ public class SplashScreenActivity extends Activity {
         appUpdateManager = AppUpdateManagerFactory.create(this);
         appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
 
-        setDailyVerseNotification();
+        /*
+         * Check the daily notification is scheduled or running
+         * */
+        setUpDailyNotificationWorker();
 
+        //setDailyVerseNotification();
         Bundle extras = this.getIntent().getExtras();
 
         if (extras != null) {
@@ -103,7 +123,7 @@ public class SplashScreenActivity extends Activity {
                     intent = new Intent(this, NotificationActivity.class);
                 } else if (type.equalsIgnoreCase(CommonNotificationHelper.NOTIFICATION_CHANNEL_PRAYER_REQUEST)) {
                     intent = new Intent(this, PrayerRequestActivity.class);
-                }else {
+                } else {
                     startActivityIntent();
                 }
 
@@ -119,7 +139,6 @@ public class SplashScreenActivity extends Activity {
                 }
             }
         }
-
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             shortcutManager = getSystemService(ShortcutManager.class);
@@ -142,11 +161,82 @@ public class SplashScreenActivity extends Activity {
         editor.commit();
     }
 
+    /**
+     * Set up the daily notification worker
+     */
+    private void setUpDailyNotificationWorker() {
+        if (!isDailyNotificationWorkerRunning()) {    //Check whether is scheduled or running
+            long initialDelayMills;
+
+            Calendar currentCalendar = Calendar.getInstance();  //Current date time
+
+            Calendar targetCalendar = Calendar.getInstance();   //Target date time with 06 AM default
+            targetCalendar.set(Calendar.HOUR_OF_DAY, 6);
+            targetCalendar.set(Calendar.MINUTE, 0);
+
+            if (currentCalendar.equals(targetCalendar)) {         //Check the current time is 06 AM
+                initialDelayMills = 1000;
+            } else if (currentCalendar.before(targetCalendar)) {  //Check the current time is before 06 AM
+                initialDelayMills = targetCalendar.getTimeInMillis() - currentCalendar.getTimeInMillis();
+            } else {                                              //If the current time is after 06 AM
+                // Add one more day in the calendar and calculate the millis
+                targetCalendar.add(Calendar.DATE, 1);
+                initialDelayMills = targetCalendar.getTimeInMillis() - currentCalendar.getTimeInMillis();
+            }
+
+            OneTimeWorkRequest oneTimeWorkRequest = new OneTimeWorkRequest.Builder(DailyNotificationWorker.class)
+                    .setInitialDelay(initialDelayMills, TimeUnit.MILLISECONDS)
+                    .addTag(getPackageName())
+                    .build();
+
+            WorkManager.getInstance(mContext).enqueueUniqueWork(Constants.WORK_DAILY_NOTIFICATION, ExistingWorkPolicy.REPLACE, oneTimeWorkRequest);
+        }
+    }
+
+    /**
+     * To check whether the notification worker is running
+     *
+     * @return - returns true if running otherwise false
+     */
+    private boolean isDailyNotificationWorkerRunning() {
+        final boolean[] isRunning = {false};
+
+        ListenableFuture<List<WorkInfo>> listListenableFuture = WorkManager.getInstance(mContext).getWorkInfosByTag(getPackageName());
+
+        try {
+            List<WorkInfo> workInfoList = listListenableFuture.get();
+            for (int i = 0; i < workInfoList.size(); i++) {
+                WorkInfo workInfo = workInfoList.get(i);
+                switch (workInfo.getState().name()) {
+                    case "ENQUEUED":
+                        Log.i(TAG, "Notification worker is enqueued");
+                        isRunning[0] = true;
+                        break;
+                    case "RUNNING":
+                        Log.i(TAG, "Notification worker is running");
+                        isRunning[0] = true;
+                        break;
+                    case "SUCCEEDED":
+                        Log.i(TAG, "Notification worker is completed");
+                        break;
+                    case "CANCELLED":
+                        Log.i(TAG, "Notification worker is cancelled");
+                        break;
+                    case "FAILED":
+                        Log.i(TAG, "Notification worker is failed");
+                        break;
+                }
+            }
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return isRunning[0];
+    }
 
     @Override
     protected void onStart() {
         super.onStart();
-
 
 
         if (UtilSingleton.getInstance().isNetworkAvailable(this)) {
@@ -249,7 +339,6 @@ public class SplashScreenActivity extends Activity {
             callIntent();
         }
     }
-
 
     public boolean isGooglePlayServicesAvailable(Activity activity) {
         GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();

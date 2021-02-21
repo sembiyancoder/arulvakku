@@ -18,4 +18,19 @@ public class Constants {
     public static final String INSERT_USER = BASE_URL + "InsertUser";
     public static final String GET_WAY_OF_THE_CROSS = BASE_URL + "GetWayOfTheCross";
 
+
+    /*
+     * Worker constants
+     * */
+    public static final String KEY_WORKER_ID = "worker_id";
+    public static final String WORK_DAILY_NOTIFICATION = "work_daily_notification";
+
+    /*
+     * Notification constants
+     * */
+    public static final int DAILY_NOTIFICATION_ID = 101;
+    public static final String DAILY_NOTIFICATION_CHANNEL_ID = "101";
+    public static final String DAILY_NOTIFICATION_CHANNEL_NAME = "channel_daily_notification";
+    public static final String ACTION_NOTIFICATION_SHARE = "action_share";
+
 }

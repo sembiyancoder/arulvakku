@@ -146,6 +146,7 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String date = jsonObject.optString("sVersesDate");
                 if (date.equalsIgnoreCase(todayDate)) {
+                    //23(Book No) 058 (Chapter) 010 (Verse)
                     String verse_id = jsonObject.optString("sVerses");
                     String book_no = verse_id.substring(0, 2);
                     String chapter_no = verse_id.substring(2, 5);
@@ -160,7 +161,6 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
             e.printStackTrace();
         }
     }
-
 
     private String loadJSONFromAsset() {
         String json = null;
@@ -177,4 +177,5 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
         }
         return json;
     }
+
 }
