@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".app.ui.wayofcross.WayOfCrossFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:cropToPadding="true"
+            android:scaleType="fitStart"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_station1"
+            tools:src="@tools:sample/backgrounds/scenic" />
+
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="01"
+            android:textAppearance="?android:textAppearanceListItemSmall"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="இயேசுவுக்கு எதிரான தீர்ப்பு இயேசுவுக்கு எதிரான தீர்ப்பு"
+            android:textAppearance="?android:textAppearanceListItem"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="இயேசுவுக்கு எதிரான தீர்ப்பு இயேசுவுக்கு எதிரான தீர்ப்பு"
+            android:textAppearance="?android:textAppearanceListItemSmall"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="start"
+            android:padding="2dp"
+            android:text="இறைவார்த்தை:"
+            android:textAppearance="?textAppearanceListItemSmall"
+            android:textColor="@android:color/black"
+            android:textStyle="bold">
+
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/txt_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="நம் மீது கொண்ட அன்பின் காரணமாக,
+இன்று நமது குடும்பங்களில், பணி செய்யும் இடங்களில் பலவிதமான சுமைகள் இருக்கின்றன. இளைய சமுதாயம் குடும்பம் மற்றும் பணிபுரியும் இடத்தில் பணிப் பொறுப்புகளை சுமையாக கருதாமல் சுகமாக ஏற்றுக் கொள்வோம். நான் மட்டுமே செய்கிறேன் என்ற மனநிலைகளைத் தவிர்த்து, சுமைகளை இயேசுவைப் போல தாங்கிட, கற்றுக் கொள்வோம்."
+            android:lineSpacingExtra="8dp"
+            android:padding="8dp"
+            android:textAppearance="?android:textAppearanceListItem"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="2dp"
+            android:text="ஜெபம்:"
+            android:textAppearance="?textAppearanceListItemSmall"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/txt_prayer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="நம் மீது கொண்ட அன்பின் காரணமாக,
+இன்று நமது குடும்பங்களில், பணி செய்யும் இடங்களில் பலவிதமான சுமைகள் இருக்கின்றன. இளைய சமுதாயம் குடும்பம் மற்றும் பணிபுரியும் இடத்தில் பணிப் பொறுப்புகளை சுமையாக கருதாமல் சுகமாக ஏற்றுக் கொள்வோம். நான் மட்டுமே செய்கிறேன் என்ற மனநிலைகளைத் தவிர்த்து, சுமைகளை இயேசுவைப் போல தாங்கிட, கற்றுக் கொள்வோம்."
+            android:lineSpacingExtra="8dp"
+            android:padding="8dp"
+            android:textAppearance="?android:textAppearanceListItem"
+            android:textColor="@color/black" />
+
+
+    </LinearLayout>
+
+
+</androidx.core.widget.NestedScrollView>

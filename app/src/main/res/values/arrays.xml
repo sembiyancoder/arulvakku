@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="way_of_the_cross_images">
+        <item>@drawable/ic_station1</item>
+        <item>@drawable/ic_station2</item>
+        <item>@drawable/ic_station3</item>
+        <item>@drawable/ic_station4</item>
+        <item>@drawable/ic_station5</item>
+        <item>@drawable/ic_station6</item>
+        <item>@drawable/ic_station7</item>
+        <item>@drawable/ic_station8</item>
+        <item>@drawable/ic_station9</item>
+        <item>@drawable/ic_station10</item>
+        <item>@drawable/ic_station11</item>
+        <item>@drawable/ic_station12</item>
+        <item>@drawable/ic_station13</item>
+        <item>@drawable/ic_station14</item>
+    </integer-array>
+
+    <integer-array name="menu_list_image">
+        <item>@drawable/ic_menu_bible</item>
+        <item>@drawable/ic_menu_radio</item>
+        <item>@drawable/ic_menu_rosary</item>
+        <item>@drawable/ic_menu_wayofcross</item>
+        <item>@drawable/ic_menu_request</item>
+        <item>@drawable/ic_menu_calendar</item>
+        <item>@drawable/ic_menu_feedback</item>
+        <item>@drawable/ic_menu_donate</item>
+        <item>@drawable/ic_menu_contact</item>
+    </integer-array>
+
+
+    <integer-array name="menu_list_name">
+        <item>@string/lbl_bible</item>
+        <item>@string/lbl_radio</item>
+        <item>@string/lbl_rosary</item>
+        <item>@string/lbl_way_of_cross</item>
+        <item>@string/lbl_prayer_request</item>
+        <item>@string/lbl_calendar</item>
+        <item>@string/lbl_feedback</item>
+        <item>@string/lbl_donate_us</item>
+        <item>@string/lbl_contact_us</item>
+    </integer-array>
+
+</resources>
