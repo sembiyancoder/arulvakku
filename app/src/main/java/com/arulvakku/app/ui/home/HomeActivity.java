@@ -9,23 +9,24 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.arulvakku.R;
 import com.arulvakku.app.MyApplication;
 import com.arulvakku.app.ui.NotificationActivity;
 import com.arulvakku.app.ui.rosary.RosaryActivity;
 import com.arulvakku.app.utils.ShareLink;
-import com.google.android.material.card.MaterialCardView;
 
 import java.util.Calendar;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private MaterialCardView rosaryCardView;
+    private CardView rosaryCardView;
     private TextView txtTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
@@ -38,8 +39,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void inflateXML() {
-        txtTitle = findViewById(R.id.txt_title);
-        rosaryCardView = findViewById(R.id.card_view_today_rosary);
+        txtTitle = findViewById(R.id.textView);
+        rosaryCardView = findViewById(R.id.cardView2);
         rosaryCardView.setOnClickListener(this);
     }
 

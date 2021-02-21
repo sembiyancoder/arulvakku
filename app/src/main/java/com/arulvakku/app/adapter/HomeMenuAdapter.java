@@ -1,6 +1,7 @@
 package com.arulvakku.app.adapter;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,31 +12,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.arulvakku.R;
 
-import java.util.List;
-
 
 public class HomeMenuAdapter extends RecyclerView.Adapter<HomeMenuAdapter.MyViewHolder> {
 
-    private List<String> menuListItem;
-    private Context context;
+    private Context mContext;
     private onItemSelectedListener onItemSelectedListener;
+    private TypedArray mImageTypedArray, mNameTypedArray;
 
-    int[] myImageList = new int[]{
-            R.drawable.ic_menu_bible,
-            R.drawable.ic_menu_radio,
-            R.drawable.ic_menu_rosary,
-            R.drawable.ic_menu_rosary,
-            R.drawable.ic_menu_wayofcross,
-            R.drawable.ic_menu_request,
-            R.drawable.ic_menu_calendar,
-            R.drawable.ic_menu_feedback,
-            R.drawable.ic_menu_donate,
-            R.drawable.ic_menu_contact
-    };
-
-    public HomeMenuAdapter(Context context, List<String> menuListItem, onItemSelectedListener onItemSelectedListener) {
-        this.menuListItem = menuListItem;
-        this.context = context;
+    public HomeMenuAdapter(Context context, TypedArray imageTypedArray, TypedArray nameTypedArray, onItemSelectedListener onItemSelectedListener) {
+        mImageTypedArray = imageTypedArray;
+        mNameTypedArray = nameTypedArray;
+        mContext = context;
         this.onItemSelectedListener = onItemSelectedListener;
 
     }
@@ -48,14 +35,13 @@ public class HomeMenuAdapter extends RecyclerView.Adapter<HomeMenuAdapter.MyView
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-        String name = menuListItem.get(position);
-        holder.txtName.setText(name);
-        holder.imgeIcon.setImageResource(myImageList[position]);
+        holder.mMenuNameTextView.setText(mNameTypedArray.getResourceId(position, 0));
+        holder.mMenuImageView.setImageResource(mImageTypedArray.getResourceId(position, 0));
     }
 
     @Override
     public int getItemCount() {
-        return menuListItem.size();
+        return mNameTypedArray.length();
     }
 
     public interface onItemSelectedListener {
@@ -63,17 +49,17 @@ public class HomeMenuAdapter extends RecyclerView.Adapter<HomeMenuAdapter.MyView
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView txtName;
-        ImageView imgeIcon;
+        TextView mMenuNameTextView;
+        ImageView mMenuImageView;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            txtName = itemView.findViewById(R.id.txt_name);
-            imgeIcon = itemView.findViewById(R.id.appImage);
+            mMenuNameTextView = itemView.findViewById(R.id.textView9);
+            mMenuImageView = itemView.findViewById(R.id.imageView6);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onItemSelectedListener.onItemSelected(menuListItem.get(getAdapterPosition()));
+                    onItemSelectedListener.onItemSelected(mNameTypedArray.getString(getAdapterPosition()));
                 }
             });
         }

@@ -1,6 +1,7 @@
 package com.arulvakku.app.ui.home.frgament;
 
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,14 +25,13 @@ import com.arulvakku.app.utils.ChromeCustomTab;
 import com.arulvakku.app.utils.Constants;
 import com.arulvakku.app.utils.ExternalBrowser;
 import com.arulvakku.app.utils.OpenGmailApp;
-import com.arulvakku.app.utils.UtilSingleton;
 
 
 public class HomeMenuItemFragment extends Fragment implements HomeMenuAdapter.onItemSelectedListener {
 
-
-    private RecyclerView recyclerView;
-    private HomeMenuAdapter adapter;
+    private RecyclerView mRecyclerView;
+    private HomeMenuAdapter mMenuAdapter;
+    private TypedArray mImageTypedArray, mNameTypedArray;
 
     public HomeMenuItemFragment() {
 
@@ -40,14 +40,14 @@ public class HomeMenuItemFragment extends Fragment implements HomeMenuAdapter.on
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home_menu_item, container, false);
-        recyclerView = rootView.findViewById(R.id.recycler_view);
+        mRecyclerView = rootView.findViewById(R.id.recycler_view);
+        mImageTypedArray = getResources().obtainTypedArray(R.array.menu_list_image);
+        mNameTypedArray = getResources().obtainTypedArray(R.array.menu_list_name);
         return rootView;
     }
 
@@ -58,36 +58,36 @@ public class HomeMenuItemFragment extends Fragment implements HomeMenuAdapter.on
     }
 
     private void setAdapter() {
-        adapter = new HomeMenuAdapter(getActivity(), UtilSingleton.getInstance().getMenuListItem(), this);
+        mMenuAdapter = new HomeMenuAdapter(getActivity(), mImageTypedArray, mNameTypedArray, this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setAdapter(mMenuAdapter);
     }
 
     @Override
     public void onItemSelected(String menuName) {
         Intent intent = null;
-        if (menuName.equalsIgnoreCase("திருவிவிலியம்")) {
+        if (menuName.equalsIgnoreCase(getString(R.string.lbl_bible))) {
             intent = new Intent(getActivity(), BooksActivity.class);
-            intent.putExtra("book_name", "திருவிவிலியம்");
-        } else if (menuName.equalsIgnoreCase("வானொலி")) {
+            intent.putExtra("book_name", getString(R.string.lbl_bible));
+        } else if (menuName.equalsIgnoreCase(getString(R.string.lbl_radio))) {
             intent = new Intent(getActivity(), RadioActivity.class);
-        } else if (menuName.equalsIgnoreCase("செபமாலை")) {
+        } else if (menuName.equalsIgnoreCase(getString(R.string.lbl_rosary))) {
             intent = new Intent(getActivity(), RosaryActivity.class);
-        } else if (menuName.equalsIgnoreCase("திருச்சிலுவைப்பாதை")) {
+        } else if (menuName.equalsIgnoreCase(getString(R.string.lbl_way_of_cross))) {
             intent = new Intent(getActivity(), WayOfCrossActivity.class);
-        } else if (menuName.equalsIgnoreCase("உங்கள் கருத்து")) {
-            OpenGmailApp openGmailApp = new OpenGmailApp(getActivity(), "arulvakkudevelopment@gmail.com", "உங்கள் கருத்து");
+        } else if (menuName.equalsIgnoreCase(getString(R.string.lbl_feedback))) {
+            OpenGmailApp openGmailApp = new OpenGmailApp(getActivity(), getString(R.string.lbl_contact_mail), getString(R.string.lbl_subject));
             openGmailApp.openInGmail();
-        } else if (menuName.equalsIgnoreCase("தொடர்புக்கு")) {
+        } else if (menuName.equalsIgnoreCase(getString(R.string.lbl_contact_us))) {
             intent = new Intent(getActivity(), ContactUsActivity.class);
-        } else if (menuName.equalsIgnoreCase("திருவழிபாட்டு நாட்குறிப்பு")) {
+        } else if (menuName.equalsIgnoreCase(getString(R.string.lbl_calendar))) {
             ChromeCustomTab chromeCustomTab = new ChromeCustomTab(getActivity(), Constants.CALENDAR_URL);
             chromeCustomTab.openInCustomTab();
-        } else if (menuName.equalsIgnoreCase("நன்கொடை")) {
+        } else if (menuName.equalsIgnoreCase(getString(R.string.lbl_donate_us))) {
             ExternalBrowser externalBrowser = new ExternalBrowser(getActivity(), Constants.DONATE_PAGE);
             externalBrowser.openExternalBrowser();
-        } else if (menuName.equalsIgnoreCase("செப வேண்டுதல்")) {
+        } else if (menuName.equalsIgnoreCase(getString(R.string.lbl_prayer_request))) {
             intent = new Intent(getActivity(), PrayerRequestActivity.class);
         }
 

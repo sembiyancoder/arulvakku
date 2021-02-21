@@ -32,9 +32,9 @@ public class WayOfCrossFragment extends Fragment {
     private String mStationDetails;
 
     private TextView mTitleTextView, mSubTitleTextView, mCountTextView;
-    TypedArray mTypedArray;
+    private TypedArray mTypedArray;
     private ImageView mImageView;
-
+    private TextView mDescriptionTextView, mPrayerTextView;
 
     public WayOfCrossFragment() {
         // Required empty public constructor
@@ -71,12 +71,15 @@ public class WayOfCrossFragment extends Fragment {
                 mSubTitleTextView = view.findViewById(R.id.textView4);
                 mSubTitleTextView = view.findViewById(R.id.textView4);
                 mCountTextView = view.findViewById(R.id.textView3);
+                mDescriptionTextView = view.findViewById(R.id.txt_description);
+                mPrayerTextView = view.findViewById(R.id.txt_prayer);
 
 
                 mTitleTextView.setText(jsonObject.optString("StationTitle"));
                 mSubTitleTextView.setText(jsonObject.optString("StationSubTitle"));
                 mImageView.setImageResource(mTypedArray.getResourceId(mCurrentStationPosition, 0));
-
+                mDescriptionTextView.setText(jsonObject.optString("Description"));
+                mPrayerTextView.setText(jsonObject.optString("Prayer"));
                 mCountTextView.setText(jsonObject.optString("Station"));
                 mTypedArray.recycle();
 

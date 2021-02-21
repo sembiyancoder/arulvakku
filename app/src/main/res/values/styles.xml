@@ -5,7 +5,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
-        <item name="android:fontFamily">@font/latha_regular</item>
+        <!-- <item name="android:fontFamily">@font/hindmadurairegular</item>-->
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
@@ -26,7 +26,29 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
-        <item name="android:fontFamily">@font/latha_regular</item>
+        <!--   <item name="android:fontFamily">@font/latha_regular</item>-->
+    </style>
+
+    <style name="HeaderText" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body2</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="HeaderSubText" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body2</item>
+    </style>
+
+    <style name="DailyVerseText" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body2</item>
+        <item name="android:lineSpacingExtra">5dp</item>
+    </style>
+
+    <style name="ListItemText" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body2</item>
     </style>
 
 </resources>

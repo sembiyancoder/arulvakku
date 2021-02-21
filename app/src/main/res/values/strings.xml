@@ -44,5 +44,16 @@
     <string name="prayer_request_label">நண்பர்களே, தங்களது செப வேண்டுதல்கள் தினமும் காலை திருப்பலியின் போதும், மாலை செபமாலையின் போதும் ஏறெடுக்கப் படுகிறது. நீங்களும் ஒருவர் மற்றவர்களின் கருத்துகளுக்காக செபிக்க அழைக்கப்படுகிறீர்கள். செபத்தால் இணைவோம். புத்துலகம் காண்போம். நன்றி.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lbl_bible">திருவிவிலியம்</string>
+    <string name="lbl_radio">வானொலி</string>
+    <string name="lbl_rosary">செபமாலை</string>
+    <string name="lbl_way_of_cross">திருச்சிலுவைப்பாதை</string>
+    <string name="lbl_feedback">உங்கள் கருத்து</string>
+    <string name="lbl_contact_us">தொடர்புக்கு</string>
+    <string name="lbl_calendar">திருவழிபாட்டு நாட்குறிப்பு</string>
+    <string name="lbl_donate_us">நன்கொடை</string>
+    <string name="lbl_prayer_request">செப வேண்டுதல்</string>
+    <string name="lbl_contact_mail">arulvakkudevelopment@gmail.com</string>
+    <string name="lbl_subject">உங்கள் கருத்து</string>
 
 </resources>

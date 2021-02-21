@@ -1,24 +1,26 @@
 package com.arulvakku.app.ui.home.frgament;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import com.arulvakku.R;
-import com.arulvakku.app.ui.DailyVerseEditActivity;
-import com.arulvakku.app.ui.ViewAllDailyVerseActivity;
 import com.arulvakku.app.database.DBHelper;
 import com.arulvakku.app.utils.UtilSingleton;
 
@@ -26,8 +28,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,11 +43,10 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
 
     }
 
-    private TextView txtCurrentDate;
     private TextView txtVerseNo;
     private TextView txtVerse;
     private ImageView imgShare;
-    private LinearLayout cardView;
+    private CardView mMaterialCardView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,33 +59,54 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_daily_verse, container, false);
-        txtCurrentDate = rootView.findViewById(R.id.txt_current_date);
-        txtVerseNo = rootView.findViewById(R.id.txt_verse_no);
-        txtVerse = rootView.findViewById(R.id.txt_verse);
-        imgShare = rootView.findViewById(R.id.img_share);
-        cardView = rootView.findViewById(R.id.daily_verse_layout);
-
-        rootView.findViewById(R.id.text_view_all).setOnClickListener(new View.OnClickListener() {
+        txtVerseNo = rootView.findViewById(R.id.textView6);
+        txtVerse = rootView.findViewById(R.id.textView7);
+        imgShare = rootView.findViewById(R.id.imageView4);
+        mMaterialCardView = rootView.findViewById(R.id.cardView);
+        imgShare.setOnClickListener(this);
+       /* rootView.findViewById(R.id.text_view_all).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mainIntent = new Intent(getActivity(), ViewAllDailyVerseActivity.class);
-                startActivity(mainIntent);
+                Bitmap bitmap = createBitmapFromView(getContext(), mMaterialCardView);
+                if (bitmap != null) {
+                    String path = MediaStore.Images.Media.insertImage(getActivity().getContentResolver(),
+                            bitmap, "Design", null);
+
+                    Uri uri = Uri.parse(path);
+
+                    Intent share = new Intent(Intent.ACTION_SEND);
+                    share.setType("image/*");
+                    share.putExtra(Intent.EXTRA_STREAM, uri);
+                    share.putExtra(Intent.EXTRA_TEXT, "I found something cool!");
+                    startActivity(Intent.createChooser(share, "Share Your Design!"));
+                }
+                *//*Intent mainIntent = new Intent(getActivity(), ViewAllDailyVerseActivity.class);
+                startActivity(mainIntent);*//*
             }
-        });
+        });*/
         return rootView;
     }
+
+    private Bitmap createBitmapFromView(Context context, View view) {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+        view.measure(displayMetrics.widthPixels, displayMetrics.heightPixels);
+        view.layout(0, 0, displayMetrics.widthPixels, displayMetrics.heightPixels);
+        view.buildDrawingCache();
+        Bitmap bitmap = Bitmap.createBitmap(view.getMeasuredWidth(), view.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+
+        Canvas canvas = new Canvas(bitmap);
+        view.draw(canvas);
+        return bitmap;
+    }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
-        if (sInstance.getTodayDate() != null) {
-            txtCurrentDate.setText(sInstance.getTodayDate());
-        }
-
         setTodayVerse();
-        imgShare.setOnClickListener(this);
 
     }
 
@@ -96,41 +118,26 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
 
     public void shareDailyVerse() {
         imgShare.setVisibility(View.INVISIBLE);
-        txtCurrentDate.setVisibility(View.VISIBLE);
-        cardView.setDrawingCacheEnabled(true);
-        cardView.buildDrawingCache();
+        mMaterialCardView.setDrawingCacheEnabled(true);
+        mMaterialCardView.buildDrawingCache();
 
-        Bitmap bm = cardView.getDrawingCache();
+        Bitmap bm = mMaterialCardView.getDrawingCache();
         imgShare.setVisibility(View.VISIBLE);
-        txtCurrentDate.setVisibility(View.GONE);
 
-        Intent share = new Intent(Intent.ACTION_SEND);
-        share.setType("image/jpeg");
-        share.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.arulvakku&hl=en");
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        File file = new File(getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES), "இன்றைய வசனம்.png");
-        try {
-            file.createNewFile();
-            FileOutputStream fo = new FileOutputStream(file);
-            fo.write(bytes.toByteArray());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        shareBitmap(bm);
 
-        share.putExtra(Intent.EXTRA_STREAM, Uri.parse(file.getAbsolutePath()));
-        startActivity(Intent.createChooser(share, "Share Image"));
     }
 
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.img_share:
+            case R.id.imageView4:
                 // shareDailyVerse();
-                Intent mainIntent = new Intent(getActivity(), DailyVerseEditActivity.class);
+                /*Intent mainIntent = new Intent(getActivity(), DailyVerseEditActivity.class);
                 mainIntent.putExtra("daily_verse", txtVerse.getText().toString());
-                startActivity(mainIntent);
+                startActivity(mainIntent);*/
+                shareDailyVerse();
                 break;
         }
     }
@@ -155,6 +162,7 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
                     txtVerse.setText(day_verse);
                     break;
                 }
+
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -177,4 +185,41 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
         }
         return json;
     }
+
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    private void shareBitmap(@NonNull Bitmap bitmap) {
+        //---Save bitmap to external cache directory---//
+        //get cache directory
+        File cachePath = new File(getActivity().getExternalCacheDir(), "my_images/");
+        cachePath.mkdirs();
+
+        //create png file
+        File file = new File(cachePath, "இன்றைய வசனம்.png");
+        FileOutputStream fileOutputStream;
+        try {
+            fileOutputStream = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream);
+            fileOutputStream.flush();
+            fileOutputStream.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //---Share File---//
+        //get file uri
+        Uri myImageFileUri = FileProvider.getUriForFile(getActivity(), getActivity().getApplicationContext().getPackageName() + ".provider", file);
+
+        //create a intent
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intent.putExtra(Intent.EXTRA_STREAM, myImageFileUri);
+        intent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.arulvakku&hl=en");
+        intent.setType("image/png");
+        startActivity(Intent.createChooser(intent, "Share with"));
+    }
+
 }
