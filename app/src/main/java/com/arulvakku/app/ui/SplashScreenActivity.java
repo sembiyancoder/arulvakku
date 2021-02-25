@@ -8,10 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
-import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
-import android.graphics.drawable.Icon;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,29 +16,22 @@ import android.os.HandlerThread;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
-import androidx.work.Data;
 import androidx.work.ExistingWorkPolicy;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkInfo;
 import androidx.work.WorkManager;
 
-import com.airbnb.lottie.L;
 import com.arulvakku.R;
 import com.arulvakku.app.database.DBHelper;
-import com.arulvakku.app.fcm.CommonNotificationHelper;
 import com.arulvakku.app.fcm.DailyNotificationWorker;
 import com.arulvakku.app.fcm.MyFirebaseWorker;
 import com.arulvakku.app.receiver.AlarmReceiver;
 import com.arulvakku.app.ui.home.HomeActivity;
-import com.arulvakku.app.ui.prayer_request.PrayerRequestActivity;
 import com.arulvakku.app.utils.Constants;
 import com.arulvakku.app.utils.UtilSingleton;
 import com.google.android.gms.common.ConnectionResult;
@@ -61,10 +51,8 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
-import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
@@ -97,63 +85,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         /*
          * Check the daily notification is scheduled or running
          * */
-        setUpDailyNotificationWorker();
-
-        //setDailyVerseNotification();
-        Bundle extras = this.getIntent().getExtras();
-
-        if (extras != null) {
-            if (extras.containsKey("type")) {
-                String type = extras.getString("type");
-                String title = extras.getString("title");
-                String message = extras.getString("message");
-                Intent intent = null;
-
-                if (type.equalsIgnoreCase(CommonNotificationHelper.NOTIFICATION_DAILY_SAINTS)) {
-                    String imageURL = extras.getString("imageURL");
-                    intent = new Intent(this, DailySaintActivity.class);
-                    intent.putExtra("title", title);
-                    intent.putExtra("message", message);
-                    intent.putExtra("imageURL", imageURL);
-                } else if (type.equalsIgnoreCase(CommonNotificationHelper.NOTIFICATION_MASS_READING)) {
-                    intent = new Intent(this, TodaysReadingActivity.class);
-                    intent.putExtra("title", title);
-                    intent.putExtra("message", message);
-                } else if (type.equalsIgnoreCase(CommonNotificationHelper.NOTIFICATION_CHANNEL_ANNOUNCEMENTS)) {
-                    intent = new Intent(this, NotificationActivity.class);
-                } else if (type.equalsIgnoreCase(CommonNotificationHelper.NOTIFICATION_CHANNEL_PRAYER_REQUEST)) {
-                    intent = new Intent(this, PrayerRequestActivity.class);
-                } else {
-                    startActivityIntent();
-                }
-
-                if (intent != null) {
-                    final DBHelper dbHelper = new DBHelper(this);
-                    if (!dbHelper.checkDataBase()) {
-                        startActivityIntent();
-                    } else {
-                        startActivity(intent);
-                        finish();
-                    }
-
-                }
-            }
-        }
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            shortcutManager = getSystemService(ShortcutManager.class);
-            ShortcutInfo shortcut;
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N_MR1) {
-                shortcut = new ShortcutInfo.Builder(this, "second_shortcut")
-                        .setShortLabel(getString(R.string.shortcut_long_label_calendar))
-                        .setLongLabel(getString(R.string.shortcut_long_label_calendar))
-                        .setIcon(Icon.createWithResource(this, R.drawable.ic_calendar))
-                        .setIntent(new Intent(Intent.ACTION_VIEW,
-                                Uri.parse("https://www.arulvakku.com/calendar.php")))
-                        .build();
-                shortcutManager.setDynamicShortcuts(Arrays.asList(shortcut));
-            }
-        }
+        //setUpDailyNotificationWorker();
 
         String android_id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
         editor = sharedPreferences.edit();
@@ -164,7 +96,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     /**
      * Set up the daily notification worker
      */
-    private void setUpDailyNotificationWorker() {
+    /*private void setUpDailyNotificationWorker() {
         if (!isDailyNotificationWorkerRunning()) {    //Check whether is scheduled or running
             long initialDelayMills;
 
@@ -191,14 +123,14 @@ public class SplashScreenActivity extends AppCompatActivity {
 
             WorkManager.getInstance(mContext).enqueueUniqueWork(Constants.WORK_DAILY_NOTIFICATION, ExistingWorkPolicy.REPLACE, oneTimeWorkRequest);
         }
-    }
+    }*/
 
     /**
      * To check whether the notification worker is running
      *
      * @return - returns true if running otherwise false
      */
-    private boolean isDailyNotificationWorkerRunning() {
+    /*private boolean isDailyNotificationWorkerRunning() {
         final boolean[] isRunning = {false};
 
         ListenableFuture<List<WorkInfo>> listListenableFuture = WorkManager.getInstance(mContext).getWorkInfosByTag(getPackageName());
@@ -232,13 +164,11 @@ public class SplashScreenActivity extends AppCompatActivity {
         }
 
         return isRunning[0];
-    }
+    }*/
 
     @Override
     protected void onStart() {
         super.onStart();
-
-
         if (UtilSingleton.getInstance().isNetworkAvailable(this)) {
             if (isGooglePlayServicesAvailable(this)) {
                 FirebaseInstanceId.getInstance().getInstanceId()

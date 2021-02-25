@@ -31,7 +31,7 @@
                 android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_bible_share" />
+                android:src="@drawable/ic_menu_bible" />
 
             <TextView
                 android:id="@+id/textView2"

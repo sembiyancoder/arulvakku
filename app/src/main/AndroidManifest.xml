@@ -34,8 +34,6 @@
         <activity
             android:name=".app.ui.DailyVerseEditActivity"
             android:parentActivityName=".app.ui.home.HomeActivity" />
-        <activity android:name=".app.ui.TodaysReadingActivity" />
-        <activity android:name=".app.ui.DailySaintActivity" />
         <activity android:name=".app.ui.NotificationActivity" />
         <activity
             android:name=".app.ui.LoginActivity"
@@ -43,9 +41,6 @@
         <activity android:name=".app.ui.prayer_request.CreatePrayerRequestActivity" />
         <activity android:name=".app.ui.prayer_request.PrayerRequestActivity" />
         <activity android:name=".app.ui.prayer_request.PrayersActivity" />
-        <activity
-            android:name=".app.ui.ViewAllDailyVerseActivity"
-            android:label="தினம் ஒரு வசனம்" />
         <activity
             android:name=".app.ui.bible.SearchVerseActivity"
             android:label="@string/search" />
