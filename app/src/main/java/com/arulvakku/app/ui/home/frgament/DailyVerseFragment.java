@@ -2,7 +2,9 @@ package com.arulvakku.app.ui.home.frgament;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.net.Uri;
@@ -13,9 +15,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
@@ -46,7 +50,10 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
     private TextView txtVerseNo;
     private TextView txtVerse;
     private ImageView imgShare;
+    private ImageView imgWhatsApp;
     private CardView mMaterialCardView;
+
+    private final String strWhatsApp = "com.whatsapp";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,8 +69,10 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
         txtVerseNo = rootView.findViewById(R.id.textView6);
         txtVerse = rootView.findViewById(R.id.textView7);
         imgShare = rootView.findViewById(R.id.imageView4);
+        imgWhatsApp = rootView.findViewById(R.id.image_whats_app);
         mMaterialCardView = rootView.findViewById(R.id.cardView);
         imgShare.setOnClickListener(this);
+        imgWhatsApp.setOnClickListener(this);
        /* rootView.findViewById(R.id.text_view_all).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,6 +93,13 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
                 startActivity(mainIntent);*//*
             }
         });*/
+
+        // Hide WhatsApp icon if the WhatsApp is not found in app
+        if (isPackageInstalled(strWhatsApp, getContext())) {
+            imgWhatsApp.setVisibility(View.VISIBLE);
+        } else {
+            imgWhatsApp.setVisibility(View.GONE);
+        }
         return rootView;
     }
 
@@ -116,19 +132,33 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
     }
 
 
-    public void shareDailyVerse() {
+    public void shareDailyVerse(int app) {
         imgShare.setVisibility(View.INVISIBLE);
+        imgWhatsApp.setVisibility(View.INVISIBLE);
+
         mMaterialCardView.setDrawingCacheEnabled(true);
         mMaterialCardView.buildDrawingCache();
 
         Bitmap bm = mMaterialCardView.getDrawingCache();
         imgShare.setVisibility(View.VISIBLE);
 
-        shareBitmap(bm);
+        // Hide WhatsApp icon if the WhatsApp is not found in app
+        if (isPackageInstalled(strWhatsApp, getContext())) {
+            imgWhatsApp.setVisibility(View.VISIBLE);
+        } else {
+            imgWhatsApp.setVisibility(View.GONE);
+        }
+
+        shareBitmap(bm, app);
+
 
     }
 
 
+    /*
+     * 1 for common share
+     * 2 for whatsapp share
+     * */
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -137,7 +167,14 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
                 /*Intent mainIntent = new Intent(getActivity(), DailyVerseEditActivity.class);
                 mainIntent.putExtra("daily_verse", txtVerse.getText().toString());
                 startActivity(mainIntent);*/
-                shareDailyVerse();
+                shareDailyVerse(1);
+                break;
+            case R.id.image_whats_app:
+                // shareDailyVerse();
+                /*Intent mainIntent = new Intent(getActivity(), DailyVerseEditActivity.class);
+                mainIntent.putExtra("daily_verse", txtVerse.getText().toString());
+                startActivity(mainIntent);*/
+                shareDailyVerse(2);
                 break;
         }
     }
@@ -187,7 +224,7 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    private void shareBitmap(@NonNull Bitmap bitmap) {
+    private void shareBitmap(@NonNull Bitmap bitmap, int app) {
         //---Save bitmap to external cache directory---//
         //get cache directory
         File cachePath = new File(getActivity().getExternalCacheDir(), "my_images/");
@@ -217,9 +254,44 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.putExtra(Intent.EXTRA_STREAM, myImageFileUri);
-        intent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.arulvakku&hl=en");
         intent.setType("image/png");
-        startActivity(Intent.createChooser(intent, "Share with"));
+
+        if (app == 2) { //  share only in WhatsApp
+            if (isPackageInstalled(strWhatsApp, getContext())) {
+                intent.setPackage(strWhatsApp);
+                startActivity(Intent.createChooser(intent, "Share with"));
+            } else {
+                showAlert();
+            }
+        } else { // Share image in any app
+            intent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.arulvakku&hl=en");
+            startActivity(Intent.createChooser(intent, "Share with"));
+        }
+
+
     }
 
+    // Show alert if user doesn't have WhatsApp
+    private void showAlert() {
+       /* AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
+        alertDialog.setTitle("Alert");
+        alertDialog.setMessage("WhatsApp is not found!");
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                (dialog, which) -> dialog.dismiss());
+        alertDialog.show();*/
+
+        Toast.makeText(getContext(), "WhatsApp is not found!", Toast.LENGTH_SHORT).show();
+    }
+
+
+    // to check whatsapp is installed or not
+    private boolean isPackageInstalled(String packagename, Context context) {
+        PackageManager pm = context.getPackageManager();
+        try {
+            pm.getPackageInfo(packagename, PackageManager.GET_ACTIVITIES);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+    }
 }
