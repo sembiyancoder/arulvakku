@@ -19,6 +19,7 @@
 
     <integer-array name="menu_list_image">
         <item>@drawable/ic_menu_bible</item>
+        <item>@drawable/ic_menu_music</item>
         <item>@drawable/ic_menu_radio</item>
         <item>@drawable/ic_menu_rosary</item>
         <item>@drawable/ic_menu_wayofcross</item>
@@ -32,6 +33,7 @@
 
     <integer-array name="menu_list_name">
         <item>@string/lbl_bible</item>
+        <item>@string/lbl_songs</item>
         <item>@string/lbl_radio</item>
         <item>@string/lbl_rosary</item>
         <item>@string/lbl_way_of_cross</item>

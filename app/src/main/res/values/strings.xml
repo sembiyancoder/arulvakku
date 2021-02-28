@@ -45,6 +45,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="lbl_bible">திருவிவிலியம்</string>
+    <string name="lbl_songs">பாடல்கள்</string>
     <string name="lbl_radio">வானொலி</string>
     <string name="lbl_rosary">செபமாலை</string>
     <string name="lbl_way_of_cross">திருச்சிலுவைப்பாதை</string>

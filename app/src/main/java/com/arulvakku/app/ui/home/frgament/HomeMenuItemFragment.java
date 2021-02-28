@@ -2,6 +2,7 @@ package com.arulvakku.app.ui.home.frgament;
 
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,6 +71,15 @@ public class HomeMenuItemFragment extends Fragment implements HomeMenuAdapter.on
         if (menuName.equalsIgnoreCase(getString(R.string.lbl_bible))) {
             intent = new Intent(getActivity(), BooksActivity.class);
             intent.putExtra("book_name", getString(R.string.lbl_bible));
+        } else if (menuName.equalsIgnoreCase(getString(R.string.lbl_songs))) { /* Open "அருள்வாக்கு பாடல்கள் - app" ||  https://play.google.com/store/apps/details?id=com.arulvakku.lyrics.app - (show app in play store - if the app is not available in mobile) */
+            Intent launchIntent = getActivity().getPackageManager().getLaunchIntentForPackage("com.arulvakku.lyrics.app");
+            if (launchIntent != null) {
+                startActivity(launchIntent);//null pointer check in case package name was not found
+            }else {
+                Intent intentPlayStore = new Intent(Intent.ACTION_VIEW);
+                intentPlayStore.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.arulvakku.lyrics.app"));
+                startActivity(intentPlayStore); // அருள்வாக்கு பாடல்கள் - in play store
+            }
         } else if (menuName.equalsIgnoreCase(getString(R.string.lbl_radio))) {
             intent = new Intent(getActivity(), RadioActivity.class);
         } else if (menuName.equalsIgnoreCase(getString(R.string.lbl_rosary))) {
