@@ -84,5 +84,8 @@ dependencies {
     //permission
     implementation 'com.karumi:dexter:4.2.0'
 
+    // permission
+    implementation 'gun0912.ted:tedpermission:2.2.3'
+
     implementation 'com.github.QuadFlask:colorpicker:0.0.15'
 }

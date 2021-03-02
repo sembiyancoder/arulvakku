@@ -1,5 +1,6 @@
 package com.arulvakku.app.ui.home.frgament;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,7 +10,9 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +30,8 @@ import androidx.fragment.app.Fragment;
 import com.arulvakku.R;
 import com.arulvakku.app.database.DBHelper;
 import com.arulvakku.app.utils.UtilSingleton;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,6 +42,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
 
 
 public class DailyVerseFragment extends Fragment implements View.OnClickListener {
@@ -51,6 +59,7 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
     private TextView txtVerse;
     private ImageView imgShare;
     private ImageView imgWhatsApp;
+    private ImageView imgDownload;
     private CardView mMaterialCardView;
 
     private final String strWhatsApp = "com.whatsapp";
@@ -70,9 +79,11 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
         txtVerse = rootView.findViewById(R.id.textView7);
         imgShare = rootView.findViewById(R.id.imageView4);
         imgWhatsApp = rootView.findViewById(R.id.image_whats_app);
+        imgDownload = rootView.findViewById(R.id.image_download);
         mMaterialCardView = rootView.findViewById(R.id.cardView);
         imgShare.setOnClickListener(this);
         imgWhatsApp.setOnClickListener(this);
+        imgDownload.setOnClickListener(this);
        /* rootView.findViewById(R.id.text_view_all).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -135,22 +146,28 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
     public void shareDailyVerse(int app) {
         imgShare.setVisibility(View.INVISIBLE);
         imgWhatsApp.setVisibility(View.INVISIBLE);
+        imgDownload.setVisibility(View.INVISIBLE);
 
         mMaterialCardView.setDrawingCacheEnabled(true);
         mMaterialCardView.buildDrawingCache();
 
         Bitmap bm = mMaterialCardView.getDrawingCache();
         imgShare.setVisibility(View.VISIBLE);
+        imgDownload.setVisibility(View.VISIBLE);
 
         // Hide WhatsApp icon if the WhatsApp is not found in app
-        if (isPackageInstalled(strWhatsApp, getContext())) {
-            imgWhatsApp.setVisibility(View.VISIBLE);
+        if (getContext() != null)
+            if (isPackageInstalled(strWhatsApp, getContext())) {
+                imgWhatsApp.setVisibility(View.VISIBLE);
+            } else {
+                imgWhatsApp.setVisibility(View.GONE);
+            }
+
+        if (app == 3) {
+            createDirectoryAndSaveFile(bm, "இன்றைய வசனம்_" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime()) + ".png");
         } else {
-            imgWhatsApp.setVisibility(View.GONE);
+            shareBitmap(bm, app);
         }
-
-        shareBitmap(bm, app);
-
 
     }
 
@@ -158,6 +175,7 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
     /*
      * 1 for common share
      * 2 for whatsapp share
+     * 3 for download
      * */
     @Override
     public void onClick(View v) {
@@ -175,6 +193,13 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
                 mainIntent.putExtra("daily_verse", txtVerse.getText().toString());
                 startActivity(mainIntent);*/
                 shareDailyVerse(2);
+                break;
+            case R.id.image_download:
+                // shareDailyVerse();
+                /*Intent mainIntent = new Intent(getActivity(), DailyVerseEditActivity.class);
+                mainIntent.putExtra("daily_verse", txtVerse.getText().toString());
+                startActivity(mainIntent);*/
+                getStoragePermissions();
                 break;
         }
     }
@@ -257,12 +282,13 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
         intent.setType("image/png");
 
         if (app == 2) { //  share only in WhatsApp
-            if (isPackageInstalled(strWhatsApp, getContext())) {
-                intent.setPackage(strWhatsApp);
-                startActivity(Intent.createChooser(intent, "Share with"));
-            } else {
-                showAlert();
-            }
+            if (getContext() != null)
+                if (isPackageInstalled(strWhatsApp, getContext())) {
+                    intent.setPackage(strWhatsApp);
+                    startActivity(Intent.createChooser(intent, "Share with"));
+                } else {
+                    showAlert();
+                }
         } else { // Share image in any app
             intent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.arulvakku&hl=en");
             startActivity(Intent.createChooser(intent, "Share with"));
@@ -293,5 +319,76 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
         } catch (PackageManager.NameNotFoundException e) {
             return false;
         }
+    }
+
+    // get storage permission to store image in to local path
+    private void getStoragePermissions() {
+
+        //call back after permission granted
+        PermissionListener permissionlistener = new PermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+//                Toast.makeText(getContext(), "Permission Granted", Toast.LENGTH_SHORT).show();
+                shareDailyVerse(3);
+
+            }
+
+            @Override
+            public void onPermissionDenied(List<String> deniedPermissions) {
+                Toast.makeText(getContext(), "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
+//                getStoragePermissions();
+            }
+
+
+        };
+
+        if (getContext() != null) {
+            //check all needed permissions together
+            TedPermission.with(getContext())
+                    .setPermissionListener(permissionlistener)
+                    .setDeniedMessage("If you reject permission, you can not download image\n\nPlease turn on permissions at [Setting] > [Permission]")
+                    .setPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    .check();
+        }
+    }
+
+    private void createDirectoryAndSaveFile(Bitmap imageToSave, String fileName) {
+
+        File direct = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Pictures");
+
+        if (!direct.exists()) {
+            File wallpaperDirectory = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/Pictures/");
+            wallpaperDirectory.mkdirs();
+        }
+
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() +"/Pictures/", fileName);
+        if (file.exists()) {
+            file.delete();
+        }
+        try {
+            FileOutputStream out = new FileOutputStream(file);
+            imageToSave.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            out.flush();
+            out.close();
+            showCustomToast();
+//            Toast.makeText(getContext(), "Download successful",Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(), "Try again later!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void showCustomToast() {
+        //Creating the LayoutInflater instance
+        LayoutInflater li = getLayoutInflater();
+        //Getting the View object as defined in the customtoast.xml file
+        View layout = li.inflate(R.layout.toast,(ViewGroup) getView().findViewById(R.id.toast_layout_root));
+
+        //Creating the Toast object
+        Toast toast = new Toast(getContext());
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.BOTTOM, 0, 0);
+        toast.setView(layout);//setting the view of custom toast layout
+        toast.show();
     }
 }

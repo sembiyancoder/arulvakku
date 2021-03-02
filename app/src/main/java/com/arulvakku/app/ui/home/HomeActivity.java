@@ -38,6 +38,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+
+
     private void inflateXML() {
         txtTitle = findViewById(R.id.textView);
         rosaryCardView = findViewById(R.id.cardView2);
