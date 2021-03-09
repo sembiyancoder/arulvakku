@@ -1,4 +1,4 @@
-package com.arulvakku.app.ui.home.frgament;
+    package com.arulvakku.app.ui.home.frgament;
 
 import android.Manifest;
 import android.app.Activity;
@@ -8,7 +8,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.media.AudioManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.DisplayMetrics;
@@ -84,6 +86,12 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
         imgShare.setOnClickListener(this);
         imgWhatsApp.setOnClickListener(this);
         imgDownload.setOnClickListener(this);
+
+        // Hide download feature if android OS version above android Q
+        if (android.os.Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
+            // only for Android 10 and below
+            imgDownload.setVisibility(View.GONE);
+        }
        /* rootView.findViewById(R.id.text_view_all).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -155,6 +163,11 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
         imgShare.setVisibility(View.VISIBLE);
         imgDownload.setVisibility(View.VISIBLE);
 
+        // Hide download feature if mobile above android Q
+        if (android.os.Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
+            // only for Android 10 and below
+            imgDownload.setVisibility(View.GONE);
+        }
         // Hide WhatsApp icon if the WhatsApp is not found in app
         if (getContext() != null)
             if (isPackageInstalled(strWhatsApp, getContext())) {
@@ -347,21 +360,26 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
             TedPermission.with(getContext())
                     .setPermissionListener(permissionlistener)
                     .setDeniedMessage("If you reject permission, you can not download image\n\nPlease turn on permissions at [Setting] > [Permission]")
-                    .setPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    .setPermissions(Manifest.permission.READ_EXTERNAL_STORAGE,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     .check();
         }
     }
 
     private void createDirectoryAndSaveFile(Bitmap imageToSave, String fileName) {
+        /*Environment.DIRECTORY_PICTURES*/
+//        getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
 
         File direct = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Pictures");
 
         if (!direct.exists()) {
             File wallpaperDirectory = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/Pictures/");
+//            File wallpaperDirectory= getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
             wallpaperDirectory.mkdirs();
         }
 
         File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() +"/Pictures/", fileName);
+//        File file = new File(getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES), fileName);
         if (file.exists()) {
             file.delete();
         }

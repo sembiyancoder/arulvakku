@@ -1,11 +1,19 @@
 package com.arulvakku.app.ui.home;
 
+import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +32,17 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private CardView rosaryCardView;
     private TextView txtTitle;
 
+   private AudioManager am;
+    private Dialog dialog;
+
+    private BroadcastReceiver receiver;
+    /**
+     * This variable used to avoid multiple call on receive
+     * silent -0
+     * vibrate - 1
+     * normal - 2
+     */
+    private int mediaMode = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -36,6 +55,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         // change music stream volume while activity is running
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
+        am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
+        silentStatus();
     }
 
 
@@ -72,12 +94,31 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
         MyApplication.sBus.register(this);
+
+        // set receiver for silent mode
+        receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                //code...
+//                Log.d("TAG", "onReceive: "+intent.toString());
+
+                int a = am.getRingerMode();
+                if (mediaMode != a)
+                    silentStatus();
+            }
+        };
+        IntentFilter filter = new IntentFilter(
+                AudioManager.RINGER_MODE_CHANGED_ACTION);
+        registerReceiver(receiver, filter);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         MyApplication.sBus.unregister(this);
+
+        // Unregister receiver
+        unregisterReceiver(receiver);
     }
 
 
@@ -131,4 +172,60 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
+
+    private void openSettings() {
+        Intent intent = new Intent(Settings.ACTION_SOUND_SETTINGS);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        startActivity(intent);
+    }
+
+
+    // Get mobile ringer mode status
+    private void silentStatus() {
+        mediaMode = am.getRingerMode();
+        switch (am.getRingerMode()) {
+            case AudioManager.RINGER_MODE_SILENT:
+                Log.i("MyApp", "Silent mode");
+//                textView.setText("Silent mode");
+                if (dialog != null) dialog.dismiss();
+                break;
+            case AudioManager.RINGER_MODE_VIBRATE:
+                Log.i("MyApp", "Vibrate mode");
+                if (dialog != null) dialog.dismiss();
+                break;
+            case AudioManager.RINGER_MODE_NORMAL:
+                Log.i("MyApp", "Normal mode");
+                showNotification();
+                break;
+        }
+    }
+
+    // Show notification to notify user to put mobile on silent mode
+    private void showNotification() {
+        dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.layout_custom);
+
+        TextView textView = dialog.findViewById(R.id.text_dialog);
+        textView.setText("Put your mobile on silent mode!");
+        Button button = dialog.findViewById(R.id.btn_dialog);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                dialog.dismiss();
+                openSettings();
+            }
+        });
+        Button buttonCancel = dialog.findViewById(R.id.btn_cancel);
+        buttonCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
 }
