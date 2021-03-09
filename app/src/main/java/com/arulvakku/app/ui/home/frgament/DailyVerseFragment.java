@@ -3,12 +3,12 @@ package com.arulvakku.app.ui.home.frgament;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.DisplayMetrics;
@@ -22,7 +22,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
@@ -357,11 +356,11 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
         File direct = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Pictures");
 
         if (!direct.exists()) {
-            File wallpaperDirectory = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/Pictures/");
+            File wallpaperDirectory = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Pictures/");
             wallpaperDirectory.mkdirs();
         }
 
-        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() +"/Pictures/", fileName);
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Pictures/", fileName);
         if (file.exists()) {
             file.delete();
         }
@@ -371,6 +370,10 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
             out.flush();
             out.close();
             showCustomToast();
+
+            if (file != null && file.exists()) {
+                updateExternalStorage(file); // Vivek
+            }
 //            Toast.makeText(getContext(), "Download successful",Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -378,11 +381,27 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
         }
     }
 
+    /*
+     * Updating the external storage to view the saved file
+     * Ref: https://stackoverflow.com/questions/24072489/java-lang-securityexception-permission-denial-not-allowed-to-send-broadcast-an#24072611
+     * */
+    private void updateExternalStorage(File file) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            final Intent scanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            final Uri contentUri = Uri.fromFile(file);
+            scanIntent.setData(contentUri);
+            getActivity().sendBroadcast(scanIntent);
+        } else {
+            final Intent intent = new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://" + Environment.getExternalStorageDirectory()));
+            getActivity().sendBroadcast(intent);
+        }
+    }
+
     private void showCustomToast() {
         //Creating the LayoutInflater instance
         LayoutInflater li = getLayoutInflater();
         //Getting the View object as defined in the customtoast.xml file
-        View layout = li.inflate(R.layout.toast,(ViewGroup) getView().findViewById(R.id.toast_layout_root));
+        View layout = li.inflate(R.layout.toast, (ViewGroup) getView().findViewById(R.id.toast_layout_root));
 
         //Creating the Toast object
         Toast toast = new Toast(getContext());

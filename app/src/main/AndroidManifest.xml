@@ -18,6 +18,8 @@
 
     <permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
 
+    <protected-broadcast android:name="android.intent.action.MEDIA_MOUNTED" />
+
     <application
         android:name=".app.MyApplication"
         android:allowBackup="false"
