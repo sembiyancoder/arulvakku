@@ -2,6 +2,7 @@ package com.arulvakku.app.ui.home.frgament;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,7 +13,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.DisplayMetrics;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +29,7 @@ import androidx.fragment.app.Fragment;
 import com.arulvakku.R;
 import com.arulvakku.app.database.DBHelper;
 import com.arulvakku.app.utils.UtilSingleton;
+import com.google.android.material.snackbar.Snackbar;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 
@@ -163,7 +164,7 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
             }
 
         if (app == 3) {
-            createDirectoryAndSaveFile(bm, "இன்றைய வசனம்_" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime()) + ".png");
+            createDirectoryAndSaveFile(bm, "இன்றைய வசனம்_" + new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime()) + ".png");
         } else {
             shareBitmap(bm, app);
         }
@@ -286,7 +287,7 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
                     intent.setPackage(strWhatsApp);
                     startActivity(Intent.createChooser(intent, "Share with"));
                 } else {
-                    showAlert();
+                    Toast.makeText(getContext(), "WhatsApp is not found!", Toast.LENGTH_SHORT).show();
                 }
         } else { // Share image in any app
             intent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.arulvakku&hl=en");
@@ -295,19 +296,6 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
 
 
     }
-
-    // Show alert if user doesn't have WhatsApp
-    private void showAlert() {
-       /* AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
-        alertDialog.setTitle("Alert");
-        alertDialog.setMessage("WhatsApp is not found!");
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                (dialog, which) -> dialog.dismiss());
-        alertDialog.show();*/
-
-        Toast.makeText(getContext(), "WhatsApp is not found!", Toast.LENGTH_SHORT).show();
-    }
-
 
     // to check whatsapp is installed or not
     private boolean isPackageInstalled(String packagename, Context context) {
@@ -353,14 +341,14 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
 
     private void createDirectoryAndSaveFile(Bitmap imageToSave, String fileName) {
 
-        File direct = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Pictures");
+        File direct = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/"+Environment.DIRECTORY_DOWNLOADS);
 
         if (!direct.exists()) {
-            File wallpaperDirectory = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Pictures/");
+            File wallpaperDirectory = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/"+Environment.DIRECTORY_DOWNLOADS);
             wallpaperDirectory.mkdirs();
         }
 
-        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Pictures/", fileName);
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/"+Environment.DIRECTORY_DOWNLOADS, fileName);
         if (file.exists()) {
             file.delete();
         }
@@ -369,12 +357,11 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
             imageToSave.compress(Bitmap.CompressFormat.JPEG, 100, out);
             out.flush();
             out.close();
-            showCustomToast();
 
             if (file != null && file.exists()) {
                 updateExternalStorage(file); // Vivek
             }
-//            Toast.makeText(getContext(), "Download successful",Toast.LENGTH_SHORT).show();
+            notifyDownload(); // Show snack bar after download (livin)
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getContext(), "Try again later!", Toast.LENGTH_SHORT).show();
@@ -397,17 +384,17 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
         }
     }
 
-    private void showCustomToast() {
-        //Creating the LayoutInflater instance
-        LayoutInflater li = getLayoutInflater();
-        //Getting the View object as defined in the customtoast.xml file
-        View layout = li.inflate(R.layout.toast, (ViewGroup) getView().findViewById(R.id.toast_layout_root));
+    // Show snackbar after image download successfully
+    private void notifyDownload() {
+        Snackbar snackbar = Snackbar
+                .make(getView(), "Downloaded Successful", Snackbar.LENGTH_LONG)
+                .setAction("OPEN", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS));
+                    }
+                });
 
-        //Creating the Toast object
-        Toast toast = new Toast(getContext());
-        toast.setDuration(Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.BOTTOM, 0, 0);
-        toast.setView(layout);//setting the view of custom toast layout
-        toast.show();
+        snackbar.show();
     }
 }
