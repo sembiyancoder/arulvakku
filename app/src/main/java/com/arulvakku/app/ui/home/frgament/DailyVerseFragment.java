@@ -1,7 +1,6 @@
 package com.arulvakku.app.ui.home.frgament;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
@@ -11,8 +10,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.view.Gravity;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +25,7 @@ import androidx.fragment.app.Fragment;
 
 import com.arulvakku.R;
 import com.arulvakku.app.database.DBHelper;
+import com.arulvakku.app.utils.Constants;
 import com.arulvakku.app.utils.UtilSingleton;
 import com.google.android.material.snackbar.Snackbar;
 import com.gun0912.tedpermission.PermissionListener;
@@ -46,14 +44,12 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
-import static com.arulvakku.app.utils.Constants.WHATSAPP_PACKAGE_NAME;
-
 
 public class DailyVerseFragment extends Fragment implements View.OnClickListener {
 
     private UtilSingleton sInstance;
 
-    private DailyVerseFragment() {
+    public DailyVerseFragment() {
     }
 
     private TextView txtVerseNo;
@@ -99,7 +95,7 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
     }
 
     private void checkForWhatsApp() {
-        if (isPackageInstalled(WHATSAPP_PACKAGE_NAME, getContext())) {
+        if (isPackageInstalled(Constants.WHATSAPP_PACKAGE_NAME, getContext())) {
             imgWhatsApp.setVisibility(View.VISIBLE);
         } else {
             imgWhatsApp.setVisibility(View.GONE);
@@ -108,13 +104,6 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
 
 
     public void shareDailyVerse(int app) {
-        // Hide WhatsApp icon if the WhatsApp is not found in app
-        /*if (getContext() != null)
-            if (isPackageInstalled(WHATSAPP_PACKAGE_NAME, getContext())) {
-                imgWhatsApp.setVisibility(View.VISIBLE);
-            } else {
-                imgWhatsApp.setVisibility(View.GONE);
-            }*/
         if (getBitmap() != null) {
             if (app == 3) {
                 createDirectoryAndSaveFile(getBitmap(), "இன்றைய வசனம்_" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime()) + ".png");
@@ -242,8 +231,8 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
 
         if (app == 2) { //  share only in WhatsApp
             if (getContext() != null)
-                if (isPackageInstalled(WHATSAPP_PACKAGE_NAME, getContext())) {
-                    intent.setPackage(WHATSAPP_PACKAGE_NAME);
+                if (isPackageInstalled(Constants.WHATSAPP_PACKAGE_NAME, getContext())) {
+                    intent.setPackage(Constants.WHATSAPP_PACKAGE_NAME);
                     startActivity(Intent.createChooser(intent, "Share with"));
                 } else {
                     Toast.makeText(getContext(), "WhatsApp is not found!", Toast.LENGTH_SHORT).show();
@@ -269,16 +258,13 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
 
     // get storage permission to store image in to local path
     private void getStoragePermissions() {
-
         //call back after permission granted
         PermissionListener permissionlistener = new PermissionListener() {
             @Override
             public void onPermissionGranted() {
 //                Toast.makeText(getContext(), "Permission Granted", Toast.LENGTH_SHORT).show();
                 shareDailyVerse(3);
-
             }
-
             @Override
             public void onPermissionDenied(List<String> deniedPermissions) {
                 Toast.makeText(getContext(), "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
@@ -300,14 +286,14 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
 
     private void createDirectoryAndSaveFile(Bitmap imageToSave, String fileName) {
 
-        File direct = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/"+Environment.DIRECTORY_DOWNLOADS);
+        File direct = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + Environment.DIRECTORY_DOWNLOADS);
 
         if (!direct.exists()) {
-            File wallpaperDirectory = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/"+Environment.DIRECTORY_DOWNLOADS);
+            File wallpaperDirectory = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + Environment.DIRECTORY_DOWNLOADS);
             wallpaperDirectory.mkdirs();
         }
 
-        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/"+Environment.DIRECTORY_DOWNLOADS, fileName);
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + Environment.DIRECTORY_DOWNLOADS, fileName);
         if (file.exists()) {
             file.delete();
         }
@@ -353,7 +339,6 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
                         startActivity(new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS));
                     }
                 });
-
         snackbar.show();
     }
 }

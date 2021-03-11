@@ -29,9 +29,9 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:src="@drawable/ic_dove"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:src="@drawable/ic_menu_bible" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -87,8 +87,9 @@
             <ImageView
                 android:id="@+id/image_download"
                 android:layout_width="24dp"
-                android:layout_height="wrap_content"
+                android:layout_height="24dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
                 android:contentDescription="@null"
                 android:src="@drawable/ic_download"
@@ -101,12 +102,13 @@
             <ImageView
                 android:id="@+id/image_whats_app"
                 android:layout_width="24dp"
-                android:layout_height="wrap_content"
+                android:layout_height="24dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:contentDescription="@null"
                 android:src="@drawable/ic_whatsapp"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                 app:layout_constraintEnd_toStartOf="@id/imageView4"
                 app:layout_constraintStart_toEndOf="@+id/image_download"
@@ -115,12 +117,12 @@
             <ImageView
                 android:id="@+id/imageView4"
                 android:layout_width="24dp"
-                android:layout_height="wrap_content"
+                android:layout_height="24dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:contentDescription="@null"
-                android:src="@drawable/ic_share_white_24dp"
+                android:src="@drawable/ic_share"
                 app:layout_constraintBottom_toBottomOf="@+id/textView8"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/image_whats_app"

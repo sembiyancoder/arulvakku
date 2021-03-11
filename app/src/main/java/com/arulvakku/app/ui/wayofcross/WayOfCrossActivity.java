@@ -1,8 +1,10 @@
 package com.arulvakku.app.ui.wayofcross;
 
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -22,6 +24,7 @@ public class WayOfCrossActivity extends AppCompatActivity {
     private CustomViewPagerAdapter mCustomViewPagerAdapter;
     private ViewPager mViewPager;
     private JSONArray mWayOfCrossArray;
+    private ImageView mLeftArrowImageView, mRightArrowImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,16 +32,29 @@ public class WayOfCrossActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_way_of_cross);
-      /*  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("திருச்சிலுவைப்பாதை");*/
         inflateXMLView();
     }
 
     private void inflateXMLView() {
         prepareData();
         mViewPager = findViewById(R.id.viewpager);
+        mLeftArrowImageView = findViewById(R.id.image_left_arrow);
+        mRightArrowImageView = findViewById(R.id.image_right_arrow);
         setViewPagerAdapter();
+
+        mRightArrowImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1);
+            }
+        });
+
+        mLeftArrowImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPager.setCurrentItem(mViewPager.getCurrentItem() - 1);
+            }
+        });
     }
 
     private void prepareData() {
