@@ -1,8 +1,13 @@
 package com.arulvakku.app.ui.home;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +21,7 @@ import com.arulvakku.app.MyApplication;
 import com.arulvakku.app.ui.NotificationActivity;
 import com.arulvakku.app.ui.rosary.RosaryActivity;
 import com.arulvakku.app.utils.ShareLink;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Calendar;
 
@@ -24,18 +30,33 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private CardView rosaryCardView;
     private TextView txtTitle;
 
+   private AudioManager am;
+
+    private BroadcastReceiver receiver;
+    /**
+     * This variable used to avoid multiple call on receive
+     * silent -0
+     * vibrate - 1
+     * normal - 2
+     */
+    View view;
+    private int mediaMode = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        view = findViewById(R.id.parent);
         inflateXML();
         getCurrentDay();
 
         // change music stream volume while activity is running
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
+        am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
+        silentStatus();
     }
 
 
@@ -72,12 +93,31 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
         MyApplication.sBus.register(this);
+
+        // set receiver for silent mode
+        receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                //code...
+//                Log.d("TAG", "onReceive: "+intent.toString());
+
+                int a = am.getRingerMode();
+                if (mediaMode != a)
+                    silentStatus();
+            }
+        };
+        IntentFilter filter = new IntentFilter(
+                AudioManager.RINGER_MODE_CHANGED_ACTION);
+        registerReceiver(receiver, filter);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         MyApplication.sBus.unregister(this);
+
+        // Unregister receiver
+        unregisterReceiver(receiver);
     }
 
 
@@ -131,4 +171,41 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
+
+    private void openSettings() {
+        Intent intent = new Intent(Settings.ACTION_SOUND_SETTINGS);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        startActivity(intent);
+    }
+
+
+    // Get mobile ringer mode status
+    private void silentStatus() {
+        mediaMode = am.getRingerMode();
+        switch (am.getRingerMode()) {
+            case AudioManager.RINGER_MODE_SILENT:
+                Log.i("MyApp", "Silent mode");
+//                textView.setText("Silent mode");
+                break;
+            case AudioManager.RINGER_MODE_VIBRATE:
+                Log.i("MyApp", "Vibrate mode");
+                break;
+            case AudioManager.RINGER_MODE_NORMAL:
+                Log.i("MyApp", "Normal mode");
+                notifySilentMode();
+                break;
+        }
+    }
+
+    // Show notification to notify user to put mobile on silent mode
+    private void notifySilentMode() {
+        Snackbar snackbar = Snackbar
+                .make(view, "ஆலயத்தினுள்ளே கைபேசியை அமைதிப்படுத்துக!", Snackbar.LENGTH_LONG)
+                .setAction("SETTINGS", view -> openSettings());
+
+        snackbar.show();
+    }
+
 }
