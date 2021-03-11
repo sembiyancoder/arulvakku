@@ -33,4 +33,6 @@ public class Constants {
     public static final String DAILY_NOTIFICATION_CHANNEL_NAME = "channel_daily_notification";
     public static final String ACTION_NOTIFICATION_SHARE = "action_share";
 
+    public static final String WHATSAPP_PACKAGE_NAME = "com.whatsapp";
+
 }

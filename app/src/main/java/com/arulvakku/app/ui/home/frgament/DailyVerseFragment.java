@@ -1,17 +1,14 @@
 package com.arulvakku.app.ui.home.frgament;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,13 +42,14 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
+import static com.arulvakku.app.utils.Constants.WHATSAPP_PACKAGE_NAME;
+
 
 public class DailyVerseFragment extends Fragment implements View.OnClickListener {
 
     private UtilSingleton sInstance;
 
-    public DailyVerseFragment() {
-
+    private DailyVerseFragment() {
     }
 
     private TextView txtVerseNo;
@@ -60,8 +58,6 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
     private ImageView imgWhatsApp;
     private ImageView imgDownload;
     private CardView mMaterialCardView;
-
-    private final String strWhatsApp = "com.whatsapp";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,76 +69,58 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_daily_verse, container, false);
-        txtVerseNo = rootView.findViewById(R.id.textView6);
-        txtVerse = rootView.findViewById(R.id.textView7);
-        imgShare = rootView.findViewById(R.id.imageView4);
-        imgWhatsApp = rootView.findViewById(R.id.image_whats_app);
-        imgDownload = rootView.findViewById(R.id.image_download);
-        mMaterialCardView = rootView.findViewById(R.id.cardView);
+        View view = inflater.inflate(R.layout.fragment_daily_verse, container, false);
+        inflateXMLView(view);
+        // Hide WhatsApp icon if the WhatsApp is not found in app
+        checkForWhatsApp();
+        return view;
+    }
+
+    private void inflateXMLView(View view) {
+        txtVerseNo = view.findViewById(R.id.textView6);
+        txtVerse = view.findViewById(R.id.textView7);
+        imgShare = view.findViewById(R.id.imageView4);
+        imgWhatsApp = view.findViewById(R.id.image_whats_app);
+        imgDownload = view.findViewById(R.id.image_download);
+        mMaterialCardView = view.findViewById(R.id.cardView);
         imgShare.setOnClickListener(this);
         imgWhatsApp.setOnClickListener(this);
         imgDownload.setOnClickListener(this);
-       /* rootView.findViewById(R.id.text_view_all).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bitmap bitmap = createBitmapFromView(getContext(), mMaterialCardView);
-                if (bitmap != null) {
-                    String path = MediaStore.Images.Media.insertImage(getActivity().getContentResolver(),
-                            bitmap, "Design", null);
-
-                    Uri uri = Uri.parse(path);
-
-                    Intent share = new Intent(Intent.ACTION_SEND);
-                    share.setType("image/*");
-                    share.putExtra(Intent.EXTRA_STREAM, uri);
-                    share.putExtra(Intent.EXTRA_TEXT, "I found something cool!");
-                    startActivity(Intent.createChooser(share, "Share Your Design!"));
-                }
-                *//*Intent mainIntent = new Intent(getActivity(), ViewAllDailyVerseActivity.class);
-                startActivity(mainIntent);*//*
-            }
-        });*/
-
-        // Hide WhatsApp icon if the WhatsApp is not found in app
-        if (isPackageInstalled(strWhatsApp, getContext())) {
-            imgWhatsApp.setVisibility(View.VISIBLE);
-        } else {
-            imgWhatsApp.setVisibility(View.GONE);
-        }
-        return rootView;
     }
-
-    private Bitmap createBitmapFromView(Context context, View view) {
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-
-        view.measure(displayMetrics.widthPixels, displayMetrics.heightPixels);
-        view.layout(0, 0, displayMetrics.widthPixels, displayMetrics.heightPixels);
-        view.buildDrawingCache();
-        Bitmap bitmap = Bitmap.createBitmap(view.getMeasuredWidth(), view.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-
-        Canvas canvas = new Canvas(bitmap);
-        view.draw(canvas);
-        return bitmap;
-    }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setTodayVerse();
-
+        setTodayDailyVerse();
     }
 
-    private void defaultVerse() {
-        txtVerseNo.setText(getString(R.string.default_chapter) + 5 + " : " + 41);
-        txtVerse.setText(getString(R.string.default_verse));
+    private void checkForWhatsApp() {
+        if (isPackageInstalled(WHATSAPP_PACKAGE_NAME, getContext())) {
+            imgWhatsApp.setVisibility(View.VISIBLE);
+        } else {
+            imgWhatsApp.setVisibility(View.GONE);
+        }
     }
 
 
     public void shareDailyVerse(int app) {
+        // Hide WhatsApp icon if the WhatsApp is not found in app
+        /*if (getContext() != null)
+            if (isPackageInstalled(WHATSAPP_PACKAGE_NAME, getContext())) {
+                imgWhatsApp.setVisibility(View.VISIBLE);
+            } else {
+                imgWhatsApp.setVisibility(View.GONE);
+            }*/
+        if (getBitmap() != null) {
+            if (app == 3) {
+                createDirectoryAndSaveFile(getBitmap(), "இன்றைய வசனம்_" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime()) + ".png");
+            } else {
+                shareBitmap(getBitmap(), app);
+            }
+        }
+    }
+
+    private Bitmap getBitmap() {
         imgShare.setVisibility(View.INVISIBLE);
         imgWhatsApp.setVisibility(View.INVISIBLE);
         imgDownload.setVisibility(View.INVISIBLE);
@@ -150,24 +128,10 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
         mMaterialCardView.setDrawingCacheEnabled(true);
         mMaterialCardView.buildDrawingCache();
 
-        Bitmap bm = mMaterialCardView.getDrawingCache();
+        Bitmap bitmap = mMaterialCardView.getDrawingCache();
         imgShare.setVisibility(View.VISIBLE);
         imgDownload.setVisibility(View.VISIBLE);
-
-        // Hide WhatsApp icon if the WhatsApp is not found in app
-        if (getContext() != null)
-            if (isPackageInstalled(strWhatsApp, getContext())) {
-                imgWhatsApp.setVisibility(View.VISIBLE);
-            } else {
-                imgWhatsApp.setVisibility(View.GONE);
-            }
-
-        if (app == 3) {
-            createDirectoryAndSaveFile(bm, "இன்றைய வசனம்_" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime()) + ".png");
-        } else {
-            shareBitmap(bm, app);
-        }
-
+        return bitmap;
     }
 
 
@@ -180,31 +144,23 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.imageView4:
-                // shareDailyVerse();
-                /*Intent mainIntent = new Intent(getActivity(), DailyVerseEditActivity.class);
-                mainIntent.putExtra("daily_verse", txtVerse.getText().toString());
-                startActivity(mainIntent);*/
                 shareDailyVerse(1);
                 break;
             case R.id.image_whats_app:
-                // shareDailyVerse();
-                /*Intent mainIntent = new Intent(getActivity(), DailyVerseEditActivity.class);
-                mainIntent.putExtra("daily_verse", txtVerse.getText().toString());
-                startActivity(mainIntent);*/
                 shareDailyVerse(2);
                 break;
             case R.id.image_download:
-                // shareDailyVerse();
-                /*Intent mainIntent = new Intent(getActivity(), DailyVerseEditActivity.class);
-                mainIntent.putExtra("daily_verse", txtVerse.getText().toString());
-                startActivity(mainIntent);*/
                 getStoragePermissions();
                 break;
         }
     }
 
+    private void shareItInWhatsApp() {
 
-    private void setTodayVerse() {
+    }
+
+
+    private void setTodayDailyVerse() {
         String todayDate = sInstance.getDate();
         try {
             JSONObject obj = new JSONObject(loadJSONFromAsset());
@@ -282,8 +238,8 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
 
         if (app == 2) { //  share only in WhatsApp
             if (getContext() != null)
-                if (isPackageInstalled(strWhatsApp, getContext())) {
-                    intent.setPackage(strWhatsApp);
+                if (isPackageInstalled(WHATSAPP_PACKAGE_NAME, getContext())) {
+                    intent.setPackage(WHATSAPP_PACKAGE_NAME);
                     startActivity(Intent.createChooser(intent, "Share with"));
                 } else {
                     showAlert();
@@ -374,7 +330,7 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
             if (file != null && file.exists()) {
                 updateExternalStorage(file); // Vivek
             }
-//            Toast.makeText(getContext(), "Download successful",Toast.LENGTH_SHORT).show();
+//           Toast.makeText(getContext(), "Download successful",Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getContext(), "Try again later!", Toast.LENGTH_SHORT).show();
