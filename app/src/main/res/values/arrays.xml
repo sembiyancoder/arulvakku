@@ -26,7 +26,6 @@
         <item>@drawable/ic_menu_request</item>
         <item>@drawable/ic_menu_calendar</item>
         <item>@drawable/ic_menu_feedback</item>
-        <item>@drawable/ic_menu_donate</item>
         <item>@drawable/ic_menu_contact</item>
     </integer-array>
 
@@ -40,7 +39,6 @@
         <item>@string/lbl_prayer_request</item>
         <item>@string/lbl_calendar</item>
         <item>@string/lbl_feedback</item>
-        <item>@string/lbl_donate_us</item>
         <item>@string/lbl_contact_us</item>
     </integer-array>
 

@@ -34,7 +34,7 @@ public class MyFirebaseWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
-        new PostPrayersList().execute();
+      //  new PostPrayersList().execute();
         return null;
     }
 

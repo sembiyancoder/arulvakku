@@ -1,6 +1,7 @@
 package com.arulvakku.app.utils;
 
 import android.content.Context;
+import android.provider.Settings;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -46,5 +47,8 @@ public class Utils {
         return json;
     }
 
-
+    public static String getAndroidDeviceID(Context context) {
+        return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+    }
+    
 }

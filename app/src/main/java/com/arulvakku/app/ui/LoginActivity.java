@@ -177,12 +177,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private JSONObject initRequest() {
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("UserId", mSharedPreferences.getString("ANDROID_ID", ""));
+            jsonObject.put("UserId", Utils.getAndroidDeviceID(this));
             jsonObject.put("CountryCode", mPhoneTextInputEditText.getText().toString());
             jsonObject.put("MobileNumber", mPhoneTextInputEditText.getText().toString());
             jsonObject.put("MailId", mEmailInputEditText.getText().toString());
             jsonObject.put("FirebaseKey", mSharedPreferences.getString("FCM_TOKEN", ""));
-            jsonObject.put("DeviceId", mSharedPreferences.getString("ANDROID_ID", ""));
+            jsonObject.put("DeviceId", Utils.getAndroidDeviceID(this));
 
 
         } catch (JSONException e) {

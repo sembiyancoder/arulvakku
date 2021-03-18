@@ -29,9 +29,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     private CardView rosaryCardView;
     private TextView txtTitle;
-
-   private AudioManager am;
-
+    private AudioManager am;
     private BroadcastReceiver receiver;
     /**
      * This variable used to avoid multiple call on receive
@@ -41,27 +39,21 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
      */
     View view;
     private int mediaMode = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-        view = findViewById(R.id.parent);
         inflateXML();
         getCurrentDay();
-
         // change music stream volume while activity is running
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
-
         am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-
         silentStatus();
     }
 
-
-
     private void inflateXML() {
+        view = findViewById(R.id.parent);
         txtTitle = findViewById(R.id.textView);
         rosaryCardView = findViewById(R.id.cardView2);
         rosaryCardView.setOnClickListener(this);
@@ -115,7 +107,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     protected void onPause() {
         super.onPause();
         MyApplication.sBus.unregister(this);
-
         // Unregister receiver
         unregisterReceiver(receiver);
     }
@@ -123,7 +114,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-
         switch (v.getId()) {
             case R.id.card_view_today_rosary:
                 Intent intent = new Intent(this, RosaryActivity.class);
@@ -204,7 +194,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         Snackbar snackbar = Snackbar
                 .make(view, "ஆலயத்தினுள்ளே கைபேசியை அமைதிப்படுத்துக!", Snackbar.LENGTH_LONG)
                 .setAction("SETTINGS", view -> openSettings());
-
         snackbar.show();
     }
 

@@ -7,21 +7,19 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="@drawable/edit_text_background"
-        android:orientation="vertical"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <Spinner
             android:id="@+id/spinner_rosary_type"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="wrap_content"
             android:overlapAnchor="false" />
 
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

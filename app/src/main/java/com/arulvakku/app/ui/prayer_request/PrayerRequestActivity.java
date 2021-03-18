@@ -123,7 +123,7 @@ public class PrayerRequestActivity extends AppCompatActivity implements PrayerRe
     private JSONObject initRequest() {
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("DeviceId", mSharedPreferences.getString("ANDROID_ID", ""));
+            jsonObject.put("DeviceId", Utils.getAndroidDeviceID(this));
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -113,7 +113,7 @@ public class CreatePrayerRequestActivity extends AppCompatActivity implements Vi
         try {
             jsonObject.put("Name", mNameInputEditText.getText().toString().trim());
             jsonObject.put("Place", mPlaceEditText.getText().toString().trim());
-            jsonObject.put("DeviceId", mSharedPreferences.getString("ANDROID_ID", ""));
+            jsonObject.put("DeviceId", Utils.getAndroidDeviceID(this));
             jsonObject.put("PrayerRequest", mPrayerEditText.getText().toString().trim());
         } catch (JSONException e) {
             e.printStackTrace();
@@ -126,7 +126,7 @@ public class CreatePrayerRequestActivity extends AppCompatActivity implements Vi
         try {
             jsonObject.put("Name", mNameInputEditText.getText().toString().trim());
             jsonObject.put("Place", mPlaceEditText.getText().toString().trim());
-            jsonObject.put("DeviceId", mSharedPreferences.getString("ANDROID_ID", ""));
+            jsonObject.put("DeviceId", Utils.getAndroidDeviceID(this));
             jsonObject.put("PrayerRequest", mPrayerEditText.getText().toString().trim());
             jsonObject.put("RequestId", mJsonObject.optString("RequestId"));
         } catch (JSONException e) {

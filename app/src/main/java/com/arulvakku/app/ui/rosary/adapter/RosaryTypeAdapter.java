@@ -11,7 +11,7 @@ import com.arulvakku.R;
 
 import java.util.List;
 
-public class RosaryTypeAdapter  extends BaseAdapter {
+public class RosaryTypeAdapter extends BaseAdapter {
 
     private Context context;
     private List<String> rosaryTypeList;
@@ -47,13 +47,13 @@ public class RosaryTypeAdapter  extends BaseAdapter {
         final TextView days = view.findViewById(R.id.txt_rosary_days);
         names.setText(name);
 
-        if(position==0){
+        if (position == 0) {
             days.setText("திங்கள், சனி");
-        }else if(position==1){
+        } else if (position == 1) {
             days.setText("செவ்வாய், வெள்ளி");
-        }else if(position==2){
+        } else if (position == 2) {
             days.setText("புதன், ஞாயிறு");
-        }else{
+        } else {
             days.setText("வியாழக் கிழமை");
         }
         return view;
