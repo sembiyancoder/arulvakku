@@ -1,6 +1,7 @@
 package com.arulvakku.app.ui.home.frgament;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
@@ -36,7 +37,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -47,7 +47,6 @@ import java.util.List;
 
 public class DailyVerseFragment extends Fragment implements View.OnClickListener {
 
-    private UtilSingleton sInstance;
 
     public DailyVerseFragment() {
     }
@@ -63,7 +62,6 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        sInstance = UtilSingleton.getInstance();
     }
 
 
@@ -95,7 +93,7 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
     }
 
     private void checkForWhatsApp() {
-        if (isPackageInstalled(Constants.WHATSAPP_PACKAGE_NAME, getContext())) {
+        if (isPackageInstalled(getContext())) {
             imgWhatsApp.setVisibility(View.VISIBLE);
         } else {
             imgWhatsApp.setVisibility(View.GONE);
@@ -103,6 +101,7 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
     }
 
 
+    @SuppressLint("SimpleDateFormat")
     public void shareDailyVerse(int app) {
         if (getBitmap() != null) {
             if (app == 3) {
@@ -124,6 +123,7 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
         Bitmap bitmap = mMaterialCardView.getDrawingCache();
         imgShare.setVisibility(View.VISIBLE);
         imgDownload.setVisibility(View.VISIBLE);
+        imgWhatsApp.setVisibility(View.VISIBLE);
         return bitmap;
     }
 
@@ -133,6 +133,7 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
      * 2 for whatsapp share
      * 3 for download
      * */
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -148,13 +149,9 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
         }
     }
 
-    private void shareItInWhatsApp() {
-
-    }
-
 
     private void setTodayDailyVerse() {
-        String todayDate = sInstance.getDate();
+        String todayDate = UtilSingleton.getDate();
         try {
             JSONObject obj = new JSONObject(loadJSONFromAsset());
             JSONArray jsonArray = obj.optJSONArray("Result");
@@ -168,7 +165,7 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
                     String chapter_no = verse_id.substring(2, 5);
                     String verse_no = verse_id.substring(5, 8);
                     String day_verse = dbHelper.getVerseDay(verse_id);
-                    txtVerseNo.setText(sInstance.bookName[Integer.parseInt(book_no) - 1].trim() + " " + Integer.parseInt(chapter_no) + " : " + Integer.parseInt(verse_no));
+                    txtVerseNo.setText(UtilSingleton.bookName[Integer.parseInt(book_no) - 1].trim() + " " + Integer.parseInt(chapter_no) + " : " + Integer.parseInt(verse_no));
                     txtVerse.setText(day_verse);
                     break;
                 }
@@ -181,7 +178,7 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
 
 
     private String loadJSONFromAsset() {
-        String json = null;
+        String json;
         try {
             InputStream is = getActivity().getAssets().open("daily_verses.json");
             int size = is.available();
@@ -212,12 +209,9 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
             fileOutputStream.flush();
             fileOutputStream.close();
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         //---Share File---//
         //get file uri
         Uri myImageFileUri = FileProvider.getUriForFile(getActivity(), getActivity().getApplicationContext().getPackageName() + ".provider", file);
@@ -231,7 +225,7 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
 
         if (app == 2) { //  share only in WhatsApp
             if (getContext() != null)
-                if (isPackageInstalled(Constants.WHATSAPP_PACKAGE_NAME, getContext())) {
+                if (isPackageInstalled(getContext())) {
                     intent.setPackage(Constants.WHATSAPP_PACKAGE_NAME);
                     startActivity(Intent.createChooser(intent, "Share with"));
                 } else {
@@ -246,10 +240,10 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
     }
 
     // to check whatsapp is installed or not
-    private boolean isPackageInstalled(String packagename, Context context) {
+    private boolean isPackageInstalled(Context context) {
         PackageManager pm = context.getPackageManager();
         try {
-            pm.getPackageInfo(packagename, PackageManager.GET_ACTIVITIES);
+            pm.getPackageInfo(Constants.WHATSAPP_PACKAGE_NAME, PackageManager.GET_ACTIVITIES);
             return true;
         } catch (PackageManager.NameNotFoundException e) {
             return false;
@@ -265,6 +259,7 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
 //                Toast.makeText(getContext(), "Permission Granted", Toast.LENGTH_SHORT).show();
                 shareDailyVerse(3);
             }
+
             @Override
             public void onPermissionDenied(List<String> deniedPermissions) {
                 Toast.makeText(getContext(), "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
@@ -333,12 +328,7 @@ public class DailyVerseFragment extends Fragment implements View.OnClickListener
     private void notifyDownload() {
         Snackbar snackbar = Snackbar
                 .make(getView(), "Downloaded Successful", Snackbar.LENGTH_LONG)
-                .setAction("OPEN", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        startActivity(new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS));
-                    }
-                });
+                .setAction("OPEN", view -> startActivity(new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS)));
         snackbar.show();
     }
 }
