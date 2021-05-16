@@ -22,8 +22,8 @@
             android:layout_height="wrap_content"
             android:checkable="true"
             android:orientation="horizontal"
-            app:cardCornerRadius="5dp"
-            app:cardElevation="5dp"
+            app:cardCornerRadius="0dp"
+            app:cardPreventCornerOverlap="false"
             app:cardUseCompatPadding="true"
             app:strokeColor="@color/colorPrimary">
 
@@ -95,8 +95,8 @@
             android:layout_height="wrap_content"
             android:checkable="true"
             android:orientation="horizontal"
-            app:cardCornerRadius="5dp"
-            app:cardElevation="5dp"
+            app:cardCornerRadius="0dp"
+            app:cardPreventCornerOverlap="false"
             app:cardUseCompatPadding="true"
             app:strokeColor="@color/colorPrimary">
 
@@ -168,9 +168,10 @@
             android:layout_height="wrap_content"
             android:checkable="true"
             android:orientation="horizontal"
-            app:cardCornerRadius="5dp"
-            app:cardElevation="5dp"
+            app:cardCornerRadius="0dp"
+            app:cardPreventCornerOverlap="false"
             app:cardUseCompatPadding="true"
+
             app:strokeColor="@color/colorPrimary">
 
 
