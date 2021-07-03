@@ -39,7 +39,7 @@
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
         android:src="@drawable/ic_add"
-        android:text="செப விண்ணப்பம்"
+        android:text="செப வேண்டுதல்"
         app:icon="@drawable/ic_add" />
 
 

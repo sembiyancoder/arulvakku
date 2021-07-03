@@ -60,6 +60,7 @@ public class PrayerRequestActivity extends AppCompatActivity implements PrayerRe
         mFloatingActionButton = findViewById(R.id.fab);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
+        linearLayoutManager.setReverseLayout(true);
         mFloatingActionButton.setOnClickListener(this);
     }
 
@@ -90,7 +91,6 @@ public class PrayerRequestActivity extends AppCompatActivity implements PrayerRe
             onBackPressed();
         }
     }
-
 
     /*
      * No internet connection error message

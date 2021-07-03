@@ -4,7 +4,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
@@ -18,12 +20,22 @@ import androidx.cardview.widget.CardView;
 
 import com.arulvakku.R;
 import com.arulvakku.app.MyApplication;
+import com.arulvakku.app.network.WebServiceHandler;
 import com.arulvakku.app.ui.NotificationActivity;
+import com.arulvakku.app.ui.prayer_request.PrayerRequestActivity;
 import com.arulvakku.app.ui.rosary.RosaryActivity;
+import com.arulvakku.app.utils.Constants;
 import com.arulvakku.app.utils.ShareLink;
+import com.arulvakku.app.utils.Utils;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Calendar;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -39,11 +51,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
      */
     View view;
     private int mediaMode = 0;
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        mSharedPreferences = getSharedPreferences(getResources().getString(R.string.app_name), 0);
         inflateXML();
         getCurrentDay();
         // change music stream volume while activity is running
@@ -57,6 +72,30 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         txtTitle = findViewById(R.id.textView);
         rosaryCardView = findViewById(R.id.cardView2);
         rosaryCardView.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        boolean isExistingFcm = mSharedPreferences.getBoolean(Constants.FCM_TOKEN_UPDATED, false);
+
+        if (!isExistingFcm) {
+            new PushFCMTokenAsync().execute();
+        }
+
+        Intent intent = this.getIntent();
+        if (intent != null && intent.hasExtra("type")) {
+            Intent intent1 = null;
+            if (intent.getStringExtra("type").equalsIgnoreCase("Notifications")) {
+                intent1 = new Intent(this, NotificationActivity.class);
+            } else if (intent.getStringExtra("type").equalsIgnoreCase("Prayer Request")) {
+                intent1 = new Intent(this, PrayerRequestActivity.class);
+            }
+            if (intent1 != null) {
+                startActivity(intent1);
+            }
+        }
     }
 
     @Override
@@ -85,14 +124,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
         MyApplication.sBus.register(this);
-
-        // set receiver for silent mode
         receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                //code...
-//                Log.d("TAG", "onReceive: "+intent.toString());
-
                 int a = am.getRingerMode();
                 if (mediaMode != a)
                     silentStatus();
@@ -115,7 +149,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.card_view_today_rosary:
+            case R.id.cardView2:
                 Intent intent = new Intent(this, RosaryActivity.class);
                 if (txtTitle.getText().toString().equals("மகிழ்ச்சி நிறை மறை உண்மைகள்")) {
                     intent.putExtra("day", 0);
@@ -197,4 +231,53 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         snackbar.show();
     }
 
+
+    private JSONObject initRequest() {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("FirebaseKey", mSharedPreferences.getString(Constants.FCM_TOKEN, ""));
+            jsonObject.put("DeviceId", Utils.getAndroidDeviceID(this));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
+    }
+
+    public class PushFCMTokenAsync extends AsyncTask<Void, Void, String> {
+
+        public PushFCMTokenAsync() {
+
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            WebServiceHandler webService = WebServiceHandler.getInstance(HomeActivity.this);
+            RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), initRequest().toString());
+            String jsonString = webService.postWebServiceCall(Constants.UPDATE_FIREBASE_KEY, requestBody);
+            return jsonString;
+        }
+
+        @Override
+        protected void onPostExecute(String response) {
+            super.onPostExecute(response);
+            Log.d(HomeActivity.class.getSimpleName(), response.toString());
+            if (response != null && response.length() > 0 && Utils.isValidJSON(response)) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    if (jsonObject != null && jsonObject.optBoolean("IsTransactionDone")) {
+                        SharedPreferences.Editor editor = mSharedPreferences.edit();
+                        editor.putBoolean(Constants.FCM_TOKEN_UPDATED, true);
+                        editor.commit();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }

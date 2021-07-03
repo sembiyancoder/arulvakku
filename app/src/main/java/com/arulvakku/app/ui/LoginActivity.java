@@ -183,8 +183,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             jsonObject.put("MailId", mEmailInputEditText.getText().toString());
             jsonObject.put("FirebaseKey", mSharedPreferences.getString("FCM_TOKEN", ""));
             jsonObject.put("DeviceId", Utils.getAndroidDeviceID(this));
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -39,7 +39,11 @@ public class PrayerRequestListAdapter extends RecyclerView.Adapter<PrayerRequest
         JSONObject jsonObject = jsonArray.optJSONObject(position);
         holder.txtPrayer.setText(jsonObject.optString("PrayerRequest"));
         holder.txtReply.setText(jsonObject.optString("Reply"));
-
+        if (holder.txtReply.getText() != null && !holder.txtReply.getText().toString().isEmpty()) {
+            holder.btnEdit.setVisibility(View.INVISIBLE);
+        } else {
+            holder.btnEdit.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -49,7 +53,7 @@ public class PrayerRequestListAdapter extends RecyclerView.Adapter<PrayerRequest
 
     class VersionViewHolder extends RecyclerView.ViewHolder {
         TextView txtPrayer, txtReply;
-        MaterialButton btnEdit,btnDelete;
+        MaterialButton btnEdit, btnDelete;
 
         public VersionViewHolder(View itemView) {
             super(itemView);
@@ -76,6 +80,7 @@ public class PrayerRequestListAdapter extends RecyclerView.Adapter<PrayerRequest
 
     public interface onItemSelectedListener {
         void onDeletePrayer(JSONObject bookModel);
+
         void onEditPrayer(JSONObject bookModel);
     }
 }

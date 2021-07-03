@@ -1,59 +1,50 @@
 package com.arulvakku.app.model;
 
 public class Notification {
+    private String mId;
+    private String mTitle;
+    private String mMessage;
+    private Long mTime;
 
-    private String mFromTime;
-    private String mAlertTitle;
-    private String mAlertMessage;
-    private int mNotificationId;
-    private String bigPictureUrl;
-    private String iconUrl;
-
-    public String getmFromTime() {
-        return mFromTime;
+    public String getmId() {
+        return mId;
     }
 
-    public void setmFromTime(String mFromTime) {
-        this.mFromTime = mFromTime;
+    public void setmId(String mId) {
+        this.mId = mId;
     }
 
-    public String getmAlertTitle() {
-        return mAlertTitle;
+    private String mDate;
+
+    public Long getmTime() {
+        return mTime;
     }
 
-    public void setmAlertTitle(String mAlertTitle) {
-        this.mAlertTitle = mAlertTitle;
+    public void setmTime(Long mTime) {
+        this.mTime = mTime;
     }
 
-    public String getmAlertMessage() {
-        return mAlertMessage;
+    public String getmDate() {
+        return mDate;
     }
 
-    public void setmAlertMessage(String mAlertMessage) {
-        this.mAlertMessage = mAlertMessage;
+    public void setmDate(String mDate) {
+        this.mDate = mDate;
     }
 
-    public int getmNotificationId() {
-        return mNotificationId;
+    public String getmTitle() {
+        return mTitle;
     }
 
-    public void setmNotificationId(int mNotificationId) {
-        this.mNotificationId = mNotificationId;
+    public void setmTitle(String mTitle) {
+        this.mTitle = mTitle;
     }
 
-    public String getBigPictureUrl() {
-        return bigPictureUrl;
+    public String getmMessage() {
+        return mMessage;
     }
 
-    public void setBigPictureUrl(String bigPictureUrl) {
-        this.bigPictureUrl = bigPictureUrl;
-    }
-
-    public String getIconUrl() {
-        return iconUrl;
-    }
-
-    public void setIconUrl(String iconUrl) {
-        this.iconUrl = iconUrl;
+    public void setmMessage(String mMessage) {
+        this.mMessage = mMessage;
     }
 }

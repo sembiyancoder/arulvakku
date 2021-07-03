@@ -23,17 +23,9 @@ public class PostsDatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 3;
 
     // Table Names
-    private static final String TABLE_POSTS = "one_signal_notification";
+    private static final String TABLE_POSTS = "fcm_notification";
     private static final String TABLE_NOTES = "tbl_notes";
 
-    // Post Table Columns
-    private static final String KEY_POST_ID = "id";
-    private static final String KEY_POST_USER_FROM = "from_time";
-    private static final String KEY_POST_ALERT_MEESAGE = "alert_message";
-    private static final String KEY_POST_ALERT_TITLE = "alert_title";
-    private static final String KEY_POST_ALERT_ID = "notification_id";
-    private static final String BIG_ICON_URL = "bigIconUrl";
-    private static final String SMALL_ICON_RL = "smallIconUrl";
 
     // Note Table Columns
     private static final String TABLE_NOTE = "tbl_note";
@@ -66,6 +58,19 @@ public class PostsDatabaseHelper extends SQLiteOpenHelper {
             BOOKMARK_SELECTED_VERSE + " TEXT" + ")";
 
 
+    // Post Table Columns
+    private static final String KEY_NOTIFICATION_ID = "id";
+    private static final String KEY_NOTIFICATION_MESSAGE = "alert_message";
+    private static final String KEY_NOTIFICATION_TITLE = "alert_title";
+    private static final String KEY_TIME = "time";
+
+    String CREATE_NOTIFICATION_TABLE = "CREATE TABLE " + TABLE_POSTS + "(" +
+            KEY_NOTIFICATION_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            KEY_NOTIFICATION_TITLE + " TEXT," +
+            KEY_TIME + " INTEGER," +
+            KEY_NOTIFICATION_MESSAGE + " TEXT," +
+            COLUMN_TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP" + ")";
+
     private static PostsDatabaseHelper sInstance;
 
     public static synchronized PostsDatabaseHelper getInstance(Context context) {
@@ -75,7 +80,7 @@ public class PostsDatabaseHelper extends SQLiteOpenHelper {
         return sInstance;
     }
 
-     public PostsDatabaseHelper(Context context) {
+    public PostsDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -88,6 +93,7 @@ public class PostsDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        db.execSQL(CREATE_NOTIFICATION_TABLE);
         db.execSQL(CREATE_NOTE_TABLE);
         db.execSQL(CREATE_BOOKMARK_TABLE);
     }
@@ -129,9 +135,6 @@ public class PostsDatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-
-
-
     public int getNotesCount(int book_id) {
         String countQuery = "SELECT  * FROM " + TABLE_NOTE + " WHERE book_id = " + book_id;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -149,7 +152,6 @@ public class PostsDatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return count;
     }
-
 
 
     public int updateNote(Note note) {
@@ -188,12 +190,9 @@ public class PostsDatabaseHelper extends SQLiteOpenHelper {
         db.beginTransaction();
         try {
             ContentValues values = new ContentValues();
-            values.put(KEY_POST_USER_FROM, notification.getmFromTime());
-            values.put(KEY_POST_ALERT_MEESAGE, notification.getmAlertMessage());
-            values.put(KEY_POST_ALERT_TITLE, notification.getmAlertTitle());
-            values.put(KEY_POST_ALERT_ID, notification.getmNotificationId());
-            values.put(BIG_ICON_URL, notification.getBigPictureUrl());
-            values.put(SMALL_ICON_RL, notification.getIconUrl());
+            values.put(KEY_NOTIFICATION_TITLE, notification.getmTitle());
+            values.put(KEY_NOTIFICATION_MESSAGE, notification.getmMessage());
+            values.put(KEY_TIME, notification.getmTime());
             db.insertOrThrow(TABLE_POSTS, null, values);
             db.setTransactionSuccessful();
             Log.d(PostsDatabaseHelper.class.getSimpleName(), "Inserted Successfully");
@@ -245,7 +244,6 @@ public class PostsDatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-
     public List<Bookmark> getChapterBookmarks(int book_id) {
         List<Bookmark> bookmarkList = new ArrayList<>();
         String selectQuery = "SELECT  * FROM " + TABLE_NOTE_BOOKMARK + " WHERE book_id = " + book_id;
@@ -279,22 +277,18 @@ public class PostsDatabaseHelper extends SQLiteOpenHelper {
         return bookmarkList;
     }
 
-
-
     public List<Notification> getAllNotification() {
         List<Notification> notes = new ArrayList<>();
-        String selectQuery = "SELECT  * FROM " + TABLE_POSTS + " ORDER BY " + KEY_POST_USER_FROM + " DESC";
+        String selectQuery = "SELECT  * FROM " + TABLE_POSTS;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
             do {
                 Notification note = new Notification();
-                note.setmFromTime(cursor.getString(cursor.getColumnIndex(KEY_POST_USER_FROM)));
-                note.setmAlertTitle(cursor.getString(cursor.getColumnIndex(KEY_POST_ALERT_TITLE)));
-                note.setmAlertMessage(cursor.getString(cursor.getColumnIndex(KEY_POST_ALERT_MEESAGE)));
-                note.setmNotificationId(cursor.getInt(cursor.getColumnIndex(KEY_POST_ALERT_ID)));
-                note.setBigPictureUrl(cursor.getString(cursor.getColumnIndex(BIG_ICON_URL)));
-                note.setIconUrl(cursor.getString(cursor.getColumnIndex(SMALL_ICON_RL)));
+                note.setmId("" + cursor.getInt(cursor.getColumnIndex(KEY_NOTIFICATION_ID)));
+                note.setmTitle(cursor.getString(cursor.getColumnIndex(KEY_NOTIFICATION_TITLE)));
+                note.setmMessage(cursor.getString(cursor.getColumnIndex(KEY_NOTIFICATION_MESSAGE)));
+                note.setmTime(cursor.getLong(cursor.getColumnIndex(KEY_TIME)));
                 notes.add(note);
             } while (cursor.moveToNext());
         }
@@ -304,7 +298,7 @@ public class PostsDatabaseHelper extends SQLiteOpenHelper {
 
     public void deleteNotification(Notification notification) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_POSTS, KEY_POST_ALERT_ID + " = ?", new String[]{String.valueOf(notification.getmNotificationId())});
+        db.delete(TABLE_POSTS, KEY_NOTIFICATION_ID + " = ?", new String[]{String.valueOf(notification.getmId())});
         db.close();
     }
 

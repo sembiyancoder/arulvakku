@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -18,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.arulvakku.R;
 import com.arulvakku.app.database.DBHelper;
 import com.arulvakku.app.ui.home.HomeActivity;
+import com.arulvakku.app.utils.Constants;
 import com.arulvakku.app.utils.UtilSingleton;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -30,6 +32,8 @@ import com.google.android.play.core.install.model.UpdateAvailability;
 import com.google.android.play.core.tasks.OnFailureListener;
 import com.google.android.play.core.tasks.OnSuccessListener;
 import com.google.android.play.core.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import java.io.IOException;
 
@@ -43,6 +47,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     private AppUpdateManager mAppUpdateManager;
     private Task<AppUpdateInfo> mAppUpdateInfoTask;
     private SharedPreferences mSharedPreferences;
+    private String mNotificationType = "";
 
     @RequiresApi(api = Build.VERSION_CODES.N_MR1)
     @Override
@@ -53,83 +58,44 @@ public class SplashScreenActivity extends AppCompatActivity {
         mSharedPreferences = getSharedPreferences(getResources().getString(R.string.app_name), 0);
         mAppUpdateManager = AppUpdateManagerFactory.create(this);
         mAppUpdateInfoTask = mAppUpdateManager.getAppUpdateInfo();
+        getFCMToken();
     }
 
-    /**
-     * Set up the daily notification worker
-     */
-    /*private void setUpDailyNotificationWorker() {
-        if (!isDailyNotificationWorkerRunning()) {    //Check whether is scheduled or running
-            long initialDelayMills;
-
-            Calendar currentCalendar = Calendar.getInstance();  //Current date time
-
-            Calendar targetCalendar = Calendar.getInstance();   //Target date time with 06 AM default
-            targetCalendar.set(Calendar.HOUR_OF_DAY, 6);
-            targetCalendar.set(Calendar.MINUTE, 0);
-
-            if (currentCalendar.equals(targetCalendar)) {         //Check the current time is 06 AM
-                initialDelayMills = 1000;
-            } else if (currentCalendar.before(targetCalendar)) {  //Check the current time is before 06 AM
-                initialDelayMills = targetCalendar.getTimeInMillis() - currentCalendar.getTimeInMillis();
-            } else {                                              //If the current time is after 06 AM
-                // Add one more day in the calendar and calculate the millis
-                targetCalendar.add(Calendar.DATE, 1);
-                initialDelayMills = targetCalendar.getTimeInMillis() - currentCalendar.getTimeInMillis();
-            }
-
-            OneTimeWorkRequest oneTimeWorkRequest = new OneTimeWorkRequest.Builder(DailyNotificationWorker.class)
-                    .setInitialDelay(initialDelayMills, TimeUnit.MILLISECONDS)
-                    .addTag(getPackageName())
-                    .build();
-
-            WorkManager.getInstance(mContext).enqueueUniqueWork(Constants.WORK_DAILY_NOTIFICATION, ExistingWorkPolicy.REPLACE, oneTimeWorkRequest);
-        }
-    }*/
-
-    /**
-     * To check whether the notification worker is running
-     *
-     * @return - returns true if running otherwise false
-     */
-    /*private boolean isDailyNotificationWorkerRunning() {
-        final boolean[] isRunning = {false};
-
-        ListenableFuture<List<WorkInfo>> listListenableFuture = WorkManager.getInstance(mContext).getWorkInfosByTag(getPackageName());
-
-        try {
-            List<WorkInfo> workInfoList = listListenableFuture.get();
-            for (int i = 0; i < workInfoList.size(); i++) {
-                WorkInfo workInfo = workInfoList.get(i);
-                switch (workInfo.getState().name()) {
-                    case "ENQUEUED":
-                        Log.i(TAG, "Notification worker is enqueued");
-                        isRunning[0] = true;
-                        break;
-                    case "RUNNING":
-                        Log.i(TAG, "Notification worker is running");
-                        isRunning[0] = true;
-                        break;
-                    case "SUCCEEDED":
-                        Log.i(TAG, "Notification worker is completed");
-                        break;
-                    case "CANCELLED":
-                        Log.i(TAG, "Notification worker is cancelled");
-                        break;
-                    case "FAILED":
-                        Log.i(TAG, "Notification worker is failed");
-                        break;
+    private void getFCMToken() {
+        if (UtilSingleton.getInstance().isNetworkAvailable(this)) {
+            FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(SplashScreenActivity.this, new com.google.android.gms.tasks.OnSuccessListener<InstanceIdResult>() {
+                @Override
+                public void onSuccess(InstanceIdResult instanceIdResult) {
+                    String newToken = instanceIdResult.getToken();
+                    Log.d("T:", newToken);
+                    if (newToken != null && !newToken.isEmpty()) {
+                        SharedPreferences.Editor editor = mSharedPreferences.edit();
+                        String existing_fcm = mSharedPreferences.getString(Constants.FCM_TOKEN, "");
+                        if (!existing_fcm.equalsIgnoreCase(newToken)) {
+                            editor.putString(Constants.FCM_TOKEN, newToken);
+                            editor.commit();
+                        } else {
+                            editor.putString(Constants.FCM_TOKEN, newToken);
+                            editor.commit();
+                            editor.putBoolean(Constants.FCM_TOKEN_UPDATED, false);
+                        }
+                    }
                 }
-            }
-        } catch (ExecutionException | InterruptedException e) {
-            e.printStackTrace();
+            });
         }
+    }
 
-        return isRunning[0];
-    }*/
     @Override
     protected void onStart() {
         super.onStart();
+        Intent intent = this.getIntent();
+        if (intent != null && intent.hasExtra("type")) {
+            mNotificationType = intent.getStringExtra("type");
+        }
+        checkForUpdate();
+    }
+
+    private void checkForUpdate() {
         if (UtilSingleton.getInstance().isNetworkAvailable(this)) {
             if (isGooglePlayServicesAvailable(SplashScreenActivity.this)) {
                 mAppUpdateInfoTask.addOnSuccessListener(new OnSuccessListener<AppUpdateInfo>() {
@@ -214,13 +180,9 @@ public class SplashScreenActivity extends AppCompatActivity {
         if (mProgressDialog != null) {
             mProgressDialog.dismiss();
         }
-        boolean isLoggedIn = mSharedPreferences.getBoolean("IsLoggedIn", false);
-        Intent mainIntent;
-        if (isLoggedIn) {
-            mainIntent = new Intent(mContext, HomeActivity.class);
-        } else {
-            mainIntent = new Intent(mContext, LoginActivity.class);
-        }
+
+        Intent mainIntent = new Intent(mContext, HomeActivity.class);
+        mainIntent.putExtra("type", mNotificationType);
         startActivity(mainIntent);
         finish();
     }
@@ -248,6 +210,5 @@ public class SplashScreenActivity extends AppCompatActivity {
             mWorkerHandler = new Handler(getLooper());
         }
     }
-
 
 }

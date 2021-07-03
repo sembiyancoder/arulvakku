@@ -1,95 +1,79 @@
 package com.arulvakku.app.fcm;
 
 import android.content.SharedPreferences;
-import android.util.Log;
 
+import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
 import com.arulvakku.R;
-import com.arulvakku.app.utils.UtilSingleton;
+import com.arulvakku.app.utils.Constants;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
-    private static final String TAG = MyFirebaseMessagingService.class.getSimpleName();
-
-    private SharedPreferences sharedPreferences;
-    private SharedPreferences.Editor editor;
-
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-
-        Log.e(TAG, "From: " + remoteMessage.getFrom());
-
-        // Check if message contains a notification payload.
-        if (remoteMessage.getNotification() != null) {
-            Log.e(TAG, "Notification Body: " + remoteMessage.getNotification().getBody());
-            handleDataMessage(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody(), "இன்றைய வசனம்", "");
-        }
-
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
-            String type = remoteMessage.getData().get("type").toString();
-            String title = "", body = "";
-            String imageURL = "";
-
-            if (type.equalsIgnoreCase(CommonNotificationHelper.NOTIFICATION_DAILY_SAINTS)) {
-                title = remoteMessage.getData().get("title").toString();
-                body = remoteMessage.getData().get("body").toString();
-                imageURL = remoteMessage.getData().get("imageURL").toString();
-                handleDataMessage(title, body, CommonNotificationHelper.NOTIFICATION_DAILY_SAINTS, imageURL);
-
-            } else if (type.equalsIgnoreCase(CommonNotificationHelper.NOTIFICATION_MASS_READING)) {
-                title = remoteMessage.getData().get("title").toString();
-                body = remoteMessage.getData().get("body").toString();
-                handleDataMessage(title, body, CommonNotificationHelper.NOTIFICATION_MASS_READING, "");
-            } else if (type.equalsIgnoreCase(CommonNotificationHelper.NOTIFICATION_CHANNEL_PRAYER_REQUEST)) {
-                title = remoteMessage.getData().get("title").toString();
-                body = remoteMessage.getData().get("body").toString();
-                handleDataMessage(title, body, CommonNotificationHelper.NOTIFICATION_CHANNEL_PRAYER_REQUEST, "");
-            } else if (type.equalsIgnoreCase(CommonNotificationHelper.NOTIFICATION_CHANNEL_ANNOUNCEMENTS)) {
-                title = remoteMessage.getData().get("title").toString();
-                body = remoteMessage.getData().get("body").toString();
-                handleDataMessage(title, body, CommonNotificationHelper.NOTIFICATION_CHANNEL_ANNOUNCEMENTS, "");
+            String title = remoteMessage.getData().get("title");
+            String body = remoteMessage.getData().get("body");
+            String notification_type = remoteMessage.getData().get("notification_type");
+            if (title != null && body != null && notification_type != null && notification_type.equalsIgnoreCase("Notifications")) {
+                insertInDB(title, body);
+                handleDataMessage(title, body, notification_type, "");
+            } else if (title != null && body != null && notification_type.equalsIgnoreCase("Prayer Request")) {
+                handleDataMessage(title, body, notification_type, "");
+            } else if (title != null && body != null && notification_type.equalsIgnoreCase("Daily Saints")) {
+                handleDataMessage(title, body, notification_type, "");
+            } else if (title != null && body != null && notification_type.equalsIgnoreCase("Daily Mass Readings")) {
+                handleDataMessage(title, body, notification_type, "");
+            } else if (title != null && body != null && notification_type.equalsIgnoreCase("Test Notification")) {
+                handleDataMessage(title, body, notification_type, "");
             } else {
-                title = remoteMessage.getData().get("title").toString();
-                body = remoteMessage.getData().get("body").toString();
-                handleDataMessage(title, body, CommonNotificationHelper.NOTIFICATION_CHANNEL_ANNOUNCEMENTS, "");
+                handleDataMessage(title, body, notification_type, "");
             }
         }
     }
 
+    /**
+     * Saving the notification in database to show in the notitication activity
+     */
+    private void insertInDB(String title, String body) {
+        Data inputData = new Data.Builder()
+                .putString(Constants.NOTIFICATION_TITLE, title)
+                .putString(Constants.NOTIFICATION_MESSAGE, body)
+                .putLong(Constants.NOTIFICATION_TIME, System.currentTimeMillis())
+                .build();
+
+        OneTimeWorkRequest oneTimeWorkRequest = new OneTimeWorkRequest.Builder(MyFirebaseWorker.class)
+                .setInputData(inputData)
+                .build();
+        WorkManager.getInstance(this).enqueue(oneTimeWorkRequest);
+    }
 
     private void handleDataMessage(String title, String message, String type, String imageURL) {
         if (!NotificationUtils.isAppIsInBackground(getApplicationContext())) {
-            // app is in foreground, broadcast the push message
             CommonNotificationHelper commonNotificationHelper = new CommonNotificationHelper(this);
             commonNotificationHelper.createNotification(title, message, type, imageURL);
         } else {
-            // If the app is in background, firebase itself handles the notification
             CommonNotificationHelper commonNotificationHelper = new CommonNotificationHelper(this);
             commonNotificationHelper.createNotification(title, message, type, imageURL);
         }
-    }
 
+    }
 
     @Override
     public void onNewToken(String token) {
         super.onNewToken(token);
-        sharedPreferences = getSharedPreferences(getResources().getString(R.string.app_name), 0);
-        editor = sharedPreferences.edit();
-        editor.putString("FCM_TOKEN", token);
-        editor.commit();
-
-        if (UtilSingleton.getInstance().isNetworkAvailable(this)) {
-            WorkManager mWorkManager = WorkManager.getInstance();
-            OneTimeWorkRequest mRequest = new OneTimeWorkRequest.Builder(MyFirebaseWorker.class).build();
-            mWorkManager.enqueue(mRequest);
+        if (token != null && !token.isEmpty()) {
+            SharedPreferences sharedPreferences = getSharedPreferences(getResources().getString(R.string.app_name), 0);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString(Constants.FCM_TOKEN, token);
+            editor.putBoolean(Constants.FCM_TOKEN_UPDATED, false);
+            editor.commit();
         }
     }
-
-
 }

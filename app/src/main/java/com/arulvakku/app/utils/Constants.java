@@ -35,4 +35,13 @@ public class Constants {
 
     public static final String WHATSAPP_PACKAGE_NAME = "com.whatsapp";
 
+
+    public static final String NOTIFICATION_TITLE = "title";
+    public static final String NOTIFICATION_MESSAGE = "message";
+    public static final String NOTIFICATION_TIME = "time_ago";
+
+    //sharedpreference
+    public static final String FCM_TOKEN = "firebase_notification_token";
+    public static final String FCM_TOKEN_UPDATED = "fcm_token_updated";
+
 }
